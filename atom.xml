@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://voidspiral.github.io</id>
-    <title>voidspiral&apos;s blog</title>
-    <updated>2020-06-26T06:56:12.357Z</updated>
+    <title>螺旋飞鸟的博客 | 专注于 golang、分布式、等一切</title>
+    <updated>2020-06-26T09:59:11.317Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://voidspiral.github.io"/>
     <link rel="self" href="https://voidspiral.github.io/atom.xml"/>
     <subtitle>无钱休入众 言轻莫劝人</subtitle>
     <logo>https://voidspiral.github.io/images/avatar.png</logo>
     <icon>https://voidspiral.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, voidspiral&apos;s blog</rights>
+    <rights>All rights reserved 2020, 螺旋飞鸟的博客 | 专注于 golang、分布式、等一切</rights>
     <entry>
         <title type="html"><![CDATA[test]]></title>
         <id>https://voidspiral.github.io/post/test/</id>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>螺旋飞鸟的博客 </title>
+<title>滑动窗口系列 | 螺旋飞鸟的博客 </title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -14,13 +14,22 @@
 
 
 
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css" />
+  
+
+  
+
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 
 
-    <meta name="description" content="专注于 golang、分布式、3D机器视觉等">
+    <meta name="description" content="思路
+1、我们在字符串 S 中使用双指针中的左右指针技巧，初始化 left = right = 0，把索引左闭右开区间 [left, right) 称为一个「窗口」。
+2、我们先不断地增加 right 指针扩大窗口 [left, right..." />
+    <meta name="keywords" content="leetcode" />
   </head>
   <body>
     <div id="app" class="main">
@@ -92,17 +101,12 @@
 
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://voidspiral.github.io/post/hua-dong-chuang-kou-xi-lie/">
-                  <h2 class="post-title">滑动窗口系列</h2>
-                </a>
-                <div class="post-date">
-                  2020-08-10
-                </div>
-                <div class="post-abstract">
-                  <h3 id="思路">思路</h3>
+          <div class="post-detail">
+            <h2 class="post-title">滑动窗口系列</h2>
+            <div class="post-date">2020-08-10</div>
+            
+            <div class="post-content" v-pre>
+              <h3 id="思路">思路</h3>
 <p>1、我们在字符串 S 中使用双指针中的左右指针技巧，初始化 left = right = 0，把索引左闭右开区间 [left, right) 称为一个「窗口」。</p>
 <p>2、我们先不断地增加 right 指针扩大窗口 [left, right)，直到窗口中的字符串符合要求（包含了 T 中的所有字符）。</p>
 <p>3、此时，我们停止增加 right，转而不断增加 left 指针缩小窗口 [left, right)，直到窗口中的字符串不再符合要求（不包含 T 中的所有字符了）。同时，每次增加 left，我们都要更新一轮结果。</p>
@@ -160,58 +164,101 @@ public:
 };
 </code></pre>
 <h3 id="leetcode-76-最小覆盖子串">LeetCode <a href="https://leetcode-cn.com/problems/minimum-window-substring/">76. 最小覆盖子串</a></h3>
-<pre><code class="language-go"></code></pre>
+<pre><code class="language-go">&lt;!-- more --&gt;
 
-                </div>
+func minWindow(s string, t string) string {
+    window := make(map[byte]int)
+    need := make(map[byte]int)
+    // Len := 0
+    for i := range t {
+        need[t[i]]++
+    }
+
+    left, right, valid := 0, 0, 0
+    Len := math.MaxInt32
+    index := 0
+    for right &lt; len(s) {
+        c := s[right]
+        right++
+        if _, ok := need[c]; ok {
+            window[c]++
+            if window[c] == need[c] {
+                valid++
+            }
+        }
+        for valid == len(need) {//表示所有字符以找到，答案就在这个范围内，开始缩小窗口
+            if right - left &lt; Len {
+                Len = right - left
+                index = left
+            }
+            del := s[left]
+            left++
+            if _, ok := need[del]; ok{
+                if window[del] == need[del] {
+                    valid--;
+                }
+                window[del]--;
+            }
+        }
+    }
+    if Len == math.MaxInt32 {
+        return &quot;&quot;
+    }
+    return s[index:index+Len]
+}
+</code></pre>
+<h3 id="leetcode-3-无重复字符的最长子串">LeetCode <a href="https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/">3. 无重复字符的最长子串</a></h3>
+<pre><code class="language-c++">class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        unordered_map&lt;char, int&gt; window;
+        int left = 0, right = 0, Len = INT_MIN;
+        while (right &lt; s.size()) {//永远记住边界是[left, right)
+            char add = s[right];
+            right++;
+            window[add]++;
+            while(window[add] &gt; 1) {
+                window[s[left]]--;
+                left++;
+            }
+            Len = max(Len, right - left);
+        }
+        return Len == INT_MIN ? 0 : Len;
+    }
+};
+</code></pre>
+<p>[1].https://leetcode-cn.com/problems/find-all-anagrams-in-a-string/solution/hua-dong-chuang-kou-tong-yong-si-xiang-jie-jue-zi-/</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="tag">
+                    leetcode
+                  </a>
+                
               </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
                 <a href="https://voidspiral.github.io/post/leetcode-718-zui-chang-chong-fu-zi-shu-zu/">
-                  <h2 class="post-title">leetcode 718. 最长重复子数组</h2>
+                  <h3 class="post-title">
+                    leetcode 718. 最长重复子数组
+                  </h3>
                 </a>
-                <div class="post-date">
-                  2020-07-05
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
               </div>
-              
-                <a class="right" href="https://voidspiral.github.io/post/leetcode-718-zui-chang-chong-fu-zi-shu-zu/">
-                  <div class="feature-container" style="background-image: url('https://voidspiral.github.io/post-images/leetcode-718-zui-chang-chong-fu-zi-shu-zu.png')">
-                  </div>
-                </a>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://voidspiral.github.io/post/leetcode-jian-zhi-offer-49-chou-shu/">
-                  <h2 class="post-title">leetcode 剑指 Offer 49. 丑数</h2>
-                </a>
-                <div class="post-date">
-                  2020-06-28
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-                <a class="right" href="https://voidspiral.github.io/post/leetcode-jian-zhi-offer-49-chou-shu/">
-                  <div class="feature-container" style="background-image: url('https://voidspiral.github.io/post-images/leetcode-jian-zhi-offer-49-chou-shu.png')">
-                  </div>
-                </a>
-              
-            </article>
-          
+            
 
-          <div class="pagination-container">
-  
-  
-</div>
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
 
         </div>
       </div>
@@ -232,6 +279,29 @@ var app = new Vue({
 </script>
 
 
+
+
+
+  
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'faf7795e6fb19538ffa1',
+        clientSecret: '520faaf0c56ea87a228bcf5a2aba3311ca60a819',
+        repo: '',
+        owner: 'voidspiral',
+        admin: ['voidspiral'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
 
 
 

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>leetcode 718. 最长重复子数组 | 螺旋飞鸟的博客 </title>
+<title>leetcode 130. 被围绕的区域 | 螺旋飞鸟的博客 </title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -29,11 +29,11 @@
 
 
     <meta name="description" content="思路
-就注意看题好吧
-求的是重复子序列 不要上来就求最长公共子序列啊。。。
-举个例子
+思路很简单我们只要从边界部分做dfs或者bfs就好并将搜索联通块标记为‘#’即可。最后遍历一遍棋盘所有未被标记成‘#’的‘O’更新为‘X’，再将‘#’更新为'O'就好。
 
-例如，&quot;ace&quot; 是 &quot;abcde&quot; 的子序列，但 &quot;aec&quot; 不是 &quot;abcde..." />
+class Solution {
+public:
+    in..." />
     <meta name="keywords" content="leetcode" />
   </head>
   <body>
@@ -107,40 +107,46 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">leetcode 718. 最长重复子数组</h2>
-            <div class="post-date">2020-07-05</div>
-            
-              <div class="feature-container" style="background-image: url('https://voidspiral.github.io/post-images/leetcode-718-zui-chang-chong-fu-zi-shu-zu.png')">
-              </div>
+            <h2 class="post-title">leetcode 130. 被围绕的区域</h2>
+            <div class="post-date">2020-08-11</div>
             
             <div class="post-content" v-pre>
               <h3 id="思路">思路</h3>
-<p>就注意看题好吧</p>
-<p>求的是<strong>重复子序列</strong> 不要上来就求最长公共子序列啊。。。</p>
-<p>举个例子</p>
-<blockquote>
-<p>例如，&quot;ace&quot; 是 &quot;abcde&quot; 的子序列，但 &quot;aec&quot; 不是 &quot;abcde&quot; 的子序列。两个字符串的「公共子序列」是这两个字符串所共同拥有的子序列。</p>
-</blockquote>
-<p>而重复子序列求的是连续子序列</p>
-<h3 id="参考代码">参考代码</h3>
+<p>思路很简单我们只要从边界部分做dfs或者bfs就好并将搜索联通块标记为‘#’即可。最后遍历一遍棋盘所有未被标记成‘#’的‘O’更新为‘X’，再将‘#’更新为'O'就好。</p>
+<!-- more -->
 <pre><code class="language-c++">class Solution {
 public:
-    int findLength(vector&lt;int&gt;&amp; A, vector&lt;int&gt;&amp; B) {
-        int n = A.size();
-        int m = B.size();
-        vector&lt;vector&lt;int&gt;&gt; dp(n+1, vector&lt;int&gt;(m+1));
-        int Max = 0;
-        for (int i = 1; i &lt;= n; i++) {
-            for (int j = 1; j &lt;= m; j++) {
-                if (A[i-1] == B[j-1]) {
-                    dp[i][j] = dp[i-1][j-1] + 1;
-                    Max = max(dp[i][j], Max);
-                } else {
-                    dp[i][j] = 0;
+    int n, m;
+    void dfs(int x, int y, vector&lt;vector&lt;char&gt;&gt;&amp; board) {
+        if (x &lt; 0 || x &gt;= n || y &lt; 0 || y &gt;= m || board[x][y] != 'O') return;
+
+        board[x][y] = '#';
+        dfs(x-1,y, board);
+        dfs(x+1,y, board);
+        dfs(x, y-1, board);
+        dfs(x, y+1, board);
+    }
+    void solve(vector&lt;vector&lt;char&gt;&gt;&amp; board) {
+        n = board.size();
+        if (n == 0) return;
+        m = board[0].size();
+        for (int i = 0; i &lt; n; i++) {
+            for (int j = 0; j &lt; m; j++) {
+                bool flag = (i == 0 || j == 0 || i == n - 1 || j == m - 1);
+                if (flag &amp;&amp; 'O' == board[i][j]) {
+                    dfs(i, j, board);
                 }
             }
         }
-        return Max;
+        for (int i = 0; i &lt; n; i++) {
+            for (int j = 0; j &lt; m; j++) {
+                if (board[i][j] == '#'){
+                    board[i][j] = 'O';
+                } else if (board[i][j] == 'O'){
+                    board[i][j] = 'X';
+                }
+            }
+        }
     }
 };
 </code></pre>
@@ -158,9 +164,9 @@ public:
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://voidspiral.github.io/post/leetcode-jian-zhi-offer-49-chou-shu/">
+                <a href="https://voidspiral.github.io/post/hua-dong-chuang-kou-xi-lie/">
                   <h3 class="post-title">
-                    leetcode 剑指 Offer 49. 丑数
+                    滑动窗口系列
                   </h3>
                 </a>
               </div>

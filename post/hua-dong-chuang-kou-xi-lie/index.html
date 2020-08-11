@@ -8,9 +8,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.0/css/all.min.css">
-<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1597068433116">
+<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1597152594646">
 <link rel="stylesheet" href="https://voidspiral.github.io/styles/main.css">
 
+
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
 
 
 
@@ -38,7 +40,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://voidspiral.github.io">
-        <img src="https://voidspiral.github.io/images/avatar.png?v=1597068433116" class="site-logo">
+        <img src="https://voidspiral.github.io/images/avatar.png?v=1597152594646" class="site-logo">
         <h1 class="site-title">螺旋飞鸟的博客 </h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -112,6 +114,7 @@
 <p>3、此时，我们停止增加 right，转而不断增加 left 指针缩小窗口 [left, right)，直到窗口中的字符串不再符合要求（不包含 T 中的所有字符了）。同时，每次增加 left，我们都要更新一轮结果。</p>
 <p>4、重复第 2 和第 3 步，直到 right 到达字符串 S 的尽头。</p>
 <p>这个思路其实也不难，**第 2 步相当于在寻找一个「可行解」，然后第 3 步在优化这个「可行解」，最终找到最优解，**也就是最短的覆盖子串。左右指针轮流前进，窗口大小增增减减，窗口不断向右滑动，这就是「滑动窗口」这个名字的来历。</p>
+<!-- more -->
 <pre><code class="language-c++">int left = 0, right = 0;
 
 while (right &lt; s.size()) {`
@@ -164,8 +167,7 @@ public:
 };
 </code></pre>
 <h3 id="leetcode-76-最小覆盖子串">LeetCode <a href="https://leetcode-cn.com/problems/minimum-window-substring/">76. 最小覆盖子串</a></h3>
-<pre><code class="language-go">&lt;!-- more --&gt;
-
+<pre><code class="language-go">
 func minWindow(s string, t string) string {
     window := make(map[byte]int)
     need := make(map[byte]int)
@@ -278,6 +280,11 @@ var app = new Vue({
 
 </script>
 
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
 
 
 

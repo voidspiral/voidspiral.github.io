@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.0/css/all.min.css">
-<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1597152594646">
+<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1597492905209">
 <link rel="stylesheet" href="https://voidspiral.github.io/styles/main.css">
 
 
@@ -40,7 +40,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://voidspiral.github.io">
-        <img src="https://voidspiral.github.io/images/avatar.png?v=1597152594646" class="site-logo">
+        <img src="https://voidspiral.github.io/images/avatar.png?v=1597492905209" class="site-logo">
         <h1 class="site-title">螺旋飞鸟的博客 </h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -226,6 +226,27 @@ public:
             Len = max(Len, right - left);
         }
         return Len == INT_MIN ? 0 : Len;
+    }
+};
+</code></pre>
+<p>跟着大佬把技巧学会了后 我们来尝试这自己做一些</p>
+<h3 id="209-长度最小的子数组"><a href="https://leetcode-cn.com/problems/minimum-size-subarray-sum/">209. 长度最小的子数组</a></h3>
+<pre><code class="language-c++">class Solution {
+public:
+    int minSubArrayLen(int s, vector&lt;int&gt;&amp; nums) {
+        int l = 0, r = 0;
+        int sum = 0;
+        int len = INT_MAX;
+        while(r &lt; nums.size()) {
+            sum += nums[r];
+            r++;
+            while (sum &gt;= s) {
+                len = min(len, r - l);
+                sum -= nums[l];
+                l++;
+            }
+        }
+        return len == INT_MAX ? 0 : len;
     }
 };
 </code></pre>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>leetcode周赛202 | 螺旋飞鸟的博客 </title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.0/css/all.min.css">
+<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1597844850493">
+<link rel="stylesheet" href="https://voidspiral.github.io/styles/main.css">
+
+
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+
+
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="04 1553. 吃掉 N 个橘子的最少天数
+思路1
+bfs 记忆化 因为是层序遍历 所以一定可以保证答案是路径最短的 也就是步骤最少的结果
+class Solution {
+public:
+    unordered_map&lt;int..." />
+    <meta name="keywords" content="" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://voidspiral.github.io">
+        <img src="https://voidspiral.github.io/images/avatar.png?v=1597844850493" class="site-logo">
+        <h1 class="site-title">螺旋飞鸟的博客 </h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      专注于 golang、分布式、3D机器视觉等
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://voidspiral.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">leetcode周赛202</h2>
+            <div class="post-date">2020-08-19</div>
+            
+            <div class="post-content" v-pre>
+              <h3 id="04-1553-吃掉-n-个橘子的最少天数">04 <a href="https://leetcode-cn.com/problems/minimum-number-of-days-to-eat-n-oranges/">1553. 吃掉 N 个橘子的最少天数</a></h3>
+<h3 id="思路1">思路1</h3>
+<p>bfs 记忆化 因为是层序遍历 所以一定可以保证答案是路径最短的 也就是步骤最少的结果</p>
+<pre><code class="language-c++">class Solution {
+public:
+    unordered_map&lt;int, int&gt; used;
+    // queue&lt;int&gt; que;
+    // void check(int d, int x) {
+    //     if (used.count(x)) return;
+    //     use[x] = d + 1;
+    //     que.push(x);
+    // }
+    int minDays(int n) {
+        queue&lt;int&gt; que;
+        que.push(n);
+        int step = 0;
+        used[n] = 1;
+        while(que.size()){
+            int cur = que.front();
+            if (cur == 1) return used[cur];
+            que.pop();
+            if (used.count(cur - 1) == 0) {
+                used[cur-1] = used[cur] + 1;
+                que.push(cur-1);
+            }
+            if (cur % 2 == 0 &amp;&amp; used.count(cur/2) == 0) {
+                used[cur/2] = used[cur] + 1;
+                que.push(cur/2);
+            }
+            if (cur % 3 == 0 &amp;&amp; used.count(cur/3) == 0) {
+                used[cur/3] = used[cur] + 1;
+                que.push(cur/3);
+            }
+        }
+        return -1;
+    }
+};
+</code></pre>
+<h3 id="思路2">思路2</h3>
+<p>DFS 记忆化 + 剪枝 详细思路可以参考<a href="https://leetcode-cn.com/problems/minimum-number-of-days-to-eat-n-oranges/solution/python3-8xing-dai-ma-shi-jian-fu-za-du-olog2ntu-ji/">[1]</a>、<a href="https://leetcode-cn.com/problems/minimum-number-of-days-to-eat-n-oranges/solution/tan-xin-dpde-shu-xue-zheng-ming-by-catnipan/">[2]</a></p>
+<pre><code class="language-c++">class Solution {
+public:
+    unordered_map&lt;int, int&gt; dp;
+    int dfs(int n) {
+        if (n == 1) return 1;
+        if (n == 2 || n == 3) return 2;
+        // if (dp.count(n)) return dp[n];
+        auto it = dp.find(n);
+        if (it != dp.end()) return it-&gt;second;
+        return dp[n] = min(dfs(n/2) + (n % 2) + 1, dfs(n/3) + (n % 3) + 1);
+    }
+    int minDays(int n) {
+        // dp.clear();
+        return dfs(n);
+    }
+};
+</code></pre>
+<p>[1].<a href="https://leetcode-cn.com/problems/minimum-number-of-days-to-eat-n-oranges/solution/python3-8xing-dai-ma-shi-jian-fu-za-du-olog2ntu-ji/">[python3] 图解剪枝+递归+记忆化，时间复杂度O(log(N)²)</a></p>
+<p>[2].<a href="https://leetcode-cn.com/problems/minimum-number-of-days-to-eat-n-oranges/solution/tan-xin-dpde-shu-xue-zheng-ming-by-catnipan/">数学证明：为什么用“贪心&quot;DP是对的？</a></p>
+<h3 id="03-1552-两球之间的磁力">03 <a href="https://leetcode-cn.com/problems/magnetic-force-between-two-balls/">1552. 两球之间的磁力</a></h3>
+<pre><code class="language-c++">class Solution {
+public:
+    bool check(vector&lt;int&gt;&amp; pos, int len, int m) {
+        int cnt = 1;
+        int t = pos[0];
+        for (int i = 1; i &lt; pos.size(); i++) {
+            if (pos[i] - t &gt;= len) {
+                t = pos[i];
+                cnt++;
+                if (cnt &gt;= m) break;
+            }
+        }
+        return cnt &gt;= m;
+    }
+    int maxDistance(vector&lt;int&gt;&amp; position, int m) {
+        sort(position.begin(), position.end());
+        int l = 1, r = position[position.size()-1];
+        int ans = -1;
+        while(l &lt;= r){
+            int mid = (l + r) / 2;
+            if (check(position, mid, m)) {
+                l = mid + 1;
+                ans = mid;
+            } else {
+                r = mid - 1;
+            }
+        }
+        return ans;
+    }
+};
+</code></pre>
+<h3 id="02-1551-使数组中所有元素相等的最小操作数">02 <a href="https://leetcode-cn.com/problems/minimum-operations-to-make-array-equal/">1551. 使数组中所有元素相等的最小操作数</a></h3>
+<pre><code class="language-c++">class Solution {
+public:
+    int minOperations(int n) {
+        vector&lt;int&gt; nums(n);
+        int sum = 0;
+        for (int i = 0; i &lt; n; i++) {
+            nums[i] = 2 * i + 1;
+            sum += nums[i];
+        }
+        int target = sum / n;
+        int ans = 0;
+        for (int i = 0; i &lt; n ; i++) {
+            if (target &lt; nums[i]) ans += abs(target-nums[i]);
+            // cout &lt;&lt; ans &lt;&lt; endl;
+        }
+            
+        return ans;
+    }
+};
+</code></pre>
+<h3 id="01-1550-存在连续三个奇数的数组">01 <a href="https://leetcode-cn.com/problems/three-consecutive-odds/">1550. 存在连续三个奇数的数组</a></h3>
+<pre><code class="language-c++">class Solution {
+public:
+    bool threeConsecutiveOdds(vector&lt;int&gt;&amp; arr) {
+        if (arr.size() &lt; 3) return false;
+        for (int i = 0; i &lt; arr.size() - 2; i++) {
+            if ((arr[i] &amp; 1) &amp;&amp; (arr[i+1] &amp; 1) &amp;&amp; (arr[i+2] &amp; 1)) {
+                return true;
+            } 
+        }
+        return false;
+    }
+};
+</code></pre>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://voidspiral.github.io/post/leecode/">
+                  <h3 class="post-title">
+                    leetcode 130. 被围绕的区域
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.min.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'faf7795e6fb19538ffa1',
+        clientSecret: '520faaf0c56ea87a228bcf5a2aba3311ca60a819',
+        repo: '',
+        owner: 'voidspiral',
+        admin: ['voidspiral'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

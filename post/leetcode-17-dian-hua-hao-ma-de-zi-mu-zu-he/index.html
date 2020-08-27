@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>leetcode 130. 被围绕的区域 | 螺旋飞鸟的博客 </title>
+<title>leetcode 17. 电话号码的字母组合 | 螺旋飞鸟的博客 </title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -29,12 +29,13 @@
 
 
     <meta name="description" content="思路
-思路很简单我们只要从边界部分做dfs或者bfs就好并将搜索联通块标记为‘#’即可。最后遍历一遍棋盘所有未被标记成‘#’的‘O’更新为‘X’，再将‘#’更新为'O'就好。
-
+爆搜就完事了。。。
 class Solution {
 public:
-    in..." />
-    <meta name="keywords" content="leetcode" />
+    map&lt;int, vector&lt;char&gt;&gt; m;
+    vector&lt;string&gt; ans;
+    string..." />
+    <meta name="keywords" content="" />
   </head>
   <body>
     <div id="app" class="main">
@@ -107,66 +108,56 @@ public:
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">leetcode 130. 被围绕的区域</h2>
-            <div class="post-date">2020-08-11</div>
+            <h2 class="post-title">leetcode 17. 电话号码的字母组合</h2>
+            <div class="post-date">2020-08-27</div>
             
             <div class="post-content" v-pre>
               <h3 id="思路">思路</h3>
-<p>思路很简单我们只要从边界部分做dfs或者bfs就好并将搜索联通块标记为‘#’即可。最后遍历一遍棋盘所有未被标记成‘#’的‘O’更新为‘X’，再将‘#’更新为'O'就好。</p>
-<!-- more -->
+<p>爆搜就完事了。。。</p>
 <pre><code class="language-c++">class Solution {
 public:
-    int n, m;
-    void dfs(int x, int y, vector&lt;vector&lt;char&gt;&gt;&amp; board) {
-        if (x &lt; 0 || x &gt;= n || y &lt; 0 || y &gt;= m || board[x][y] != 'O') return;
-
-        board[x][y] = '#';
-        dfs(x-1,y, board);
-        dfs(x+1,y, board);
-        dfs(x, y-1, board);
-        dfs(x, y+1, board);
+    map&lt;int, vector&lt;char&gt;&gt; m;
+    vector&lt;string&gt; ans;
+    string temp;
+    void dfs(string digits, int step) {
+        if (step &gt;= digits.size()) {
+            ans.push_back(temp);
+            return;
+        }
+        int num = digits[step] - '0';
+        auto letters = m[num];
+        for (auto ch : letters) {
+            temp.push_back(ch);
+            dfs(digits, step + 1);
+            temp.pop_back();
+        }
     }
-    void solve(vector&lt;vector&lt;char&gt;&gt;&amp; board) {
-        n = board.size();
-        if (n == 0) return;
-        m = board[0].size();
-        for (int i = 0; i &lt; n; i++) {
-            for (int j = 0; j &lt; m; j++) {
-                bool flag = (i == 0 || j == 0 || i == n - 1 || j == m - 1);
-                if (flag &amp;&amp; 'O' == board[i][j]) {
-                    dfs(i, j, board);
-                }
-            }
-        }
-        for (int i = 0; i &lt; n; i++) {
-            for (int j = 0; j &lt; m; j++) {
-                if (board[i][j] == '#'){
-                    board[i][j] = 'O';
-                } else if (board[i][j] == 'O'){
-                    board[i][j] = 'X';
-                }
-            }
-        }
+    vector&lt;string&gt; letterCombinations(string digits) {
+        if (digits.size() == 0) return {};
+        m[2] = {'a', 'b', 'c'};
+        m[3] = {'d', 'e', 'f'};
+        m[4] = {'g', 'h', 'i'};
+        m[5] = {'j', 'k', 'l'};
+        m[6] = {'m', 'n', 'o'};
+        m[7] = {'p','q','r', 's'};
+        m[8] = {'t', 'u', 'v'};
+        m[9] = {'w', 'x', 'y', 'z'};
+        ans = {};
+        temp = {};
+        dfs(digits, 0);
+        return ans;
     }
 };
 </code></pre>
 
             </div>
             
-              <div class="tag-container">
-                
-                  <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="tag">
-                    leetcode
-                  </a>
-                
-              </div>
-            
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://voidspiral.github.io/post/hua-dong-chuang-kou-xi-lie/">
+                <a href="https://voidspiral.github.io/post/leetcode-zhou-sai-202/">
                   <h3 class="post-title">
-                    滑动窗口系列
+                    leetcode 周赛202
                   </h3>
                 </a>
               </div>

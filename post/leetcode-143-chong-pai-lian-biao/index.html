@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>leetcode 17. 电话号码的字母组合 | 螺旋飞鸟的博客 </title>
+<title>leetcode 143. 重排链表  | 螺旋飞鸟的博客 </title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -28,14 +28,12 @@
 
 
 
-    <meta name="description" content="思路
-爆搜就完事了。。。
-class Solution {
-public:
-    map&lt;int, vector&lt;char&gt;&gt; m;
-    vector&lt;string&gt; ans;
-    string..." />
-    <meta name="keywords" content="" />
+    <meta name="description" content="寻找链表中点 + 链表逆序 + 合并链表
+注意到目标链表即为将原链表的左半端和反转后的右半端合并后的结果。
+这样我们的任务即可划分为三步：
+找到原链表的中点（参考「876. 链表的中间结点」）。
+我们可以使用快慢指针来 O(N) 地找到链表..." />
+    <meta name="keywords" content="leetcode" />
   </head>
   <body>
     <div id="app" class="main">
@@ -108,56 +106,91 @@ public:
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">leetcode 17. 电话号码的字母组合</h2>
-            <div class="post-date">2020-08-27</div>
+            <h2 class="post-title">leetcode 143. 重排链表 </h2>
+            <div class="post-date">2020-10-20</div>
             
             <div class="post-content" v-pre>
-              <h3 id="思路">思路</h3>
-<p>爆搜就完事了。。。</p>
-<pre><code class="language-c++">class Solution {
-public:
-    map&lt;int, vector&lt;char&gt;&gt; m;
-    vector&lt;string&gt; ans;
-    string temp;
-    void dfs(string digits, int step) {
-        if (step &gt;= digits.size()) {
-            ans.push_back(temp);
-            return;
-        }
-        int num = digits[step] - '0';
-        auto letters = m[num];
-        for (auto ch : letters) {
-            temp.push_back(ch);
-            dfs(digits, step + 1);
-            temp.pop_back();
-        }
+              <p>寻找链表中点 + 链表逆序 + 合并链表<br>
+注意到目标链表即为将原链表的左半端和反转后的右半端合并后的结果。</p>
+<p>这样我们的任务即可划分为三步：</p>
+<p>找到原链表的中点（参考「876. 链表的中间结点」）。</p>
+<p>我们可以使用快慢指针来 O(N) 地找到链表的中间节点。<br>
+将原链表的右半端反转（参考「206. 反转链表」）。</p>
+<p>我们可以使用迭代法实现链表的反转。<br>
+将原链表的两端合并。</p>
+<p>因为两链表长度相差不超过 1，因此直接合并即可。</p>
+<pre><code class="language-go">/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func middleList(head *ListNode) *ListNode{
+    slow, fast := head, head
+    for fast.Next != nil &amp;&amp; fast.Next.Next != nil {
+        slow = slow.Next
+        fast = fast.Next.Next
     }
-    vector&lt;string&gt; letterCombinations(string digits) {
-        if (digits.size() == 0) return {};
-        m[2] = {'a', 'b', 'c'};
-        m[3] = {'d', 'e', 'f'};
-        m[4] = {'g', 'h', 'i'};
-        m[5] = {'j', 'k', 'l'};
-        m[6] = {'m', 'n', 'o'};
-        m[7] = {'p','q','r', 's'};
-        m[8] = {'t', 'u', 'v'};
-        m[9] = {'w', 'x', 'y', 'z'};
-        ans = {};
-        temp = {};
-        dfs(digits, 0);
-        return ans;
+    return slow
+}
+func reveseList(head *ListNode) *ListNode{
+    var prev, curr *ListNode
+    prev = nil
+    curr = head
+    for curr != nil {
+        tmpNext := curr.Next
+        curr.Next = prev
+        prev = curr
+        curr = tmpNext
     }
-};
+    return prev
+}
+func mergeList(l1, l2 *ListNode) {
+    var l1_tmp, l2_tmp *ListNode
+    for l1 != nil &amp;&amp; l2 != nil {
+        l1_tmp = l1.Next;
+        l2_tmp = l2.Next;
+
+        l1.Next = l2
+        l1 = l1_tmp
+
+        l2.Next = l1
+        l2 = l2_tmp
+    }
+}
+func reorderList(head *ListNode)  {
+    if head == nil {
+        return
+    }
+    mid := middleList(head);
+    l1 := head
+    l2 := mid.Next
+    mid.Next = nil
+    fmt.Println(l1)
+    l2 = reveseList(l2)
+    fmt.Println(l2)
+    mergeList(l1, l2)
+}
+
 </code></pre>
 
             </div>
             
+              <div class="tag-container">
+                
+                  <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="tag">
+                    leetcode
+                  </a>
+                
+              </div>
+            
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://voidspiral.github.io/post/leetcode-zhou-sai-202/">
+                <a href="https://voidspiral.github.io/post/leetcode-17-dian-hua-hao-ma-de-zi-mu-zu-he/">
                   <h3 class="post-title">
-                    leetcode 周赛202
+                    leetcode 17. 电话号码的字母组合
                   </h3>
                 </a>
               </div>

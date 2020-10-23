@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>leetcode 718. 最长重复子数组 | 螺旋飞鸟的博客 </title>
+<title>leetcode 55. 跳跃游戏.md | 螺旋飞鸟的博客 </title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -29,11 +29,12 @@
 
 
     <meta name="description" content="思路
-就注意看题好吧
-求的是重复子序列 不要上来就求最长公共子序列啊。。。
-举个例子
+贪心就完事了 考虑能走的最远距离可以到达边界就可以直接返回了
 
-例如，&quot;ace&quot; 是 &quot;abcde&quot; 的子序列，但 &quot;aec&quot; 不是 &quot;abcde..." />
+class Solution {
+public:
+    bool canJump(vector&lt;int&gt;&amp; nums) {
+       int m..." />
     <meta name="keywords" content="leetcode" />
   </head>
   <body>
@@ -107,40 +108,26 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">leetcode 718. 最长重复子数组</h2>
-            <div class="post-date">2020-07-05</div>
-            
-              <div class="feature-container" style="background-image: url('https://voidspiral.github.io/post-images/leetcode-718-zui-chang-chong-fu-zi-shu-zu.png')">
-              </div>
+            <h2 class="post-title">leetcode 55. 跳跃游戏.md</h2>
+            <div class="post-date">2020-10-23</div>
             
             <div class="post-content" v-pre>
               <h3 id="思路">思路</h3>
-<p>就注意看题好吧</p>
-<p>求的是<strong>重复子序列</strong> 不要上来就求最长公共子序列啊。。。</p>
-<p>举个例子</p>
-<blockquote>
-<p>例如，&quot;ace&quot; 是 &quot;abcde&quot; 的子序列，但 &quot;aec&quot; 不是 &quot;abcde&quot; 的子序列。两个字符串的「公共子序列」是这两个字符串所共同拥有的子序列。</p>
-</blockquote>
-<p>而重复子序列求的是连续子序列</p>
-<h3 id="参考代码">参考代码</h3>
+<p>贪心就完事了 考虑能走的最远距离可以到达边界就可以直接返回了</p>
+<!-- more -->
 <pre><code class="language-c++">class Solution {
 public:
-    int findLength(vector&lt;int&gt;&amp; A, vector&lt;int&gt;&amp; B) {
-        int n = A.size();
-        int m = B.size();
-        vector&lt;vector&lt;int&gt;&gt; dp(n+1, vector&lt;int&gt;(m+1));
-        int Max = 0;
-        for (int i = 1; i &lt;= n; i++) {
-            for (int j = 1; j &lt;= m; j++) {
-                if (A[i-1] == B[j-1]) {
-                    dp[i][j] = dp[i-1][j-1] + 1;
-                    Max = max(dp[i][j], Max);
-                } else {
-                    dp[i][j] = 0;
-                }
-            }
-        }
-        return Max;
+    bool canJump(vector&lt;int&gt;&amp; nums) {
+       int movemost = 0;
+       for (int i = 0; i &lt; nums.size(); i++) {
+           if (i &lt;= movemost) {
+               movemost = max(movemost, i + nums[i]);
+               if (movemost &gt;= nums.size() - 1){
+                   return true;
+               }
+           }
+       }
+       return false;
     }
 };
 </code></pre>
@@ -158,9 +145,9 @@ public:
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://voidspiral.github.io/post/leetcode-jian-zhi-offer-49-chou-shu/">
+                <a href="https://voidspiral.github.io/post/234-hui-wen-lian-biao-md/">
                   <h3 class="post-title">
-                    leetcode 剑指 Offer 49. 丑数
+                    leetcode 234. 回文链表.md
                   </h3>
                 </a>
               </div>

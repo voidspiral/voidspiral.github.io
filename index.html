@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.0/css/all.min.css">
-<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1603444663361">
+<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1603770059166">
 <link rel="stylesheet" href="https://voidspiral.github.io/styles/main.css">
 
 
@@ -31,7 +31,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://voidspiral.github.io">
-        <img src="https://voidspiral.github.io/images/avatar.png?v=1603444663361" class="site-logo">
+        <img src="https://voidspiral.github.io/images/avatar.png?v=1603770059166" class="site-logo">
         <h1 class="site-title">螺旋飞鸟的博客 </h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -94,6 +94,51 @@
 
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://voidspiral.github.io/post/pai-xu-shu-zu-ping-fang-hou-shu-zu-dang-zhong-you-duo-shao-bu-tong-de-shu-zi/">
+                  <h2 class="post-title">排序数组，平方后，数组当中有多少不同的数字</h2>
+                </a>
+                <div class="post-date">
+                  2020-10-27
+                </div>
+                <div class="post-abstract">
+                  <h3 id="题目">题目</h3>
+<p>排序数组，平方后，数组当中有多少不同的数字（相同算一个）</p>
+<h3 id="思路">思路</h3>
+<ol>
+<li>初始化两个左右坐标，指向数组的首尾，向中间遍历，初始化 pre 变量为 abs(nums[0]-1) 表示上一次记录过的数字， res=0</li>
+<li>左边比右边的绝对值大时，左边向右遍历，若左侧数字没出现过，则 res++，pre = 左侧数字</li>
+<li>右边比左边的绝对值大或等于时，右边向左遍历，若右侧数字没出现过，则 res++，pre = 右侧数字</li>
+</ol>
+
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://voidspiral.github.io/post/leetcode-88-he-bing-liang-ge-you-xu-shu-zu-md/">
+                  <h2 class="post-title">leetcode 88. 合并两个有序数组.md</h2>
+                </a>
+                <div class="post-date">
+                  2020-10-23
+                </div>
+                <div class="post-abstract">
+                  <h3 id="思路">思路</h3>
+<p>1.首先能想到，类似归并排序中的归并操作。</p>
+<p>2.但是这里有一点难度在于，我们要复用nums1这个数组并达到<code>O(1)</code>的空间复杂度。</p>
+<p>3.一个有序数组，可以是非严格的（比如 1， <u>2， 2</u>，3）升序，也可以是降序。</p>
+<p>我们先来思考降序的，我们可以先将nums1中的非零元素移到尾端 在归并过程中无论如何 都需要额外的空间来保存元素</p>
+<p>所以降序肯定不行</p>
+<p>此时 我发现题目是升序的 囧 那就逆序归并就好了</p>
+
+                </div>
+              </div>
+              
+            </article>
           
             <article class="post-item">
               <div class="left">
@@ -234,29 +279,11 @@
               
             </article>
           
-            <article class="post-item">
-              <div class="left">
-                <a href="https://voidspiral.github.io/post/leetcode-jian-zhi-offer-49-chou-shu/">
-                  <h2 class="post-title">leetcode 剑指 Offer 49. 丑数</h2>
-                </a>
-                <div class="post-date">
-                  2020-06-28
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-                <a class="right" href="https://voidspiral.github.io/post/leetcode-jian-zhi-offer-49-chou-shu/">
-                  <div class="feature-container" style="background-image: url('https://voidspiral.github.io/post-images/leetcode-jian-zhi-offer-49-chou-shu.png')">
-                  </div>
-                </a>
-              
-            </article>
-          
 
           <div class="pagination-container">
   
+  
+    <a href="https://voidspiral.github.io/page/2" class="next">下一页 <i class="icon-arrow-ios-forward-outline"></i></a>
   
 </div>
 

@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.0/css/all.min.css">
-<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1603444663361">
+<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1603770059166">
 <link rel="stylesheet" href="https://voidspiral.github.io/styles/main.css">
 
 
@@ -31,7 +31,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://voidspiral.github.io">
-        <img src="https://voidspiral.github.io/images/avatar.png?v=1603444663361" class="site-logo">
+        <img src="https://voidspiral.github.io/images/avatar.png?v=1603770059166" class="site-logo">
         <h1 class="site-title">螺旋飞鸟的博客 </h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -95,6 +95,28 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <h2 class="current-tag">标签: leetcode</h2>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://voidspiral.github.io/post/leetcode-88-he-bing-liang-ge-you-xu-shu-zu-md/">
+                  <h2 class="post-title">leetcode 88. 合并两个有序数组.md</h2>
+                </a>
+                <div class="post-date">
+                  2020-10-23
+                </div>
+                <div class="post-abstract">
+                  <h3 id="思路">思路</h3>
+<p>1.首先能想到，类似归并排序中的归并操作。</p>
+<p>2.但是这里有一点难度在于，我们要复用nums1这个数组并达到<code>O(1)</code>的空间复杂度。</p>
+<p>3.一个有序数组，可以是非严格的（比如 1， <u>2， 2</u>，3）升序，也可以是降序。</p>
+<p>我们先来思考降序的，我们可以先将nums1中的非零元素移到尾端 在归并过程中无论如何 都需要额外的空间来保存元素</p>
+<p>所以降序肯定不行</p>
+<p>此时 我发现题目是升序的 囧 那就逆序归并就好了</p>
+
+                </div>
+              </div>
+              
+            </article>
           
             <article class="post-item">
               <div class="left">

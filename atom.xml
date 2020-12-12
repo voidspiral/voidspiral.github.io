@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://voidspiral.github.io</id>
     <title>螺旋飞鸟的博客 </title>
-    <updated>2020-10-27T08:22:44.709Z</updated>
+    <updated>2020-12-12T10:36:59.509Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://voidspiral.github.io"/>
     <link rel="self" href="https://voidspiral.github.io/atom.xml"/>
@@ -10,6 +10,20 @@
     <logo>https://voidspiral.github.io/images/avatar.png</logo>
     <icon>https://voidspiral.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 螺旋飞鸟的博客 </rights>
+    <entry>
+        <title type="html"><![CDATA[02 | Mutex：庖丁解牛看实现]]></title>
+        <id>https://voidspiral.github.io/post/02-or-mutexpao-ding-jie-niu-kan-shi-xian-md/</id>
+        <link href="https://voidspiral.github.io/post/02-or-mutexpao-ding-jie-niu-kan-shi-xian-md/">
+        </link>
+        <updated>2020-12-11T15:16:01.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[01  | Mutex：如何解决资源并发访问问题？]]></title>
+        <id>https://voidspiral.github.io/post/01-or-mutexru-he-jie-jue-zi-yuan-bing-fa-fang-wen-wen-ti/</id>
+        <link href="https://voidspiral.github.io/post/01-or-mutexru-he-jie-jue-zi-yuan-bing-fa-fang-wen-wen-ti/">
+        </link>
+        <updated>2020-12-10T14:18:09.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[leetcode 845. 数组中的最长山脉]]></title>
         <id>https://voidspiral.github.io/post/leetcode-845-shu-zu-zhong-de-zui-chang-shan-mai/</id>
@@ -121,39 +135,5 @@
         <link href="https://voidspiral.github.io/post/leetcode-zhou-sai-202/">
         </link>
         <updated>2020-08-19T13:45:39.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[leetcode 130. 被围绕的区域]]></title>
-        <id>https://voidspiral.github.io/post/leecode/</id>
-        <link href="https://voidspiral.github.io/post/leecode/">
-        </link>
-        <updated>2020-08-11T13:28:52.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="思路">思路</h3>
-<p>思路很简单我们只要从边界部分做dfs或者bfs就好并将搜索联通块标记为‘#’即可。最后遍历一遍棋盘所有未被标记成‘#’的‘O’更新为‘X’，再将‘#’更新为'O'就好。</p>
-]]></summary>
-        <content type="html"><![CDATA[<h3 id="思路">思路</h3>
-<p>思路很简单我们只要从边界部分做dfs或者bfs就好并将搜索联通块标记为‘#’即可。最后遍历一遍棋盘所有未被标记成‘#’的‘O’更新为‘X’，再将‘#’更新为'O'就好。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[滑动窗口系列]]></title>
-        <id>https://voidspiral.github.io/post/hua-dong-chuang-kou-xi-lie/</id>
-        <link href="https://voidspiral.github.io/post/hua-dong-chuang-kou-xi-lie/">
-        </link>
-        <updated>2020-08-10T14:05:48.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="思路">思路</h3>
-<p>1、我们在字符串 S 中使用双指针中的左右指针技巧，初始化 left = right = 0，把索引左闭右开区间 [left, right) 称为一个「窗口」。</p>
-<p>2、我们先不断地增加 right 指针扩大窗口 [left, right)，直到窗口中的字符串符合要求（包含了 T 中的所有字符）。</p>
-<p>3、此时，我们停止增加 right，转而不断增加 left 指针缩小窗口 [left, right)，直到窗口中的字符串不再符合要求（不包含 T 中的所有字符了）。同时，每次增加 left，我们都要更新一轮结果。</p>
-<p>4、重复第 2 和第 3 步，直到 right 到达字符串 S 的尽头。</p>
-<p>这个思路其实也不难，**第 2 步相当于在寻找一个「可行解」，然后第 3 步在优化这个「可行解」，最终找到最优解，**也就是最短的覆盖子串。左右指针轮流前进，窗口大小增增减减，窗口不断向右滑动，这就是「滑动窗口」这个名字的来历。</p>
-]]></summary>
-        <content type="html"><![CDATA[<h3 id="思路">思路</h3>
-<p>1、我们在字符串 S 中使用双指针中的左右指针技巧，初始化 left = right = 0，把索引左闭右开区间 [left, right) 称为一个「窗口」。</p>
-<p>2、我们先不断地增加 right 指针扩大窗口 [left, right)，直到窗口中的字符串符合要求（包含了 T 中的所有字符）。</p>
-<p>3、此时，我们停止增加 right，转而不断增加 left 指针缩小窗口 [left, right)，直到窗口中的字符串不再符合要求（不包含 T 中的所有字符了）。同时，每次增加 left，我们都要更新一轮结果。</p>
-<p>4、重复第 2 和第 3 步，直到 right 到达字符串 S 的尽头。</p>
-<p>这个思路其实也不难，**第 2 步相当于在寻找一个「可行解」，然后第 3 步在优化这个「可行解」，最终找到最优解，**也就是最短的覆盖子串。左右指针轮流前进，窗口大小增增减减，窗口不断向右滑动，这就是「滑动窗口」这个名字的来历。</p>
-]]></content>
     </entry>
 </feed>

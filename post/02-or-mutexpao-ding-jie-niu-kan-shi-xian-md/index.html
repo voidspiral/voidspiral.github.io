@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>leetcode 234. 回文链表.md | 螺旋飞鸟的博客 </title>
+<title>02 | Mutex：庖丁解牛看实现 | 螺旋飞鸟的博客 </title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -28,16 +28,8 @@
 
 
 
-    <meta name="description" content="思路
-1.求出中间结点 以分割整条链表
-2.从中间结点开始 翻转后半部分链表
-3.从两端开始比较
-
-/**
- * Definition for singly-linked list.
- * type ListNode struct {
- *..." />
-    <meta name="keywords" content="leetcode" />
+    <meta name="description" content="“初版”的 Mutex 使用一个 flag 来表示锁是否被持有，实现比较简单；后来照顾到新来的 goroutine，所以会让新的 goroutine 也尽可能地先获取到锁，这是第二个阶段，我把它叫作“给新人机会”；那么，接下来就是第三阶段“..." />
+    <meta name="keywords" content="" />
   </head>
   <body>
     <div id="app" class="main">
@@ -110,78 +102,56 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">leetcode 234. 回文链表.md</h2>
-            <div class="post-date">2020-10-23</div>
+            <h2 class="post-title">02 | Mutex：庖丁解牛看实现</h2>
+            <div class="post-date">2020-12-11</div>
             
             <div class="post-content" v-pre>
-              <h3 id="思路">思路</h3>
-<p>1.求出中间结点 以分割整条链表</p>
-<p>2.从中间结点开始 翻转后半部分链表</p>
-<p>3.从两端开始比较</p>
-<!-- more -->
-<pre><code class="language-go">/**
- * Definition for singly-linked list.
- * type ListNode struct {
- *     Val int
- *     Next *ListNode
- * }
- */
-func middleList(head *ListNode) *ListNode {
-    slow, fast := head, head
-    for fast.Next != nil &amp;&amp; fast.Next.Next != nil{
-        slow = slow.Next;
-        fast = fast.Next.Next;
-    }
-    return slow
-}
-func reverseList(head *ListNode) *ListNode {
-    cur := head
-    var prev *ListNode 
-    prev = nil 
-    for cur != nil {
-        tmpNext := cur.Next
-        //1-&gt;2-&gt;3 1&lt;-2
-        cur.Next = prev
-        prev = cur
-        cur = tmpNext
-    }
-    return prev
-}
-func isPalindrome(head *ListNode) bool {
-    if head == nil {
-        return true
-    }
-    s1 := head
-    s2 := middleList(head)
-    s2 = reverseList(s2.Next)
-    for s1 != nil &amp;&amp; s2 != nil {
-        if s1.Val != s2.Val {
-            return false
-        }
-        fmt.Println(s1.Val, s2.Val)
-        s1 = s1.Next
-        s2 = s2.Next
-    }
-    return true
-}
+              <p>“初版”的 Mutex 使用一个 flag 来表示锁是否被持有，实现比较简单；后来照顾到新来的 goroutine，所以会让新的 goroutine 也尽可能地先获取到锁，这是第二个阶段，我把它叫作“给新人机会”；那么，接下来就是第三阶段“多给些机会”，照顾新来的和被唤醒的 goroutine；但是这样会带来饥饿问题，所以目前又加入了饥饿的解决方案，也就是第四阶段“解决饥饿”。<img src="https://static001.geekbang.org/resource/image/c2/35/c28531b47ff7f220d5bc3c9650180835.jpg" alt="c28531b47ff7f220d5bc3c9650180835" loading="lazy"></p>
+<ul>
+<li>CAS（compare-and-swap，或者 compare-and-set）</li>
+</ul>
+<figure data-type="image" tabindex="1"><img src="https://static001.geekbang.org/resource/image/82/25/825e23e1af96e78f3773e0b45de38e25.jpg" alt="825e23e1af96e78f3773e0b45de38e25" loading="lazy"></figure>
+<ul>
+<li>
+<p>NOTICE ! :</p>
+<p>Unlock 方法可以被任意的 goroutine 调用释放锁，即使是没持有这个互斥锁的 goroutine，也可以进行这个操作。这是因为，Mutex 本身并没有包含持有这把锁的 goroutine 的信息，所以，Unlock 也不会对此进行检查。Mutex 的这个设计一直保持至今。</p>
+</li>
+<li>
+<p>CAS （compare-and-swap，或者 compare-and-set）</p>
+</li>
+</ul>
+<pre><code class="language-golang">atomic.CompareAndSwapInt32
 </code></pre>
+<ul>
+<li><code>&amp;^</code>操作 （And Not 操作）</li>
+</ul>
+<blockquote>
+<p>a &amp;^ b 的意思就是 将b中为1的位 对应于a的位清0，若b中位0的位 对应 a中其他位不变。 功能同a&amp;(^b)相同sd</p>
+</blockquote>
+<ul>
+<li>
+<h2 id="自旋锁"><strong>自旋锁</strong></h2>
+<p><strong>基本概念：</strong> 自旋锁是一种对临界资源进行互斥访问的手段。</p>
+<p><strong>工作原理：</strong> 为获得自旋锁，在某CPU上运行的代码需先执行一个原子操作，该操作测试并设置某个内存变量，由于其为原子操作，所以在该操作完成之前其他执行单元不可能访问这个内存变量，如果测试结果表明已经空闲，则程序获得这个自旋锁并继续执行，如果测试结果表明该锁仍被占用，程序将在一个小的循环内重复这个“测试并设置”操作，即进行所谓的“自旋”，通俗的说就是在“原地打转”。</p>
+<p>作者：嵌入式Linux<br>
+链接：https://zhuanlan.zhihu.com/p/57354304<br>
+来源：知乎<br>
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+</li>
+</ul>
+<figure data-type="image" tabindex="2"><img src="https://static001.geekbang.org/resource/image/e0/76/e0c23794c8a1d355a7a183400c036276.jpg" alt="e0c23794c8a1d355a7a183400c036276" loading="lazy"></figure>
+<h3 id="思考题">思考题</h3>
+<p>1.目前 Mutex 的 state 字段有几个意义，这几个意义分别是由哪些字段表示的？</p>
+<p>2.等待一个 Mutex 的 goroutine 数最大是多少？是否能满足现实的需求？</p>
 
             </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="tag">
-                    leetcode
-                  </a>
-                
-              </div>
             
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://voidspiral.github.io/post/leetcode-143-chong-pai-lian-biao/">
+                <a href="https://voidspiral.github.io/post/01-or-mutexru-he-jie-jue-zi-yuan-bing-fa-fang-wen-wen-ti/">
                   <h3 class="post-title">
-                    leetcode 143. 重排链表 
+                    01  | Mutex：如何解决资源并发访问问题？
                   </h3>
                 </a>
               </div>

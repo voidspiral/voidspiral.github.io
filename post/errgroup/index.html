@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>leetcode 130. 被围绕的区域 | 螺旋飞鸟的博客 </title>
+<title>errGroup用法总结 | 螺旋飞鸟的博客 </title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -28,13 +28,9 @@
 
 
 
-    <meta name="description" content="思路
-思路很简单我们只要从边界部分做dfs或者bfs就好并将搜索联通块标记为‘#’即可。最后遍历一遍棋盘所有未被标记成‘#’的‘O’更新为‘X’，再将‘#’更新为'O'就好。
-
-class Solution {
-public:
-    in..." />
-    <meta name="keywords" content="leetcode" />
+    <meta name="description" content="Overview ¶
+Package errgroup provides synchronization, error propagation, and Context cancelation for groups of goroutine..." />
+    <meta name="keywords" content="" />
   </head>
   <body>
     <div id="app" class="main">
@@ -107,66 +103,97 @@ public:
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">leetcode 130. 被围绕的区域</h2>
-            <div class="post-date">2020-08-11</div>
+            <h2 class="post-title">errGroup用法总结</h2>
+            <div class="post-date">2020-12-13</div>
             
             <div class="post-content" v-pre>
-              <h3 id="思路">思路</h3>
-<p>思路很简单我们只要从边界部分做dfs或者bfs就好并将搜索联通块标记为‘#’即可。最后遍历一遍棋盘所有未被标记成‘#’的‘O’更新为‘X’，再将‘#’更新为'O'就好。</p>
-<!-- more -->
-<pre><code class="language-c++">class Solution {
-public:
-    int n, m;
-    void dfs(int x, int y, vector&lt;vector&lt;char&gt;&gt;&amp; board) {
-        if (x &lt; 0 || x &gt;= n || y &lt; 0 || y &gt;= m || board[x][y] != 'O') return;
+              <h3 id="overview">Overview <a href="https://pkg.go.dev/golang.org/x/sync/errgroup#pkg-overview">¶</a></h3>
+<p>Package errgroup provides synchronization, error propagation, and Context cancelation for groups of goroutines working on subtasks of a common task.</p>
+<p>Package errgroup 为处理公共任务的子任务的goroutine组提供同步、错误传播和上下文取消。</p>
+<hr>
+<p>errgroup的实现很简单</p>
+<pre><code class="language-go">// Copyright 2016 The Go Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
 
-        board[x][y] = '#';
-        dfs(x-1,y, board);
-        dfs(x+1,y, board);
-        dfs(x, y-1, board);
-        dfs(x, y+1, board);
-    }
-    void solve(vector&lt;vector&lt;char&gt;&gt;&amp; board) {
-        n = board.size();
-        if (n == 0) return;
-        m = board[0].size();
-        for (int i = 0; i &lt; n; i++) {
-            for (int j = 0; j &lt; m; j++) {
-                bool flag = (i == 0 || j == 0 || i == n - 1 || j == m - 1);
-                if (flag &amp;&amp; 'O' == board[i][j]) {
-                    dfs(i, j, board);
-                }
-            }
-        }
-        for (int i = 0; i &lt; n; i++) {
-            for (int j = 0; j &lt; m; j++) {
-                if (board[i][j] == '#'){
-                    board[i][j] = 'O';
-                } else if (board[i][j] == 'O'){
-                    board[i][j] = 'X';
-                }
-            }
-        }
-    }
-};
+// Package errgroup provides synchronization, error propagation, and Context
+// cancelation for groups of goroutines working on subtasks of a common task.
+package errgroup
+
+import (
+	&quot;context&quot;
+	&quot;sync&quot;
+)
+
+// A Group is a collection of goroutines working on subtasks that are part of
+// the same overall task.
+//
+// A zero Group is valid and does not cancel on error.
+type Group struct {
+	cancel func()
+
+	wg sync.WaitGroup
+
+	errOnce sync.Once
+	err     error
+}
+
+// WithContext returns a new Group and an associated Context derived from ctx.
+//
+// The derived Context is canceled the first time a function passed to Go
+// returns a non-nil error or the first time Wait returns, whichever occurs
+// first.
+func WithContext(ctx context.Context) (*Group, context.Context) {
+	ctx, cancel := context.WithCancel(ctx)
+	return &amp;Group{cancel: cancel}, ctx
+}
+
+// Wait blocks until all function calls from the Go method have returned, then
+// returns the first non-nil error (if any) from them.
+func (g *Group) Wait() error {
+	g.wg.Wait()
+	if g.cancel != nil {
+		g.cancel()
+	}
+	return g.err
+}
+
+// Go calls the given function in a new goroutine.
+//
+// The first call to return a non-nil error cancels the group; its error will be
+// returned by Wait.
+func (g *Group) Go(f func() error) {
+	g.wg.Add(1)
+
+	go func() {
+		defer g.wg.Done()
+
+		if err := f(); err != nil {
+			g.errOnce.Do(func() {
+				g.err = err
+				if g.cancel != nil {
+					g.cancel()
+				}
+			})
+		}
+	}()
+}
 </code></pre>
+<p>###References:</p>
+<ol>
+<li>https://pkg.go.dev/golang.org/x/sync/errgroup#WithContext</li>
+<li></li>
+</ol>
+<p>​</p>
 
             </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="tag">
-                    leetcode
-                  </a>
-                
-              </div>
             
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://voidspiral.github.io/post/hua-dong-chuang-kou-xi-lie/">
+                <a href="https://voidspiral.github.io/post/02-or-mutexpao-ding-jie-niu-kan-shi-xian-md/">
                   <h3 class="post-title">
-                    滑动窗口系列
+                    02 | Mutex：庖丁解牛看实现
                   </h3>
                 </a>
               </div>

@@ -1,154 +1,121 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
-
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>go的并发原语 | 螺旋飞鸟的博客 </title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.0/css/all.min.css">
-<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1607845043847">
+<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1607848414925">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://voidspiral.github.io/styles/main.css">
-
-
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-
-
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<link rel="alternate" type="application/atom+xml" title="go的并发原语 | 螺旋飞鸟的博客  - Atom Feed" href="https://voidspiral.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="专注于 golang、分布式、3D机器视觉等">
+  <meta name="description" content="专注于 golang、分布式、3D机器视觉等" />
   </head>
   <body>
-    <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://voidspiral.github.io">
-        <img src="https://voidspiral.github.io/images/avatar.png?v=1607845043847" class="site-logo">
-        <h1 class="site-title">螺旋飞鸟的博客 </h1>
-      </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
-    </div>
-    <div>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://voidspiral.github.io">
+  <img class="avatar" src="https://voidspiral.github.io/images/avatar.png?v=1607848414925" alt="">
+  </a>
+  <h1 class="site-title">
+    螺旋飞鸟的博客 
+  </h1>
+  <p class="site-description">
+    专注于 golang、分布式、3D机器视觉等
+  </p>
+  <div class="menu-container">
+    
       
-        
-          <a href="/" class="site-nav">
-            首页
-          </a>
-        
+        <a href="/" class="menu">
+          首页
+        </a>
       
-        
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
-        
+    
       
-        
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
+        <a href="/archives" class="menu">
+          归档
+        </a>
       
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
+    
       
-    </div>
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
   </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
+  <div class="social-container">
+    
       
-        
+    
       
-        
+    
       
-        
+    
       
-        
+    
       
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      专注于 golang、分布式、3D机器视觉等
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://voidspiral.github.io/atom.xml" target="_blank">RSS</a>
-    </div>
+    
   </div>
 </div>
 
-
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <h2 class="current-tag">标签: go的并发原语</h2>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://voidspiral.github.io/post/01-or-mutexru-he-jie-jue-zi-yuan-bing-fa-fang-wen-wen-ti/">
-                  <h2 class="post-title">01  | Mutex：如何解决资源并发访问问题？</h2>
-                </a>
-                <div class="post-date">
-                  2020-12-10
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-                <a class="right" href="https://voidspiral.github.io/post/01-or-mutexru-he-jie-jue-zi-yuan-bing-fa-fang-wen-wen-ti/">
-                  <div class="feature-container" style="background-image: url('https://voidspiral.github.io/post-images/01-or-mutexru-he-jie-jue-zi-yuan-bing-fa-fang-wen-wen-ti.jpeg')">
-                  </div>
-                </a>
-              
-            </article>
-          
-
-          <div class="pagination-container">
-  
-  
-</div>
-
+        <div class="current-tag-container">
+            <h2 class="title">
+                标签：# go的并发原语
+            </h2> 
         </div>
+        <div class="post-container">
+  
+    <article class="post">
+      <a href="https://voidspiral.github.io/post/01-or-mutexru-he-jie-jue-zi-yuan-bing-fa-fang-wen-wen-ti/">
+        <h2 class="post-title">01  | Mutex：如何解决资源并发访问问题？</h2>
+      </a>
+      <div class="post-info">
+        <span>
+          2020-12-10
+        </span>
+        <span>
+          1 min read
+        </span>
+        
+          <a href="https://voidspiral.github.io/tag/mxi0AxR8_/" class="post-tag">
+            # go的并发原语
+          </a>
+        
+      </div>
+      
+        <a href="https://voidspiral.github.io/post/01-or-mutexru-he-jie-jue-zi-yuan-bing-fa-fang-wen-wen-ti/" class="post-feature-image" style="background-image: url('https://voidspiral.github.io/post-images/01-or-mutexru-he-jie-jue-zi-yuan-bing-fa-fang-wen-wen-ti.jpeg')">
+        </a>
+      
+      <div class="post-abstract">
+        
+      </div>
+    </article>
+  
+</div>
+
+        <div class="pagination-container">
+  
+  
+</div>
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://voidspiral.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
       </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.min.js"></script>
-<script type="application/javascript">
-
-AOS.init();
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
-
-</script>
-
-
-  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>
-    hljs.initHighlightingOnLoad()
-  </script>
-
-
-
-
-
   </body>
 </html>

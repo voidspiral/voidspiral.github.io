@@ -1,291 +1,233 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
-
-<title>文章归档 | 螺旋飞鸟的博客 </title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.0/css/all.min.css">
-<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1607845043847">
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>螺旋飞鸟的博客 </title>
+<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1607848414925">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://voidspiral.github.io/styles/main.css">
-
-
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
-
-
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<link rel="alternate" type="application/atom+xml" title="螺旋飞鸟的博客  - Atom Feed" href="https://voidspiral.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="专注于 golang、分布式、3D机器视觉等">
+    <meta name="description" content="专注于 golang、分布式、3D机器视觉等" />
   </head>
   <body>
-    <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://voidspiral.github.io">
-        <img src="https://voidspiral.github.io/images/avatar.png?v=1607845043847" class="site-logo">
-        <h1 class="site-title">螺旋飞鸟的博客 </h1>
-      </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
-    </div>
-    <div>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://voidspiral.github.io">
+  <img class="avatar" src="https://voidspiral.github.io/images/avatar.png?v=1607848414925" alt="">
+  </a>
+  <h1 class="site-title">
+    螺旋飞鸟的博客 
+  </h1>
+  <p class="site-description">
+    专注于 golang、分布式、3D机器视觉等
+  </p>
+  <div class="menu-container">
+    
       
-        
-          <a href="/" class="site-nav">
-            首页
-          </a>
-        
+        <a href="/" class="menu">
+          首页
+        </a>
       
-        
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
-        
+    
       
-        
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
+        <a href="/archives" class="menu">
+          归档
+        </a>
       
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
+    
       
-    </div>
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
   </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
+  <div class="social-container">
+    
       
-        
+    
       
-        
+    
       
-        
+    
       
-        
+    
       
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      专注于 golang、分布式、3D机器视觉等
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://voidspiral.github.io/atom.xml" target="_blank">RSS</a>
-    </div>
+    
   </div>
 </div>
 
+    
+        
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          
+<div class="archives-container">
+  
+    <h2 class="year">2020</h2>
+    
+      
+        <a href="https://voidspiral.github.io/post/errgroup/" class="post">
+          <h2 class="post-title">
+            errGroup用法总结
+          </h2>
+          <div class="time">2020-12-13</div>
+        </a>
+      
+    
+      
+        <a href="https://voidspiral.github.io/post/02-or-mutexpao-ding-jie-niu-kan-shi-xian-md/" class="post">
+          <h2 class="post-title">
+            02 | Mutex：庖丁解牛看实现
+          </h2>
+          <div class="time">2020-12-11</div>
+        </a>
+      
+    
+      
+        <a href="https://voidspiral.github.io/post/01-or-mutexru-he-jie-jue-zi-yuan-bing-fa-fang-wen-wen-ti/" class="post">
+          <h2 class="post-title">
+            01  | Mutex：如何解决资源并发访问问题？
+          </h2>
+          <div class="time">2020-12-10</div>
+        </a>
+      
+    
+      
+        <a href="https://voidspiral.github.io/post/leetcode-845-shu-zu-zhong-de-zui-chang-shan-mai/" class="post">
+          <h2 class="post-title">
+            leetcode 845. 数组中的最长山脉
+          </h2>
+          <div class="time">2020-10-27</div>
+        </a>
+      
+    
+      
+        <a href="https://voidspiral.github.io/post/pai-xu-shu-zu-ping-fang-hou-shu-zu-dang-zhong-you-duo-shao-bu-tong-de-shu-zi/" class="post">
+          <h2 class="post-title">
+            排序数组，平方后，数组当中有多少不同的数字
+          </h2>
+          <div class="time">2020-10-27</div>
+        </a>
+      
+    
+      
+        <a href="https://voidspiral.github.io/post/leetcode-88-he-bing-liang-ge-you-xu-shu-zu-md/" class="post">
+          <h2 class="post-title">
+            leetcode 88. 合并两个有序数组
+          </h2>
+          <div class="time">2020-10-23</div>
+        </a>
+      
+    
+      
+        <a href="https://voidspiral.github.io/post/leetcode-55-tiao-yue-you-xi-md/" class="post">
+          <h2 class="post-title">
+            leetcode 55. 跳跃游戏
+          </h2>
+          <div class="time">2020-10-23</div>
+        </a>
+      
+    
+      
+        <a href="https://voidspiral.github.io/post/234-hui-wen-lian-biao-md/" class="post">
+          <h2 class="post-title">
+            leetcode 234. 回文链表
+          </h2>
+          <div class="time">2020-10-23</div>
+        </a>
+      
+    
+      
+        <a href="https://voidspiral.github.io/post/leetcode-143-chong-pai-lian-biao/" class="post">
+          <h2 class="post-title">
+            leetcode 143. 重排链表 
+          </h2>
+          <div class="time">2020-10-20</div>
+        </a>
+      
+    
+      
+        <a href="https://voidspiral.github.io/post/leetcode-17-dian-hua-hao-ma-de-zi-mu-zu-he/" class="post">
+          <h2 class="post-title">
+            leetcode 17. 电话号码的字母组合
+          </h2>
+          <div class="time">2020-08-27</div>
+        </a>
+      
+    
+      
+        <a href="https://voidspiral.github.io/post/leetcode-zhou-sai-202/" class="post">
+          <h2 class="post-title">
+            leetcode 周赛202
+          </h2>
+          <div class="time">2020-08-19</div>
+        </a>
+      
+    
+      
+        <a href="https://voidspiral.github.io/post/leecode/" class="post">
+          <h2 class="post-title">
+            leetcode 130. 被围绕的区域
+          </h2>
+          <div class="time">2020-08-11</div>
+        </a>
+      
+    
+      
+        <a href="https://voidspiral.github.io/post/hua-dong-chuang-kou-xi-lie/" class="post">
+          <h2 class="post-title">
+            滑动窗口系列
+          </h2>
+          <div class="time">2020-08-10</div>
+        </a>
+      
+    
+      
+        <a href="https://voidspiral.github.io/post/leetcode-718-zui-chang-chong-fu-zi-shu-zu/" class="post">
+          <h2 class="post-title">
+            leetcode 718. 最长重复子数组
+          </h2>
+          <div class="time">2020-07-05</div>
+        </a>
+      
+    
+      
+        <a href="https://voidspiral.github.io/post/leetcode-jian-zhi-offer-49-chou-shu/" class="post">
+          <h2 class="post-title">
+            leetcode 剑指 Offer 49. 丑数
+          </h2>
+          <div class="time">2020-06-28</div>
+        </a>
+      
+    
+  
+</div>
 
-          <h2 class="archives-title">文章归档</h2>
-          <div class="archives-container">
-            
-              <h2 class="year" data-aos="fade-up">2020</h2>
-              
-                
-                  <article class="post">
-                    <a href="https://voidspiral.github.io/post/errgroup/">
-                      <h2 class="post-title">
-                        errGroup用法总结
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://voidspiral.github.io/post/02-or-mutexpao-ding-jie-niu-kan-shi-xian-md/">
-                      <h2 class="post-title">
-                        02 | Mutex：庖丁解牛看实现
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://voidspiral.github.io/post/01-or-mutexru-he-jie-jue-zi-yuan-bing-fa-fang-wen-wen-ti/">
-                      <h2 class="post-title">
-                        01  | Mutex：如何解决资源并发访问问题？
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://voidspiral.github.io/post/leetcode-845-shu-zu-zhong-de-zui-chang-shan-mai/">
-                      <h2 class="post-title">
-                        leetcode 845. 数组中的最长山脉
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://voidspiral.github.io/post/pai-xu-shu-zu-ping-fang-hou-shu-zu-dang-zhong-you-duo-shao-bu-tong-de-shu-zi/">
-                      <h2 class="post-title">
-                        排序数组，平方后，数组当中有多少不同的数字
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://voidspiral.github.io/post/leetcode-88-he-bing-liang-ge-you-xu-shu-zu-md/">
-                      <h2 class="post-title">
-                        leetcode 88. 合并两个有序数组
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://voidspiral.github.io/post/leetcode-55-tiao-yue-you-xi-md/">
-                      <h2 class="post-title">
-                        leetcode 55. 跳跃游戏
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://voidspiral.github.io/post/234-hui-wen-lian-biao-md/">
-                      <h2 class="post-title">
-                        leetcode 234. 回文链表
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://voidspiral.github.io/post/leetcode-143-chong-pai-lian-biao/">
-                      <h2 class="post-title">
-                        leetcode 143. 重排链表 
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://voidspiral.github.io/post/leetcode-17-dian-hua-hao-ma-de-zi-mu-zu-he/">
-                      <h2 class="post-title">
-                        leetcode 17. 电话号码的字母组合
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://voidspiral.github.io/post/leetcode-zhou-sai-202/">
-                      <h2 class="post-title">
-                        leetcode 周赛202
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://voidspiral.github.io/post/leecode/">
-                      <h2 class="post-title">
-                        leetcode 130. 被围绕的区域
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://voidspiral.github.io/post/hua-dong-chuang-kou-xi-lie/">
-                      <h2 class="post-title">
-                        滑动窗口系列
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://voidspiral.github.io/post/leetcode-718-zui-chang-chong-fu-zi-shu-zu/">
-                      <h2 class="post-title">
-                        leetcode 718. 最长重复子数组
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-                
-                  <article class="post">
-                    <a href="https://voidspiral.github.io/post/leetcode-jian-zhi-offer-49-chou-shu/">
-                      <h2 class="post-title">
-                        leetcode 剑指 Offer 49. 丑数
-                      </h2>
-                    </a>
-                  </article>
-                
-              
-            
-          </div>
-
-          <div class="pagination-container">
+    
+        <div class="pagination-container">
   
   
 </div>
 
-        </div>
+    
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://voidspiral.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
       </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.min.js"></script>
-<script type="application/javascript">
-
-AOS.init();
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
-
-</script>
-
-
-  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>
-    hljs.initHighlightingOnLoad()
-  </script>
-
-
-
-
-
   </body>
 </html>

@@ -1,0 +1,305 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>signal包用法总结 | 螺旋飞鸟的博客 </title>
+<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1607932921379">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://voidspiral.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="signal包用法总结 | 螺旋飞鸟的博客  - Atom Feed" href="https://voidspiral.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <!-- <link rel="stylesheet" type="text/css" href="/styles/railscasts.css"> -->
+    <link rel="stylesheet" href="/styles/default.css">
+    <script src="/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <meta name="description" content="Overview ¶
+
+Package signal implements access to incoming signals.
+Signals are primarily used on Unix-like systems. For t..." />
+    <meta name="keywords" content="" />
+    <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://voidspiral.github.io">
+  <img class="avatar" src="https://voidspiral.github.io/images/avatar.png?v=1607932921379" alt="">
+  </a>
+  <h1 class="site-title">
+    螺旋飞鸟的博客 
+  </h1>
+  <p class="site-description">
+    专注于 golang、分布式、3D机器视觉等
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              signal包用法总结
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-12-14
+              </span>
+              <span>
+                5 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h3 id="overview">Overview <a href="https://pkg.go.dev/os/signal#pkg-overview">¶</a></h3>
+<blockquote>
+<p>Package signal implements access to incoming signals.</p>
+<p>Signals are primarily used on Unix-like systems. For the use of this package on Windows and Plan 9, see below.</p>
+</blockquote>
+<p>实现对传入信号的访问。信号主要用于类unix系统。</p>
+<!-- more -->
+<p>我们直接看有哪些方法</p>
+<h4 id="func-ignore">func <a href="https://github.com/golang/go/blob/go1.15.6/src/os/signal/signal.go#L85">Ignore</a> <a href="https://pkg.go.dev/os/signal#Ignore">¶</a></h4>
+<pre><code class="language-go">func Ignore(sig ...os.Signal)
+</code></pre>
+<blockquote>
+<p>Ignore causes the provided signals to be ignored. If they are received by the program, nothing will happen. Ignore undoes the effect of any prior calls to Notify for the provided signals. If no signals are provided, all incoming signals will be ignored.</p>
+</blockquote>
+<p>调用Ignore方法导致所提供的信号被忽略（Notify方法接收的信号）。如果它们被程序接受，什么都不会发生。Ignore取消先前调用Notify提供的信号的影响。如果没有信号提供，所有传入的信号将被忽略。</p>
+<h4 id="func-ignored">func <a href="https://github.com/golang/go/blob/go1.15.6/src/os/signal/signal.go#L90">Ignored</a> <a href="https://pkg.go.dev/os/signal#Ignored">¶</a></h4>
+<pre><code class="language-go">func Ignored(sig os.Signal) bool
+</code></pre>
+<blockquote>
+<p>Ignored reports whether sig is currently ignored.</p>
+</blockquote>
+<p>Ignored方法报告sig变量是否为当前忽略的信号</p>
+<h4 id="func-notify">func <a href="https://github.com/golang/go/blob/go1.15.6/src/os/signal/signal.go#L120">Notify</a> <a href="https://pkg.go.dev/os/signal#Notify">¶</a></h4>
+<pre><code class="language-go">func Notify(c chan&lt;- os.Signal, sig ...os.Signal)
+</code></pre>
+<blockquote>
+<p>Notify causes package signal to relay incoming signals to c. If no signals are provided, all incoming signals will be relayed to c. Otherwise, just the provided signals will.</p>
+<p>Package signal will not block sending to c: the caller must ensure that c has sufficient buffer space to keep up with the expected signal rate. For a channel used for notification of just one signal value, a buffer of size 1 is sufficient.</p>
+<p>It is allowed to call Notify multiple times with the same channel: each call expands the set of signals sent to that channel. The only way to remove signals from the set is to call Stop.</p>
+<p>It is allowed to call Notify multiple times with different channels and the same signals: each channel receives copies of incoming signals independently.</p>
+</blockquote>
+<p>Notify方法使signal包传达即将到来的信号给c。如果没有信号提供，所有传入的信号将被传达给c。否则只有，Notify提供的信号可以传递。</p>
+<p>signal包不会阻塞发送给c:调用者必须确保c有足够的缓冲区空间来保持预期的信号速率。对于只用于通知一个信号值的通道，大小为1的缓冲区就足够了。</p>
+<p>允许使用同一通道多次调用Notify:每次调用扩展发送到该通道的信号集。从集合中移除信号的唯一方法是调用Stop。</p>
+<p>允许使用不同的通道和相同的信号多次调用Notify:每个通道分别接收传入信号的副本。</p>
+<pre><code class="language-go">package main
+
+import (
+	&quot;fmt&quot;
+	&quot;os&quot;
+	&quot;os/signal&quot;
+)
+
+func main() {
+	// Set up channel on which to send signal notifications.
+	// We must use a buffered channel or risk missing the signal
+	// if we're not ready to receive when the signal is sent.
+	c := make(chan os.Signal, 1)
+	signal.Notify(c, os.Interrupt)
+
+	// Block until a signal is received.
+	s := &lt;-c
+	fmt.Println(&quot;Got signal:&quot;, s)
+}
+</code></pre>
+<p>不指定具体信号的例子（ALLSignal）</p>
+<pre><code class="language-go">package main
+
+import (
+	&quot;fmt&quot;
+	&quot;os&quot;
+	&quot;os/signal&quot;
+)
+
+func main() {
+	// Set up channel on which to send signal notifications.
+	// We must use a buffered channel or risk missing the signal
+	// if we're not ready to receive when the signal is sent.
+	c := make(chan os.Signal, 1)
+	signal.Notify(c, os.Interrupt)
+
+	// Block until a signal is received.
+	s := &lt;-c
+	fmt.Println(&quot;Got signal:&quot;, s)
+}
+</code></pre>
+<h4 id="func-reset">func <a href="https://github.com/golang/go/blob/go1.15.6/src/os/signal/signal.go#L172">Reset</a> <a href="https://pkg.go.dev/os/signal#Reset">¶</a></h4>
+<pre><code class="language-go">func Reset(sig ...os.Signal)
+</code></pre>
+<blockquote>
+<p>Reset undoes the effect of any prior calls to Notify for the provided signals. If no signals are provided, all signal handlers will be reset.</p>
+</blockquote>
+<p>Reset将解除任何先前调用的效果，以通知所提供的信号。如果没有提供信号，所有信号处理程序将被重置。</p>
+<h4 id="func-stop">func <a href="https://github.com/golang/go/blob/go1.15.6/src/os/signal/signal.go#L179">Stop</a> <a href="https://pkg.go.dev/os/signal#Stop">¶</a></h4>
+<pre><code class="language-go">func Stop(c chan&lt;- os.Signal)
+</code></pre>
+<blockquote>
+<p>Stop causes package signal to stop relaying incoming signals to c. It undoes the effect of all prior calls to Notify using c. When Stop returns, it is guaranteed that c will receive no more signals.</p>
+</blockquote>
+<p>Stop使包信号停止向c传达传入信号。Stop方法通过c撤销先前调用Notify的效果。当时Stop方法返回时，可以保证c不会接受到任何信号。</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#overview">Overview ¶</a>
+<ul>
+<li><a href="#func-ignore">func Ignore ¶</a></li>
+<li><a href="#func-ignored">func Ignored ¶</a></li>
+<li><a href="#func-notify">func Notify ¶</a></li>
+<li><a href="#func-reset">func Reset ¶</a></li>
+<li><a href="#func-stop">func Stop ¶</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://voidspiral.github.io/post/errgroup/">
+              <h3 class="post-title">
+                errGroup用法总结
+              </h3>
+            </a>
+          </div>
+        
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: 'faf7795e6fb19538ffa1',
+    clientSecret: '520faaf0c56ea87a228bcf5a2aba3311ca60a819',
+    repo: '',
+    owner: 'voidspiral',
+    admin: ['voidspiral'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://voidspiral.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

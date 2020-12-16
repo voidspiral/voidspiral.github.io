@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://voidspiral.github.io</id>
     <title>螺旋飞鸟的博客 </title>
-    <updated>2020-12-15T14:10:49.354Z</updated>
+    <updated>2020-12-16T14:38:02.348Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://voidspiral.github.io"/>
     <link rel="self" href="https://voidspiral.github.io/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://voidspiral.github.io/images/avatar.png</logo>
     <icon>https://voidspiral.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 螺旋飞鸟的博客 </rights>
+    <entry>
+        <title type="html"><![CDATA[go的RPC包总结]]></title>
+        <id>https://voidspiral.github.io/post/go-de-rpc-bao-xiang-jie/</id>
+        <link href="https://voidspiral.github.io/post/go-de-rpc-bao-xiang-jie/">
+        </link>
+        <updated>2020-12-16T14:30:17.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[03｜Mutex：4种易错场景大盘点]]></title>
         <id>https://voidspiral.github.io/post/03ormutex4-chong-yi-cuo-chang-jing-da-pan-dian/</id>
@@ -139,23 +146,6 @@
 ]]></summary>
         <content type="html"><![CDATA[<h3 id="思路">思路</h3>
 <p>贪心就完事了 考虑能走的最远距离可以到达边界就可以直接返回了</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[leetcode 234. 回文链表]]></title>
-        <id>https://voidspiral.github.io/post/234-hui-wen-lian-biao-md/</id>
-        <link href="https://voidspiral.github.io/post/234-hui-wen-lian-biao-md/">
-        </link>
-        <updated>2020-10-23T08:59:29.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="思路">思路</h3>
-<p>1.求出中间结点 以分割整条链表</p>
-<p>2.从中间结点开始 翻转后半部分链表</p>
-<p>3.从两端开始比较</p>
-]]></summary>
-        <content type="html"><![CDATA[<h3 id="思路">思路</h3>
-<p>1.求出中间结点 以分割整条链表</p>
-<p>2.从中间结点开始 翻转后半部分链表</p>
-<p>3.从两端开始比较</p>
 ]]></content>
     </entry>
 </feed>

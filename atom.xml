@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://voidspiral.github.io</id>
     <title>螺旋飞鸟的博客 </title>
-    <updated>2020-12-16T14:38:02.348Z</updated>
+    <updated>2020-12-17T14:21:44.969Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://voidspiral.github.io"/>
     <link rel="self" href="https://voidspiral.github.io/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://voidspiral.github.io/images/avatar.png</logo>
     <icon>https://voidspiral.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 螺旋飞鸟的博客 </rights>
+    <entry>
+        <title type="html"><![CDATA[存档]]></title>
+        <id>https://voidspiral.github.io/post/6824-lab1-mapreduce/</id>
+        <link href="https://voidspiral.github.io/post/6824-lab1-mapreduce/">
+        </link>
+        <updated>2020-12-17T14:16:06.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[go的RPC包总结]]></title>
         <id>https://voidspiral.github.io/post/go-de-rpc-bao-xiang-jie/</id>
@@ -133,19 +140,6 @@
 <p>我们先来思考降序的，我们可以先将nums1中的非零元素移到尾端 在归并过程中无论如何 都需要额外的空间来保存元素</p>
 <p>所以降序肯定不行</p>
 <p>此时 我发现题目是升序的 囧 那就逆序归并就好了</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[leetcode 55. 跳跃游戏]]></title>
-        <id>https://voidspiral.github.io/post/leetcode-55-tiao-yue-you-xi-md/</id>
-        <link href="https://voidspiral.github.io/post/leetcode-55-tiao-yue-you-xi-md/">
-        </link>
-        <updated>2020-10-23T09:16:50.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="思路">思路</h3>
-<p>贪心就完事了 考虑能走的最远距离可以到达边界就可以直接返回了</p>
-]]></summary>
-        <content type="html"><![CDATA[<h3 id="思路">思路</h3>
-<p>贪心就完事了 考虑能走的最远距离可以到达边界就可以直接返回了</p>
 ]]></content>
     </entry>
 </feed>

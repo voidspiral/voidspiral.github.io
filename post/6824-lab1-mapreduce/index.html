@@ -1,0 +1,302 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>存档 | 螺旋飞鸟的博客 </title>
+<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1608214899509">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://voidspiral.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="存档 | 螺旋飞鸟的博客  - Atom Feed" href="https://voidspiral.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <!-- <link rel="stylesheet" type="text/css" href="/styles/railscasts.css"> -->
+    <link rel="stylesheet" href="/styles/default.css">
+    <script src="/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <meta name="description" content="课程主页
+
+6.824 2020春季
+
+[1].Google MapReduce 总结
+MIT 6.824 Lab1 MapReduce 2020 攻略
+MIT 6.824 分布式系统 Lab1 MapReduce实现 2020 Sprin..." />
+    <meta name="keywords" content="" />
+    <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://voidspiral.github.io">
+  <img class="avatar" src="https://voidspiral.github.io/images/avatar.png?v=1608214899509" alt="">
+  </a>
+  <h1 class="site-title">
+    螺旋飞鸟的博客 
+  </h1>
+  <p class="site-description">
+    专注于 golang、分布式、3D机器视觉等
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              存档
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-12-17
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h3 id="课程主页">课程主页</h3>
+<ul>
+<li><a href="https://pdos.csail.mit.edu/6.824/schedule.html">6.824 2020春季</a></li>
+</ul>
+<p>[1].<a href="https://mr-dai.github.io/mapreduce_summary/">Google MapReduce 总结</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/149324226">MIT 6.824 Lab1 MapReduce 2020 攻略</a></p>
+<p><a href="https://xzy57369.github.io/post/3a897789.html">MIT 6.824 分布式系统 Lab1 MapReduce实现 2020 Spring</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/54243727">MIT 6.824 分布式系统 lab1：MapReduce</a></p>
+<p><a href=""></a>https://zhuanlan.zhihu.com/p/122422885</p>
+<p>https://gocn.vip/topics/9926</p>
+<p>https://www.lagou.com/lgeduarticle/8769.html</p>
+<p>https://juejin.cn/post/6865679367398227981</p>
+<p>https://blog.csdn.net/jiangshouzhuang/article/details/104528806</p>
+<p>https://blog.csdn.net/jiangshouzhuang/article/details/104528806?ops_request_misc=%25257B%252522request%25255Fid%252522%25253A%252522160813353416780258043468%252522%25252C%252522scm%252522%25253A%25252220140713.130102334.pc%25255Fblog.%252522%25257D&amp;request_id=160813353416780258043468&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2<sub>blog</sub>first_rank_v2~rank_v29-1-104528806.pc_v2_rank_blog_default&amp;utm_term=6.824</p>
+<h3 id="课前准备">课前准备</h3>
+<p><a href="https://chai2010.cn/advanced-go-programming-book/ch4-rpc/ch4-01-rpc-intro.html">RPC快速入门</a></p>
+<p>https://colobu.com/2016/09/18/go-net-rpc-guide/</p>
+<h3 id="getting-started">Getting started</h3>
+<p>You'll fetch the initial lab software with <a href="https://git-scm.com/">git</a> (a version control system). To learn more about git, look at the <a href="https://git-scm.com/book/en/v2">Pro Git book</a> or the <a href="http://www.kernel.org/pub/software/scm/git/docs/user-manual.html">git user's manual</a>. To fetch the 6.824 lab software:</p>
+<pre><code>$ git clone git://g.csail.mit.edu/6.824-golabs-2020 6.824
+$ cd 6.824
+$ ls
+Makefile src
+$
+</code></pre>
+<p>We supply you with a simple sequential mapreduce implementation in <code>src/main/mrsequential.go</code>. It runs the maps and reduces one at a time, in a single process. <strong>We also provide you with a couple of MapReduce applications: word-count in <code>mrapps/wc.go</code>, and a text indexer in <code>mrapps/indexer.go</code>.</strong> （我开始也是无从入手，看来是忽略了一些关键信息，我们可以从wordcount中的map和reduce函数入手, 后面也会用到这两个函数）You can run word count sequentially as follows:</p>
+<p>RPC远程调用 但实际课程中 数据是在本地的 通过unix socket 多个goruntine间通信</p>
+<figure data-type="image" tabindex="1"><img src="https://pic4.zhimg.com/v2-f43b913fa22d7e2cb8f32da048b0d40b_r.jpg" alt="preview" loading="lazy"></figure>
+<h2 id="实验前的ide准备">实验前的IDE准备</h2>
+<p>在导入配置之前痛苦的折腾goland的配置过程过程</p>
+<p>一些有用提示：</p>
+<p>直接用go mod 且保证6.824的路径不在GOPATH下</p>
+<pre><code class="language-go">go mod init 6.824lab
+</code></pre>
+<p>更改mr下的文件import路径</p>
+<pre><code class="language-go">import &quot;../mr&quot; =&gt; &quot;6.824lab/src/mr&quot;
+</code></pre>
+<p>实在懒得敲命令可以配置goland的run/debug</p>
+<h2 id="getting-started-2">Getting started</h2>
+<p>通过这篇<a href="https://draveness.me/golang/docs/part4-advanced/ch08-metaprogramming/golang-plugin/">插件系统</a>了解一下<code>buildmode</code>即可</p>
+<pre><code class="language-go">go build -buildmode=plugin ../mrapps/wc.go
+</code></pre>
+<p>来看看<code>wc.go</code></p>
+<pre><code class="language-go">//
+// The map function is called once for each file of input. The first
+// argument is the name of the input file, and the second is the
+// file's complete contents. You should ignore the input file name,
+// and look only at the contents argument. The return value is a slice
+// of key/value pairs.
+//
+func Map(filename string, contents string) []mr.KeyValue {
+	// function to detect word separators.
+	ff := func(r rune) bool { return !unicode.IsLetter(r) }
+	
+  //按规则切分内容，&quot;hello word&quot;，由于空格不是字母，切分为[&quot;hello&quot;, &quot;word&quot;]
+	
+  // split contents into an array of words.
+	words := strings.FieldsFunc(contents, ff)
+
+	kva := []mr.KeyValue{}
+	for _, w := range words {
+		kv := mr.KeyValue{w, &quot;1&quot;}
+		kva = append(kva, kv)
+	}
+	return kva
+}
+//
+// The reduce function is called once for each key generated by the
+// map tasks, with a list of all the values created for that key by
+// any map task.
+//
+func Reduce(key string, values []string) string {
+	// return the number of occurrences of this word.
+	return strconv.Itoa(len(values))
+}
+
+</code></pre>
+<p>文中给出了一个串行化的例子，运行mrsequential.go</p>
+<pre><code class="language-go">go run mrsequential.go wc.so pg*.txt
+</code></pre>
+<pre><code class="language-go">
+</code></pre>
+<p>`</p>
+<p>参考文献</p>
+<ol>
+<li>https://draveness.me/golang/docs/part4-advanced/ch08-metaprogramming/golang-plugin/</li>
+<li>https://www.jetbrains.com/help/go/run-debug-configuration.html</li>
+</ol>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E8%AF%BE%E7%A8%8B%E4%B8%BB%E9%A1%B5">课程主页</a></li>
+<li><a href="#%E8%AF%BE%E5%89%8D%E5%87%86%E5%A4%87">课前准备</a></li>
+<li><a href="#getting-started">Getting started</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AE%9E%E9%AA%8C%E5%89%8D%E7%9A%84ide%E5%87%86%E5%A4%87">实验前的IDE准备</a></li>
+<li><a href="#getting-started-2">Getting started</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://voidspiral.github.io/post/go-de-rpc-bao-xiang-jie/">
+              <h3 class="post-title">
+                go的RPC包总结
+              </h3>
+            </a>
+          </div>
+        
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: 'faf7795e6fb19538ffa1',
+    clientSecret: '520faaf0c56ea87a228bcf5a2aba3311ca60a819',
+    repo: '',
+    owner: 'voidspiral',
+    admin: ['voidspiral'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://voidspiral.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://voidspiral.github.io</id>
     <title>螺旋飞鸟的博客 </title>
-    <updated>2020-12-18T09:26:08.292Z</updated>
+    <updated>2020-12-19T11:24:24.858Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://voidspiral.github.io"/>
     <link rel="self" href="https://voidspiral.github.io/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://voidspiral.github.io/images/avatar.png</logo>
     <icon>https://voidspiral.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 螺旋飞鸟的博客 </rights>
+    <entry>
+        <title type="html"><![CDATA[errGroup+singal实战]]></title>
+        <id>https://voidspiral.github.io/post/errgroupsingal-shi-zhan/</id>
+        <link href="https://voidspiral.github.io/post/errgroupsingal-shi-zhan/">
+        </link>
+        <updated>2020-12-19T11:23:46.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[存档]]></title>
         <id>https://voidspiral.github.io/post/6824-lab1-mapreduce/</id>
@@ -117,29 +124,6 @@
 <li>左边比右边的绝对值大时，左边向右遍历，若左侧数字没出现过，则 res++，pre = 左侧数字</li>
 <li>右边比左边的绝对值大或等于时，右边向左遍历，若右侧数字没出现过，则 res++，pre = 右侧数字</li>
 </ol>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[leetcode 88. 合并两个有序数组]]></title>
-        <id>https://voidspiral.github.io/post/leetcode-88-he-bing-liang-ge-you-xu-shu-zu-md/</id>
-        <link href="https://voidspiral.github.io/post/leetcode-88-he-bing-liang-ge-you-xu-shu-zu-md/">
-        </link>
-        <updated>2020-10-23T13:33:05.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="思路">思路</h3>
-<p>1.首先能想到，类似归并排序中的归并操作。</p>
-<p>2.但是这里有一点难度在于，我们要复用nums1这个数组并达到<code>O(1)</code>的空间复杂度。</p>
-<p>3.一个有序数组，可以是非严格的（比如 1， <u>2， 2</u>，3）升序，也可以是降序。</p>
-<p>我们先来思考降序的，我们可以先将nums1中的非零元素移到尾端 在归并过程中无论如何 都需要额外的空间来保存元素</p>
-<p>所以降序肯定不行</p>
-<p>此时 我发现题目是升序的 囧 那就逆序归并就好了</p>
-]]></summary>
-        <content type="html"><![CDATA[<h3 id="思路">思路</h3>
-<p>1.首先能想到，类似归并排序中的归并操作。</p>
-<p>2.但是这里有一点难度在于，我们要复用nums1这个数组并达到<code>O(1)</code>的空间复杂度。</p>
-<p>3.一个有序数组，可以是非严格的（比如 1， <u>2， 2</u>，3）升序，也可以是降序。</p>
-<p>我们先来思考降序的，我们可以先将nums1中的非零元素移到尾端 在归并过程中无论如何 都需要额外的空间来保存元素</p>
-<p>所以降序肯定不行</p>
-<p>此时 我发现题目是升序的 囧 那就逆序归并就好了</p>
 ]]></content>
     </entry>
 </feed>

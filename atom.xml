@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://voidspiral.github.io</id>
     <title>螺旋飞鸟的博客 </title>
-    <updated>2020-12-21T07:14:51.534Z</updated>
+    <updated>2020-12-21T07:15:24.534Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://voidspiral.github.io"/>
     <link rel="self" href="https://voidspiral.github.io/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://voidspiral.github.io/images/avatar.png</logo>
     <icon>https://voidspiral.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 螺旋飞鸟的博客 </rights>
+    <entry>
+        <title type="html"><![CDATA[前序中序后序非递归]]></title>
+        <id>https://voidspiral.github.io/post/qian-xu-zhong-xu-hou-xu-fei-di-gui/</id>
+        <link href="https://voidspiral.github.io/post/qian-xu-zhong-xu-hou-xu-fei-di-gui/">
+        </link>
+        <updated>2020-12-21T07:14:54.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[errGroup+singal实战]]></title>
         <id>https://voidspiral.github.io/post/errgroupsingal-shi-zhan/</id>
@@ -99,31 +106,6 @@
 ]]></summary>
         <content type="html"><![CDATA[<h3 id="思路">思路</h3>
 <p>1.类似最长上升子序列 我们先从左到右求一遍 再从右到左求一遍</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[排序数组，平方后，数组当中有多少不同的数字]]></title>
-        <id>https://voidspiral.github.io/post/pai-xu-shu-zu-ping-fang-hou-shu-zu-dang-zhong-you-duo-shao-bu-tong-de-shu-zi/</id>
-        <link href="https://voidspiral.github.io/post/pai-xu-shu-zu-ping-fang-hou-shu-zu-dang-zhong-you-duo-shao-bu-tong-de-shu-zi/">
-        </link>
-        <updated>2020-10-27T03:40:35.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="题目">题目</h3>
-<p>排序数组，平方后，数组当中有多少不同的数字（相同算一个）</p>
-<h3 id="思路">思路</h3>
-<ol>
-<li>初始化两个左右坐标，指向数组的首尾，向中间遍历，初始化 pre 变量为 abs(nums[0]-1) 表示上一次记录过的数字， res=0</li>
-<li>左边比右边的绝对值大时，左边向右遍历，若左侧数字没出现过，则 res++，pre = 左侧数字</li>
-<li>右边比左边的绝对值大或等于时，右边向左遍历，若右侧数字没出现过，则 res++，pre = 右侧数字</li>
-</ol>
-]]></summary>
-        <content type="html"><![CDATA[<h3 id="题目">题目</h3>
-<p>排序数组，平方后，数组当中有多少不同的数字（相同算一个）</p>
-<h3 id="思路">思路</h3>
-<ol>
-<li>初始化两个左右坐标，指向数组的首尾，向中间遍历，初始化 pre 变量为 abs(nums[0]-1) 表示上一次记录过的数字， res=0</li>
-<li>左边比右边的绝对值大时，左边向右遍历，若左侧数字没出现过，则 res++，pre = 左侧数字</li>
-<li>右边比左边的绝对值大或等于时，右边向左遍历，若右侧数字没出现过，则 res++，pre = 右侧数字</li>
-</ol>
 ]]></content>
     </entry>
 </feed>

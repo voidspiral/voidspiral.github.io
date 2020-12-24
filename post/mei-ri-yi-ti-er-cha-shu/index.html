@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>二叉树专题（一） | 螺旋飞鸟的博客 </title>
-<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1608797861478">
+<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1608819313760">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://voidspiral.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="二叉树专题（一） | 螺旋飞鸟的博客  - Atom Feed" href="https://voidspiral.github.io/atom.xml">
@@ -30,7 +30,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://voidspiral.github.io">
-  <img class="avatar" src="https://voidspiral.github.io/images/avatar.png?v=1608797861478" alt="">
+  <img class="avatar" src="https://voidspiral.github.io/images/avatar.png?v=1608819313760" alt="">
   </a>
   <h1 class="site-title">
     螺旋飞鸟的博客 
@@ -162,6 +162,35 @@ func connectTowNode (node1, node2 *Node) {
     //会判断上一层的结点的Next字段是否存在
     connectTowNode(node1.Right, node2.Left)
     return
+}
+</code></pre>
+<p>迭代版(法二)</p>
+<pre><code class="language-go">/**
+ * Definition for a Node.
+ * type Node struct {
+ *     Val int
+ *     Left *Node
+ *     Right *Node
+ *     Next *Node
+ * }
+ */
+
+func connect(root *Node) *Node {
+	if root == nil {
+        return root
+    }
+    //先序遍历到子节点
+    for leftmost := root; leftmost.Left != nil; leftmost = leftmost.Left {
+        //通过Next遍历这一层结点，未下一层的结点更新Next指针
+        for node := leftmost; node != nil; node = node.Next {
+            //左节点指向右节点
+            node.Left.Next = node.Right
+            if node.Next != nil {
+                node.Right.Next = node.Next.Left
+            }
+        }
+    }
+    return root
 }
 </code></pre>
 

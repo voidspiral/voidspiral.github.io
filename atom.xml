@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://voidspiral.github.io</id>
     <title>螺旋飞鸟的博客 </title>
-    <updated>2020-12-23T14:14:44.023Z</updated>
+    <updated>2020-12-24T08:17:44.741Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://voidspiral.github.io"/>
     <link rel="self" href="https://voidspiral.github.io/atom.xml"/>
@@ -30,13 +30,6 @@
         <link href="https://voidspiral.github.io/post/errgroupsingal-shi-zhan/">
         </link>
         <updated>2020-12-19T11:23:46.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[存档]]></title>
-        <id>https://voidspiral.github.io/post/6824-lab1-mapreduce/</id>
-        <link href="https://voidspiral.github.io/post/6824-lab1-mapreduce/">
-        </link>
-        <updated>2020-12-17T14:16:06.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[go的RPC包总结]]></title>
@@ -101,5 +94,18 @@
         <link href="https://voidspiral.github.io/post/01-or-mutexru-he-jie-jue-zi-yuan-bing-fa-fang-wen-wen-ti/">
         </link>
         <updated>2020-12-10T14:18:09.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[leetcode 845. 数组中的最长山脉]]></title>
+        <id>https://voidspiral.github.io/post/leetcode-845-shu-zu-zhong-de-zui-chang-shan-mai/</id>
+        <link href="https://voidspiral.github.io/post/leetcode-845-shu-zu-zhong-de-zui-chang-shan-mai/">
+        </link>
+        <updated>2020-10-27T08:22:23.000Z</updated>
+        <summary type="html"><![CDATA[<h3 id="思路">思路</h3>
+<p>1.类似最长上升子序列 我们先从左到右求一遍 再从右到左求一遍</p>
+]]></summary>
+        <content type="html"><![CDATA[<h3 id="思路">思路</h3>
+<p>1.类似最长上升子序列 我们先从左到右求一遍 再从右到左求一遍</p>
+]]></content>
     </entry>
 </feed>

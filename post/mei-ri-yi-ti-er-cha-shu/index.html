@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>二叉树专题（一） | 螺旋飞鸟的博客 </title>
-<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1608819313760">
+<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1608905697185">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://voidspiral.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="二叉树专题（一） | 螺旋飞鸟的博客  - Atom Feed" href="https://voidspiral.github.io/atom.xml">
@@ -30,7 +30,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://voidspiral.github.io">
-  <img class="avatar" src="https://voidspiral.github.io/images/avatar.png?v=1608819313760" alt="">
+  <img class="avatar" src="https://voidspiral.github.io/images/avatar.png?v=1608905697185" alt="">
   </a>
   <h1 class="site-title">
     螺旋飞鸟的博客 
@@ -90,7 +90,7 @@
                 2020-12-23
               </span>
               <span>
-                2 min read
+                3 min read
               </span>
               
                 <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="post-tag">
@@ -193,6 +193,39 @@ func connect(root *Node) *Node {
     return root
 }
 </code></pre>
+<h4 id="114-二叉树展开为链表"><a href="https://leetcode-cn.com/problems/flatten-binary-tree-to-linked-list/">114. 二叉树展开为链表</a></h4>
+<pre><code class="language-go">/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func flatten(root *TreeNode)  {
+    if root == nil {
+        return
+    }
+    left := root.Left
+    right := root.Right
+
+    root.Left = nil
+    root.Right = left
+
+    p := root 
+    for p.Right != nil {
+        p = p.Right
+    }
+    p.Right = right
+  
+    //flatten(root.Left)
+    flatten(root.Right)
+
+    //前 中 后序遍历其实都可
+
+    return 
+}
+</code></pre>
 
               </div>
               <div class="toc-container">
@@ -214,7 +247,12 @@ func connect(root *Node) *Node {
 <li><a href="#116-%E5%A1%AB%E5%85%85%E6%AF%8F%E4%B8%AA%E8%8A%82%E7%82%B9%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E5%8F%B3%E4%BE%A7%E8%8A%82%E7%82%B9%E6%8C%87%E9%92%88">116. 填充每个节点的下一个右侧节点指针</a></li>
 </ul>
 </li>
-<li><a href="#%E6%80%9D%E8%B7%AF">思路</a></li>
+<li><a href="#%E6%80%9D%E8%B7%AF">思路</a><br>
+*
+<ul>
+<li><a href="#114-%E4%BA%8C%E5%8F%89%E6%A0%91%E5%B1%95%E5%BC%80%E4%B8%BA%E9%93%BE%E8%A1%A8">114. 二叉树展开为链表</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

@@ -2,11 +2,11 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>二叉树专题（一） | 螺旋飞鸟的博客 </title>
+<title>二叉树专题 (二） | 螺旋飞鸟的博客 </title>
 <link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1609857198372">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://voidspiral.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="二叉树专题（一） | 螺旋飞鸟的博客  - Atom Feed" href="https://voidspiral.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="二叉树专题 (二） | 螺旋飞鸟的博客  - Atom Feed" href="https://voidspiral.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
@@ -15,14 +15,13 @@
     <link rel="stylesheet" href="/styles/default.css">
     <script src="/highlight.pack.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <meta name="description" content="226. 翻转二叉树
-思路 前序，后序遍历交换即可
+    <meta name="description" content="654. 最大二叉树
+###思路
+思路很直接，直接遍历区间中的最大值，然后递归当前最大值的左右两个区间就好了。
 /**
  * Definition for a binary tree node.
- * type TreeNode struct {
- *     Val int
- *     Left..." />
-    <meta name="keywords" content="leetcode" />
+ * type TreeNode struc..." />
+    <meta name="keywords" content="" />
     <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
   </head>
   <body>
@@ -83,26 +82,23 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              二叉树专题（一）
+              二叉树专题 (二）
             </h2>
             <div class="post-info">
               <span>
-                2020-12-23
+                2021-01-05
               </span>
               <span>
                 3 min read
               </span>
               
-                <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="post-tag">
-                  # leetcode
-                </a>
-              
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <h4 id="226-翻转二叉树"><a href="https://leetcode-cn.com/problems/invert-binary-tree/">226. 翻转二叉树</a></h4>
-<h2 id="思路-前序后序遍历交换即可">思路 前序，后序遍历交换即可</h2>
+                <h4 id="654-最大二叉树"><a href="https://leetcode-cn.com/problems/maximum-binary-tree/">654. 最大二叉树</a></h4>
+<p>###思路</p>
+<p>思路很直接，直接遍历区间中的最大值，然后递归当前最大值的左右两个区间就好了。</p>
 <pre><code class="language-go">/**
  * Definition for a binary tree node.
  * type TreeNode struct {
@@ -111,89 +107,37 @@
  *     Right *TreeNode
  * }
  */
-func invertTree(root *TreeNode) *TreeNode {
-    if root == nil {
-        return nil 
-    }
-    //go中参数为值传递，传二维指针
-    swap := func(a, b **TreeNode) {
-        *a, *b = *b, *a
-    }
-
-    swap(&amp;root.Left, &amp;root.Right)
-    invertTree(root.Left)
-    invertTree(root.Right)
-
-    return root 
+import &quot;math&quot;
+func constructMaximumBinaryTree(nums []int) *TreeNode {
+    return helper(nums, 0, len(nums)-1)
 }
-</code></pre>
-<h4 id="116-填充每个节点的下一个右侧节点指针"><a href="https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/">116. 填充每个节点的下一个右侧节点指针</a></h4>
-<h2 id="思路">思路</h2>
-<ul>
-<li>首先很直观的想法是左儿子和右儿子进行连接 ，但是横跨左右子树的结点要怎么链接呢。</li>
-<li>我们可以发现这些结点的连接顺序是按层次连接的。我们当然可以按照层次遍历来连接每一层的结点（法一）</li>
-<li>以5号结点为例我们仅需要判断父节点（2）的next指针是否存在，将2号节点的右子节点和3号节点的左子节点连接即可（法二）</li>
-</ul>
-<figure data-type="image" tabindex="1"><img src="https://voidspiral.github.io/post-images/1608730988070.png" alt="" loading="lazy"></figure>
-<pre><code class="language-go">/**
- * Definition for a Node.
- * type Node struct {
- *     Val int
- *     Left *Node
- *     Right *Node
- *     Next *Node
- * }
- */
 
-func connect(root *Node) *Node {
-    if root == nil {
+func helper(nums []int, lo, hi int) *TreeNode {
+    if lo &gt; hi {
         return nil
     }
-    connectTowNode(root.Left, root.Right)
-    return root
-}
-func connectTowNode (node1, node2 *Node) {
-    if node1 == nil || node2 == nil {
-        return
-    }
-    node1.Next = node2
-    connectTowNode(node1.Left, node1.Right)
-    connectTowNode(node2.Left, node2.Right)
-    //会判断上一层的结点的Next字段是否存在
-    connectTowNode(node1.Right, node2.Left)
-    return
-}
-</code></pre>
-<p>迭代版(法二)</p>
-<pre><code class="language-go">/**
- * Definition for a Node.
- * type Node struct {
- *     Val int
- *     Left *Node
- *     Right *Node
- *     Next *Node
- * }
- */
-
-func connect(root *Node) *Node {
-	if root == nil {
-        return root
-    }
-    //先序遍历到子节点
-    for leftmost := root; leftmost.Left != nil; leftmost = leftmost.Left {
-        //通过Next遍历这一层结点，未下一层的结点更新Next指针
-        for node := leftmost; node != nil; node = node.Next {
-            //左节点指向右节点
-            node.Left.Next = node.Right
-            if node.Next != nil {
-                node.Right.Next = node.Next.Left
-            }
+    cur := math.MinInt64
+    pos := -1
+    for i := lo; i &lt;= hi; i ++ {
+        if cur &lt; nums[i] {
+            cur = nums[i]
+            pos = i
         }
     }
+
+    root := &amp;TreeNode{
+        Val:cur,
+        Left:nil,
+        Right:nil,
+    }
+    root.Val = cur
+    root.Left = helper(nums, lo, pos - 1)
+    root.Right = helper(nums, pos + 1, hi)
+    
     return root
 }
 </code></pre>
-<h4 id="114-二叉树展开为链表"><a href="https://leetcode-cn.com/problems/flatten-binary-tree-to-linked-list/">114. 二叉树展开为链表</a></h4>
+<p>优化版</p>
 <pre><code class="language-go">/**
  * Definition for a binary tree node.
  * type TreeNode struct {
@@ -202,30 +146,66 @@ func connect(root *Node) *Node {
  *     Right *TreeNode
  * }
  */
-func flatten(root *TreeNode)  {
-    if root == nil {
-        return
+import &quot;math&quot;
+func constructMaximumBinaryTree(nums []int) *TreeNode {
+    if len(nums) == 0 {
+        // fmt.Println(len(nums))
+        return nil
     }
-    left := root.Left
-    right := root.Right
-
-    root.Left = nil
-    root.Right = left
-
-    p := root 
-    for p.Right != nil {
-        p = p.Right
+    cur := math.MinInt64
+    pos := -1
+    for i := 0; i &lt; len(nums); i++ {
+        if cur &lt; nums[i] {
+            cur = nums[i]
+            pos = i
+        }
     }
-    p.Right = right
-  
-    //flatten(root.Left)
-    flatten(root.Right)
 
-    //前 中 后序遍历其实都可
-
-    return 
+    root := &amp;TreeNode{
+        Val:cur,
+    }
+    root.Left = constructMaximumBinaryTree(nums[:pos])
+    root.Right = constructMaximumBinaryTree(nums[pos+1:])
+    return root
 }
 </code></pre>
+<h4 id="105-从前序与中序遍历序列构造二叉树"><a href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/">105. 从前序与中序遍历序列构造二叉树</a></h4>
+<h2 id="思路">思路</h2>
+<p>​		最开始很容易想到，先序遍历一定是根节点，然后紧接着就可根据中序划分左右子树。但开始的时候，只维护了中序遍历中的左右子树的区间范围，没有考虑到先序遍历的左右子树区间也要维护。那么我们知道无论两种遍历方式左子树的长度一定和右子树的长度是一致的</p>
+<figure data-type="image" tabindex="1"><img src="https://voidspiral.github.io/post-images/1609857181314.png" alt="" loading="lazy"></figure>
+<pre><code class="language-go">func buildTree(preorder []int, inorder []int) *TreeNode {
+    if len(preorder) == 0 || len(inorder) == 0 {
+        return nil
+    }
+    root := &amp;TreeNode{preorder[0], nil, nil}
+    var pos int
+    for i, v := range inorder {
+        if preorder[0] == v {
+            pos = i
+            break
+        }
+    }
+    // 最开始写成了这样，试想因为没有维护这个先序遍历的左右子树区间。
+    // 从第一次调用buildTree(preorder[1:], inorder[pos+1:])开始
+    // -----------  len(preorder)的长度变化 &lt;---
+    //  ----------
+    //   ---------
+    //       ...
+    //         ---
+    //          --
+    //           - 左子树递归完 len(preorder) = 0 此时出栈一直回退到第一次调用的时候(&lt;---箭头处)
+  	// root.Right = buildTree(preorder[1:], inorder[pos+1:])
+    // -----l-----  len(preorder)又从此长度来遍历了，而实际中前l次已经访问过了。所以这个遍历就不正确了。
+    // root.Left = buildTree(preorder[1:], inorder[:pos])
+  	// 当左子树遍历完之后 因为没有维护这个区间 此时的preorder长度已经变为1
+    // root.Right = buildTree(preorder[1:], inorder[pos+1:])
+    root.Left = buildTree(preorder[1:len(inorder[:pos])+1], inorder[:pos])
+    root.Right = buildTree(preorder[len(inorder[:pos])+1:], inorder[pos+1:])
+    return root
+}
+</code></pre>
+<h2 id="总结">总结</h2>
+<p>​	总结一下就是分治的时候，没有搞清楚分治的区间，只考虑了一半这是十分蠢了。。QAQ</p>
 
               </div>
               <div class="toc-container">
@@ -236,23 +216,14 @@ func flatten(root *TreeNode)  {
 <ul>
 <li>
 <ul>
-<li><a href="#226-%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91">226. 翻转二叉树</a></li>
+<li><a href="#654-%E6%9C%80%E5%A4%A7%E4%BA%8C%E5%8F%89%E6%A0%91">654. 最大二叉树</a></li>
+<li><a href="#105-%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91">105. 从前序与中序遍历序列构造二叉树</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#%E6%80%9D%E8%B7%AF-%E5%89%8D%E5%BA%8F%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E4%BA%A4%E6%8D%A2%E5%8D%B3%E5%8F%AF">思路 前序，后序遍历交换即可</a><br>
-*
-<ul>
-<li><a href="#116-%E5%A1%AB%E5%85%85%E6%AF%8F%E4%B8%AA%E8%8A%82%E7%82%B9%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E5%8F%B3%E4%BE%A7%E8%8A%82%E7%82%B9%E6%8C%87%E9%92%88">116. 填充每个节点的下一个右侧节点指针</a></li>
-</ul>
-</li>
-<li><a href="#%E6%80%9D%E8%B7%AF">思路</a><br>
-*
-<ul>
-<li><a href="#114-%E4%BA%8C%E5%8F%89%E6%A0%91%E5%B1%95%E5%BC%80%E4%B8%BA%E9%93%BE%E8%A1%A8">114. 二叉树展开为链表</a></li>
-</ul>
-</li>
+<li><a href="#%E6%80%9D%E8%B7%AF">思路</a></li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结</a></li>
 </ul>
 </li>
 </ul>
@@ -265,9 +236,9 @@ func flatten(root *TreeNode)  {
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://voidspiral.github.io/post/qian-xu-zhong-xu-hou-xu-fei-di-gui/">
+            <a href="https://voidspiral.github.io/post/mei-ri-yi-ti-er-cha-shu/">
               <h3 class="post-title">
-                前序中序后序非递归
+                二叉树专题（一）
               </h3>
             </a>
           </div>

@@ -2,16 +2,25 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>螺旋飞鸟的博客 </title>
+<title>Protobu的使用 | 螺旋飞鸟的博客 </title>
 <link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1609919168257">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://voidspiral.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="螺旋飞鸟的博客  - Atom Feed" href="https://voidspiral.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="Protobu的使用 | 螺旋飞鸟的博客  - Atom Feed" href="https://voidspiral.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="专注于 golang、分布式、3D机器视觉等" />
+    <!-- <link rel="stylesheet" type="text/css" href="/styles/railscasts.css"> -->
+    <link rel="stylesheet" href="/styles/default.css">
+    <script src="/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <meta name="description" content="go get -u github.com/golang/protobuf/protoc-gen-go@v1.3.3
+
+
+实际上，在多人协作项目或企业级工具链、脚本中，笔者并不建议直接执行go get命令来进行快速安装，因为protoc-ge..." />
+    <meta name="keywords" content="一起用go做项目" />
+    <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
   </head>
   <body>
     <div class="main">
@@ -68,29 +77,28 @@
   </div>
 </div>
 
-    
-        <div class="post-container">
-  
-    <article class="post">
-      <a href="https://voidspiral.github.io/post/protobu-de-shi-yong-md/">
-        <h2 class="post-title">Protobu的使用</h2>
-      </a>
-      <div class="post-info">
-        <span>
-          2021-01-06
-        </span>
-        <span>
-          4 min read
-        </span>
-        
-          <a href="https://voidspiral.github.io/tag/gd30KobrK/" class="post-tag">
-            # 一起用go做项目
-          </a>
-        
-      </div>
-      
-      <div class="post-abstract">
-        <pre><code class="language-bash">go get -u github.com/golang/protobuf/protoc-gen-go@v1.3.3
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Protobu的使用
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-01-06
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+                <a href="https://voidspiral.github.io/tag/gd30KobrK/" class="post-tag">
+                  # 一起用go做项目
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <pre><code class="language-bash">go get -u github.com/golang/protobuf/protoc-gen-go@v1.3.3
 </code></pre>
 <blockquote>
 <p>实际上，在多人协作项目或企业级工具链、脚本中，笔者并不建议直接执行go get命令来进行快速安装，因为protoc-gen-go插件一直处于更新迭代的过程中，如果不锁定版本，则随着时间的推移，很可能会出现不兼容的情况（它需要与 proto 软件包版本相匹配），因此建议执行如下命令进行安装：</p>
@@ -177,213 +185,62 @@ message HelloRequest {
 		map&lt;string, string&gt; names = 2;
 }
 </code></pre>
+<!-- more -->
 
-      </div>
-    </article>
-  
-    <article class="post">
-      <a href="https://voidspiral.github.io/post/er-cha-shu-zhuan-ti-er/">
-        <h2 class="post-title">二叉树专题 (二）</h2>
-      </a>
-      <div class="post-info">
-        <span>
-          2021-01-05
-        </span>
-        <span>
-          3 min read
-        </span>
-        
-      </div>
-      
-      <div class="post-abstract">
-        
-      </div>
-    </article>
-  
-    <article class="post">
-      <a href="https://voidspiral.github.io/post/mei-ri-yi-ti-er-cha-shu/">
-        <h2 class="post-title">二叉树专题（一）</h2>
-      </a>
-      <div class="post-info">
-        <span>
-          2020-12-23
-        </span>
-        <span>
-          3 min read
-        </span>
-        
-          <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="post-tag">
-            # leetcode
-          </a>
-        
-      </div>
-      
-      <div class="post-abstract">
-        
-      </div>
-    </article>
-  
-    <article class="post">
-      <a href="https://voidspiral.github.io/post/qian-xu-zhong-xu-hou-xu-fei-di-gui/">
-        <h2 class="post-title">前序中序后序非递归</h2>
-      </a>
-      <div class="post-info">
-        <span>
-          2020-12-21
-        </span>
-        <span>
-          3 min read
-        </span>
-        
-      </div>
-      
-      <div class="post-abstract">
-        
-      </div>
-    </article>
-  
-    <article class="post">
-      <a href="https://voidspiral.github.io/post/errgroupsingal-shi-zhan/">
-        <h2 class="post-title">go的errGroup+singal实战</h2>
-      </a>
-      <div class="post-info">
-        <span>
-          2020-12-19
-        </span>
-        <span>
-          2 min read
-        </span>
-        
-      </div>
-      
-      <div class="post-abstract">
-        
-      </div>
-    </article>
-  
-    <article class="post">
-      <a href="https://voidspiral.github.io/post/go-de-rpc-bao-xiang-jie/">
-        <h2 class="post-title">go的RPC包总结</h2>
-      </a>
-      <div class="post-info">
-        <span>
-          2020-12-16
-        </span>
-        <span>
-          1 min read
-        </span>
-        
-      </div>
-      
-      <div class="post-abstract">
-        
-      </div>
-    </article>
-  
-    <article class="post">
-      <a href="https://voidspiral.github.io/post/03ormutex4-chong-yi-cuo-chang-jing-da-pan-dian/">
-        <h2 class="post-title">03｜Mutex：4种易错场景大盘点</h2>
-      </a>
-      <div class="post-info">
-        <span>
-          2020-12-15
-        </span>
-        <span>
-          5 min read
-        </span>
-        
-      </div>
-      
-      <div class="post-abstract">
-        
-      </div>
-    </article>
-  
-    <article class="post">
-      <a href="https://voidspiral.github.io/post/signal-bao-yong-fa-zong-jie/">
-        <h2 class="post-title">signal包用法总结</h2>
-      </a>
-      <div class="post-info">
-        <span>
-          2020-12-14
-        </span>
-        <span>
-          5 min read
-        </span>
-        
-      </div>
-      
-      <div class="post-abstract">
-        <h3 id="overview">Overview <a href="https://pkg.go.dev/os/signal#pkg-overview">¶</a></h3>
-<blockquote>
-<p>Package signal implements access to incoming signals.</p>
-<p>Signals are primarily used on Unix-like systems. For the use of this package on Windows and Plan 9, see below.</p>
-</blockquote>
-<p>实现对传入信号的访问。信号主要用于类unix系统。</p>
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E6%9B%B4%E5%A4%9A%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%94%AF%E6%8C%81">更多的数据类型支持</a></li>
+</ul>
+</li>
+</ul>
 
-      </div>
-    </article>
-  
-    <article class="post">
-      <a href="https://voidspiral.github.io/post/errgroup/">
-        <h2 class="post-title">errGroup用法总结</h2>
-      </a>
-      <div class="post-info">
-        <span>
-          2020-12-13
-        </span>
-        <span>
-          4 min read
-        </span>
-        
-          <a href="https://voidspiral.github.io/tag/SUyxLM_cY/" class="post-tag">
-            # go
-          </a>
-        
-      </div>
-      
-      <div class="post-abstract">
-        <h3 id="overview">Overview <a href="https://pkg.go.dev/golang.org/x/sync/errgroup#pkg-overview">¶</a></h3>
-<p>Package errgroup provides synchronization, error propagation, and Context cancelation for groups of goroutines working on subtasks of a common task.</p>
-<p>Package errgroup 为处理公共任务的子任务的goroutine组提供同步、错误传播和上下文取消。</p>
+              </div>
+            </div>
+          </article>
+        </div>
 
-      </div>
-    </article>
-  
-    <article class="post">
-      <a href="https://voidspiral.github.io/post/02-or-mutexpao-ding-jie-niu-kan-shi-xian-md/">
-        <h2 class="post-title">02 | Mutex：庖丁解牛看实现</h2>
-      </a>
-      <div class="post-info">
-        <span>
-          2020-12-11
-        </span>
-        <span>
-          3 min read
-        </span>
         
-          <a href="https://voidspiral.github.io/tag/mxi0AxR8_/" class="post-tag">
-            # go的并发原语
-          </a>
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://voidspiral.github.io/post/er-cha-shu-zhuan-ti-er/">
+              <h3 class="post-title">
+                二叉树专题 (二）
+              </h3>
+            </a>
+          </div>
         
-      </div>
-      
-      <div class="post-abstract">
-        
-      </div>
-    </article>
-  
-</div>
 
-    
-        <div class="pagination-container">
-  
-  
-    <a href="https://voidspiral.github.io/page/2" class="next-page">下一页</a>
-  
-</div>
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
-    
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: 'faf7795e6fb19538ffa1',
+    clientSecret: '520faaf0c56ea87a228bcf5a2aba3311ca60a819',
+    repo: '',
+    owner: 'voidspiral',
+    admin: ['voidspiral'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
         <div class="site-footer">
   Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
   <a class="rss" href="https://voidspiral.github.io/atom.xml" target="_blank">
@@ -393,5 +250,46 @@ message HelloRequest {
 
       </div>
     </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
   </body>
 </html>

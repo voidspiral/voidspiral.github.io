@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>螺旋飞鸟的博客 </title>
-<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1609857198372">
+<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1609919168257">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://voidspiral.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="螺旋飞鸟的博客  - Atom Feed" href="https://voidspiral.github.io/atom.xml">
@@ -18,7 +18,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://voidspiral.github.io">
-  <img class="avatar" src="https://voidspiral.github.io/images/avatar.png?v=1609857198372" alt="">
+  <img class="avatar" src="https://voidspiral.github.io/images/avatar.png?v=1609919168257" alt="">
   </a>
   <h1 class="site-title">
     螺旋飞鸟的博客 
@@ -70,6 +70,29 @@
 
     
         <div class="post-container">
+  
+    <article class="post">
+      <a href="https://voidspiral.github.io/post/01-or-mutexru-he-jie-jue-zi-yuan-bing-fa-fang-wen-wen-ti/">
+        <h2 class="post-title">01  | Mutex：如何解决资源并发访问问题？</h2>
+      </a>
+      <div class="post-info">
+        <span>
+          2020-12-10
+        </span>
+        <span>
+          1 min read
+        </span>
+        
+          <a href="https://voidspiral.github.io/tag/mxi0AxR8_/" class="post-tag">
+            # go的并发原语
+          </a>
+        
+      </div>
+      
+      <div class="post-abstract">
+        
+      </div>
+    </article>
   
     <article class="post">
       <a href="https://voidspiral.github.io/post/leetcode-845-shu-zu-zhong-de-zui-chang-shan-mai/">
@@ -283,35 +306,6 @@
       <div class="post-abstract">
         <h3 id="思路">思路</h3>
 <p>思路很简单我们只要从边界部分做dfs或者bfs就好并将搜索联通块标记为‘#’即可。最后遍历一遍棋盘所有未被标记成‘#’的‘O’更新为‘X’，再将‘#’更新为'O'就好。</p>
-
-      </div>
-    </article>
-  
-    <article class="post">
-      <a href="https://voidspiral.github.io/post/hua-dong-chuang-kou-xi-lie/">
-        <h2 class="post-title">滑动窗口系列</h2>
-      </a>
-      <div class="post-info">
-        <span>
-          2020-08-10
-        </span>
-        <span>
-          4 min read
-        </span>
-        
-          <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="post-tag">
-            # leetcode
-          </a>
-        
-      </div>
-      
-      <div class="post-abstract">
-        <h3 id="思路">思路</h3>
-<p>1、我们在字符串 S 中使用双指针中的左右指针技巧，初始化 left = right = 0，把索引左闭右开区间 [left, right) 称为一个「窗口」。</p>
-<p>2、我们先不断地增加 right 指针扩大窗口 [left, right)，直到窗口中的字符串符合要求（包含了 T 中的所有字符）。</p>
-<p>3、此时，我们停止增加 right，转而不断增加 left 指针缩小窗口 [left, right)，直到窗口中的字符串不再符合要求（不包含 T 中的所有字符了）。同时，每次增加 left，我们都要更新一轮结果。</p>
-<p>4、重复第 2 和第 3 步，直到 right 到达字符串 S 的尽头。</p>
-<p>这个思路其实也不难，**第 2 步相当于在寻找一个「可行解」，然后第 3 步在优化这个「可行解」，最终找到最优解，**也就是最短的覆盖子串。左右指针轮流前进，窗口大小增增减减，窗口不断向右滑动，这就是「滑动窗口」这个名字的来历。</p>
 
       </div>
     </article>

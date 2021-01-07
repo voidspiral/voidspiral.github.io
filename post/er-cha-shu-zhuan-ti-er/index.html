@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>二叉树专题 (二） | 螺旋飞鸟的博客 </title>
-<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1609919168257">
+<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1610027316482">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://voidspiral.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="二叉树专题 (二） | 螺旋飞鸟的博客  - Atom Feed" href="https://voidspiral.github.io/atom.xml">
@@ -21,7 +21,7 @@
 /**
  * Definition for a binary tree node.
  * type TreeNode struc..." />
-    <meta name="keywords" content="" />
+    <meta name="keywords" content="leetcode" />
     <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
   </head>
   <body>
@@ -29,7 +29,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://voidspiral.github.io">
-  <img class="avatar" src="https://voidspiral.github.io/images/avatar.png?v=1609919168257" alt="">
+  <img class="avatar" src="https://voidspiral.github.io/images/avatar.png?v=1610027316482" alt="">
   </a>
   <h1 class="site-title">
     螺旋飞鸟的博客 
@@ -89,8 +89,12 @@
                 2021-01-05
               </span>
               <span>
-                3 min read
+                4 min read
               </span>
+              
+                <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="post-tag">
+                  # leetcode
+                </a>
               
             </div>
             
@@ -206,6 +210,33 @@ func constructMaximumBinaryTree(nums []int) *TreeNode {
 </code></pre>
 <h2 id="总结">总结</h2>
 <p>​	总结一下就是分治的时候，没有搞清楚分治的区间，只考虑了一半这是十分蠢了。。QAQ</p>
+<h4 id="106-从中序与后序遍历序列构造二叉树"><a href="https://leetcode-cn.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/">106. 从中序与后序遍历序列构造二叉树</a></h4>
+<h2 id="思路-2">思路</h2>
+<p>其实和105是一样的，包含左右子树的区间的长度是不会因为遍历而改变的。直接划分即可。</p>
+<pre><code class="language-go">/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func buildTree(inorder []int, postorder []int) *TreeNode {
+    if len(inorder) == 0 || len(postorder) == 0{
+        return nil
+    }
+    root := &amp;TreeNode{postorder[len(postorder)-1], nil, nil}
+    i := 0
+    for ; i &lt; len(inorder); i++ {
+        if postorder[len(postorder)-1] == inorder[i] {
+            break;
+        }
+    }
+    root.Left = buildTree(inorder[:i], postorder[:i])
+    root.Right = buildTree(inorder[i+1:], postorder[i:len(postorder)-1])
+    return root 
+}
+</code></pre>
 
               </div>
               <div class="toc-container">
@@ -223,7 +254,13 @@ func constructMaximumBinaryTree(nums []int) *TreeNode {
 </ul>
 </li>
 <li><a href="#%E6%80%9D%E8%B7%AF">思路</a></li>
-<li><a href="#%E6%80%BB%E7%BB%93">总结</a></li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结</a><br>
+*
+<ul>
+<li><a href="#106-%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91">106. 从中序与后序遍历序列构造二叉树</a></li>
+</ul>
+</li>
+<li><a href="#%E6%80%9D%E8%B7%AF-2">思路</a></li>
 </ul>
 </li>
 </ul>

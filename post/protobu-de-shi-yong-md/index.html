@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Protobu的使用 | 螺旋飞鸟的博客 </title>
-<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1610027316482">
+<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1610074556216">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://voidspiral.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="Protobu的使用 | 螺旋飞鸟的博客  - Atom Feed" href="https://voidspiral.github.io/atom.xml">
@@ -15,10 +15,13 @@
     <link rel="stylesheet" href="/styles/default.css">
     <script src="/highlight.pack.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <meta name="description" content="go get -u github.com/golang/protobuf/protoc-gen-go@v1.3.3
+    <meta name="description" content="安装Protobuf
+略
+##安装protoc插件
+go get -u github.com/golang/protobuf/protoc-gen-go@v1.3.3
 
 
-实际上，在多人协作项目或企业级工具链、脚本中，笔者并不建议直接执行go get命令来进行快速安装，因为protoc-ge..." />
+实际上，在多人协作项目或企业级工具链、脚本中，笔者并不建议直接执行g..." />
     <meta name="keywords" content="一起用go做项目" />
     <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
   </head>
@@ -27,7 +30,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://voidspiral.github.io">
-  <img class="avatar" src="https://voidspiral.github.io/images/avatar.png?v=1610027316482" alt="">
+  <img class="avatar" src="https://voidspiral.github.io/images/avatar.png?v=1610074556216" alt="">
   </a>
   <h1 class="site-title">
     螺旋飞鸟的博客 
@@ -87,7 +90,7 @@
                 2021-01-06
               </span>
               <span>
-                4 min read
+                5 min read
               </span>
               
                 <a href="https://voidspiral.github.io/tag/gd30KobrK/" class="post-tag">
@@ -98,7 +101,10 @@
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <pre><code class="language-bash">go get -u github.com/golang/protobuf/protoc-gen-go@v1.3.3
+                <h2 id="安装protobuf">安装Protobuf</h2>
+<p>略</p>
+<p>##安装protoc插件</p>
+<pre><code class="language-bash">go get -u github.com/golang/protobuf/protoc-gen-go@v1.3.3
 </code></pre>
 <blockquote>
 <p>实际上，在多人协作项目或企业级工具链、脚本中，笔者并不建议直接执行go get命令来进行快速安装，因为protoc-gen-go插件一直处于更新迭代的过程中，如果不锁定版本，则随着时间的推移，很可能会出现不兼容的情况（它需要与 proto 软件包版本相匹配），因此建议执行如下命令进行安装：</p>
@@ -121,7 +127,8 @@ go install github.com/golang/protobuf/protoc-gen-go
 <img src="/Users/voidspiral/Desktop/DataWhale/mysql/img/image-20210106104453711.png" alt="image-20210106104453711" style="zoom:50%;" />
 <pre><code class="language-bash">protoc --go_out=plugins=grpc:. ./proto/*.proto
 </code></pre>
-<pre><code>➜  grpc-demo protoc --go_out=plugins=grpc:. ./proto/*.proto
+<p>●--go_out：设置所生成的Go 代码输出的目录。该指令会加载 protoc-gen-go插件，以达到生成Go代码的目的。生成的文件以.pb.go为文件后缀，这里的“：”（冒号）有分隔符的作用，后跟命令所需要的参数集，这意味着把生成的Go代码输出到指向的protoc编译的当前目录。● plugins=plugin1+plugin2：指定要加载的子插件列表。我们定义的proto文件是涉及了RPC 服务的，而默认是不会生成RPC代码的，因此需要在go_out中给出plugins参数，将其传递给protoc-gen-go插件，即告诉编译器，请支持RPC（这里指定了内置的grpc插件）。在执行下面这条命令后，就会生成此proto文件对应的.pb.go文件</p>
+<pre><code class="language-zsh">➜  grpc-demo protoc --go_out=plugins=grpc:. ./proto/*.proto
 2021/01/06 11:59:24 WARNING: Missing 'go_package' option in &quot;proto/helloworld.proto&quot;,
 please specify it with the full Go package path as
 a future release of protoc-gen-go will require this be specified.
@@ -185,13 +192,13 @@ message HelloRequest {
 		map&lt;string, string&gt; names = 2;
 }
 </code></pre>
-<!-- more -->
 
               </div>
               <div class="toc-container">
                 <ul class="markdownIt-TOC">
 <li>
 <ul>
+<li><a href="#%E5%AE%89%E8%A3%85protobuf">安装Protobuf</a></li>
 <li><a href="#%E6%9B%B4%E5%A4%9A%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%94%AF%E6%8C%81">更多的数据类型支持</a></li>
 </ul>
 </li>

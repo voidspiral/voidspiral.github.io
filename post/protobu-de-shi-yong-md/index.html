@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Protobuf的使用 | 螺旋飞鸟的博客 </title>
-<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1610075622603">
+<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1610075749192">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://voidspiral.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="Protobuf的使用 | 螺旋飞鸟的博客  - Atom Feed" href="https://voidspiral.github.io/atom.xml">
@@ -30,7 +30,7 @@ go get -u github.com/golang/protobuf/protoc-gen-go@v1.3.3
       <div class="main-content">
         <div class="site-header">
   <a href="https://voidspiral.github.io">
-  <img class="avatar" src="https://voidspiral.github.io/images/avatar.png?v=1610075622603" alt="">
+  <img class="avatar" src="https://voidspiral.github.io/images/avatar.png?v=1610075749192" alt="">
   </a>
   <h1 class="site-title">
     螺旋飞鸟的博客 
@@ -127,8 +127,7 @@ go install github.com/golang/protobuf/protoc-gen-go
 <img src="/Users/voidspiral/Desktop/DataWhale/mysql/img/image-20210106104453711.png" alt="image-20210106104453711" style="zoom:50%;" />
 <pre><code class="language-bash">protoc --go_out=plugins=grpc:. ./proto/*.proto
 </code></pre>
-<p>●--go_out：设置所生成的Go 代码输出的目录。该指令会加载 protoc-gen-go插件，以达到生成Go代码的目的。生成的文件以.pb.go为文件后缀，这里的“：”（冒号）有分隔符的作用，后跟命令所需要的参数集，这意味着把生成的Go代码输出到指向的protoc编译的当前目录。<br>
-● plugins=plugin1+plugin2：指定要加载的子插件列表。我们定义的proto文件是涉及了RPC 服务的，而默认是不会生成RPC代码的，因此需要在go_out中给出plugins参数，将其传递给protoc-gen-go插件，即告诉编译器，请支持RPC（这里指定了内置的grpc插件）。在执行下面这条命令后，就会生成此proto文件对应的.pb.go文件</p>
+<p>●--go_out：设置所生成的Go 代码输出的目录。该指令会加载 protoc-gen-go插件，以达到生成Go代码的目的。生成的文件以.pb.go为文件后缀，这里的“：”（冒号）有分隔符的作用，后跟命令所需要的参数集，这意味着把生成的Go代码输出到指向的protoc编译的当前目录。● plugins=plugin1+plugin2：指定要加载的子插件列表。我们定义的proto文件是涉及了RPC 服务的，而默认是不会生成RPC代码的，因此需要在go_out中给出plugins参数，将其传递给protoc-gen-go插件，即告诉编译器，请支持RPC（这里指定了内置的grpc插件）。在执行下面这条命令后，就会生成此proto文件对应的.pb.go文件</p>
 <pre><code class="language-zsh">➜  grpc-demo protoc --go_out=plugins=grpc:. ./proto/*.proto
 2021/01/06 11:59:24 WARNING: Missing 'go_package' option in &quot;proto/helloworld.proto&quot;,
 please specify it with the full Go package path as
@@ -188,7 +187,8 @@ message HelloRequest {
 		NameType nameType = 2;
 }
 </code></pre>
-<p>5.mapmap类型，需要设置键和值的类型，格式为map&amp;lt；key_type，value_type&amp;gt；map_field=N；，示例如下：</p>
+<p>5.map</p>
+<p>map类型，需要设置键和值的类型，格式为map&lt;key_type，value_type&gt; map_field=N；，示例如下：</p>
 <pre><code class="language-protobuf">message HelloRequest {
 		map&lt;string, string&gt; names = 2;
 }

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://voidspiral.github.io</id>
     <title>螺旋飞鸟的博客 </title>
-    <updated>2021-01-08T03:15:52.226Z</updated>
+    <updated>2021-01-08T12:47:51.422Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://voidspiral.github.io"/>
     <link rel="self" href="https://voidspiral.github.io/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://voidspiral.github.io/images/avatar.png</logo>
     <icon>https://voidspiral.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, 螺旋飞鸟的博客 </rights>
+    <entry>
+        <title type="html"><![CDATA[gRPC]]></title>
+        <id>https://voidspiral.github.io/post/grpc/</id>
+        <link href="https://voidspiral.github.io/post/grpc/">
+        </link>
+        <updated>2021-01-08T12:47:38.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Protobuf的使用]]></title>
         <id>https://voidspiral.github.io/post/protobu-de-shi-yong-md/</id>
@@ -94,12 +101,5 @@
 <p>Package errgroup provides synchronization, error propagation, and Context cancelation for groups of goroutines working on subtasks of a common task.</p>
 <p>Package errgroup 为处理公共任务的子任务的goroutine组提供同步、错误传播和上下文取消。</p>
 ]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[02 | Mutex：庖丁解牛看实现]]></title>
-        <id>https://voidspiral.github.io/post/02-or-mutexpao-ding-jie-niu-kan-shi-xian-md/</id>
-        <link href="https://voidspiral.github.io/post/02-or-mutexpao-ding-jie-niu-kan-shi-xian-md/">
-        </link>
-        <updated>2020-12-11T15:16:01.000Z</updated>
     </entry>
 </feed>

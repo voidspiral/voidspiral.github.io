@@ -2,11 +2,11 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | 螺旋飞鸟的博客 </title>
+<title>gRPC | 螺旋飞鸟的博客 </title>
 <link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1610110068430">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://voidspiral.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="关于 | 螺旋飞鸟的博客  - Atom Feed" href="https://voidspiral.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="gRPC | 螺旋飞鸟的博客  - Atom Feed" href="https://voidspiral.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
@@ -15,10 +15,13 @@
     <link rel="stylesheet" href="/styles/default.css">
     <script src="/highlight.pack.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <meta name="description" content="
-大家好我是螺旋飞鸟，欢迎各位来到我的小站，这里主要记录一些学习中的遇到问题或者思考过程！🤝
+    <meta name="description" content="安装gRPC
+gp get -u google.goland.org/grpc@v1.29.1
 
-" />
+gRPC的四种调用方式
+在gRPC中，一共包含四种调用方式。
+● Unary RPC：一元RPC。
+● Server-side streami..." />
     <meta name="keywords" content="" />
     <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
   </head>
@@ -80,11 +83,11 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              关于
+              gRPC
             </h2>
             <div class="post-info">
               <span>
-                2020-02-26
+                2021-01-08
               </span>
               <span>
                 1 min read
@@ -94,18 +97,48 @@
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <blockquote>
-<p>大家好我是螺旋飞鸟，欢迎各位来到我的小站，这里主要记录一些学习中的遇到问题或者思考过程！🤝</p>
-</blockquote>
+                <h2 id="安装grpc">安装gRPC</h2>
+<pre><code class="language-bash">gp get -u google.goland.org/grpc@v1.29.1
+</code></pre>
+<h2 id="grpc的四种调用方式">gRPC的四种调用方式</h2>
+<p>在gRPC中，一共包含四种调用方式。</p>
+<p>● Unary RPC：一元RPC。</p>
+<p>● Server-side streaming RPC：服务端流式RPC。</p>
+<p>● Client-side streaming RPC：客户端流式RPC。</p>
+<p>● Bidirectional streaming RPC：双向流式RPC。</p>
+<p>1.Unary RPC：一元 RPC</p>
+<p>一元 RPC，也称为单次 RPC，简单来讲，就是客户端发起一次普通的 RPC 请求，是最基础的调用，也是最常用的方式，如图所示。</p>
+<figure data-type="image" tabindex="1"><img src="/Users/voidspiral/Desktop/DataWhale/mysql/img/image-20210108104018757.png" alt="image-20210108104018757" loading="lazy"></figure>
+<p>(1)Proto.</p>
+<pre><code class="language-protobuf">rpc SayHello (HelloRequest) returns (HelloReply) {};
+</code></pre>
+<p>(2）</p>
 
               </div>
               <div class="toc-container">
-                
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%AE%89%E8%A3%85grpc">安装gRPC</a></li>
+<li><a href="#grpc%E7%9A%84%E5%9B%9B%E7%A7%8D%E8%B0%83%E7%94%A8%E6%96%B9%E5%BC%8F">gRPC的四种调用方式</a></li>
+</ul>
+</li>
+</ul>
+
               </div>
             </div>
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://voidspiral.github.io/post/protobu-de-shi-yong-md/">
+              <h3 class="post-title">
+                Protobuf的使用
+              </h3>
+            </a>
+          </div>
         
 
         

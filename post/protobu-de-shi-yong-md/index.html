@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Protobuf的使用 | 螺旋飞鸟的博客 </title>
-<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1610110068430">
+<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1610245673544">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://voidspiral.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="Protobuf的使用 | 螺旋飞鸟的博客  - Atom Feed" href="https://voidspiral.github.io/atom.xml">
@@ -30,7 +30,7 @@ go get -u github.com/golang/protobuf/protoc-gen-go@v1.3.3
       <div class="main-content">
         <div class="site-header">
   <a href="https://voidspiral.github.io">
-  <img class="avatar" src="https://voidspiral.github.io/images/avatar.png?v=1610110068430" alt="">
+  <img class="avatar" src="https://voidspiral.github.io/images/avatar.png?v=1610245673544" alt="">
   </a>
   <h1 class="site-title">
     螺旋飞鸟的博客 
@@ -135,7 +135,7 @@ a future release of protoc-gen-go will require this be specified.
 See https://developers.google.com/protocol-buffers/docs/reference/go-generated#package for more information.
 
 </code></pre>
-<p>是因为在 proto3 的语法中缺少了 option go_package。</p>
+<p>是因为在 proto3 的语法中缺少了 option go_package，如今这已经是必须指定的了。</p>
 <ul>
 <li>
 <p>解决办法<br>
@@ -193,6 +193,8 @@ message HelloRequest {
 		map&lt;string, string&gt; names = 2;
 }
 </code></pre>
+<h2 id="参考文献"><strong>参考文献</strong></h2>
+<p>1.https://colobu.com/2019/10/03/protobuf-ultimate-tutorial-in-go/书里的还是比较少，建议直接看这位的</p>
 
               </div>
               <div class="toc-container">
@@ -201,6 +203,7 @@ message HelloRequest {
 <ul>
 <li><a href="#%E5%AE%89%E8%A3%85protobuf">安装Protobuf</a></li>
 <li><a href="#%E6%9B%B4%E5%A4%9A%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%94%AF%E6%8C%81">更多的数据类型支持</a></li>
+<li><a href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><strong>参考文献</strong></a></li>
 </ul>
 </li>
 </ul>

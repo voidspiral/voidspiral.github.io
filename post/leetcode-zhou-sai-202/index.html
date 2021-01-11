@@ -1,102 +1,104 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" >
+
 <title>leetcode 周赛202 | 螺旋飞鸟的博客 </title>
-<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1610245673544">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<meta name="description" content="专注于 golang、分布式、3D机器视觉等">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1610357140989">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://voidspiral.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="leetcode 周赛202 | 螺旋飞鸟的博客  - Atom Feed" href="https://voidspiral.github.io/atom.xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
 
-    <!-- <link rel="stylesheet" type="text/css" href="/styles/railscasts.css"> -->
+  
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
     <link rel="stylesheet" href="/styles/default.css">
     <script src="/highlight.pack.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <meta name="description" content="04 1553. 吃掉 N 个橘子的最少天数
-思路1
-bfs 记忆化 因为是层序遍历 所以一定可以保证答案是路径最短的 也就是步骤最少的结果
-class Solution {
-public:
-    unordered_map&lt;int..." />
-    <meta name="keywords" content="" />
-    <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://voidspiral.github.io">
-  <img class="avatar" src="https://voidspiral.github.io/images/avatar.png?v=1610245673544" alt="">
-  </a>
-  <h1 class="site-title">
-    螺旋飞鸟的博客 
-  </h1>
-  <p class="site-description">
-    专注于 golang、分布式、3D机器视觉等
-  </p>
-  <div class="menu-container">
-    
-      
-        <a href="/" class="menu">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://voidspiral.github.io">螺旋飞鸟的博客 </a></h3>
   </div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
-</div>
-
-        <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              leetcode 周赛202
-            </h2>
-            <div class="post-info">
-              <span>
-                2020-08-19
-              </span>
-              <span>
-                4 min read
-              </span>
-              
-            </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
             
-            <div class="post-content-wrapper">
-              <div class="post-content">
-                <h3 id="04-1553-吃掉-n-个橘子的最少天数">04 <a href="https://leetcode-cn.com/problems/minimum-number-of-days-to-eat-n-oranges/">1553. 吃掉 N 个橘子的最少天数</a></h3>
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>leetcode 周赛202</h1>
+            <p class="article-meta">
+              2020-08-19
+              
+            </p>
+            
+            <div class="post-content">
+              <h3 id="04-1553-吃掉-n-个橘子的最少天数">04 <a href="https://leetcode-cn.com/problems/minimum-number-of-days-to-eat-n-oranges/">1553. 吃掉 N 个橘子的最少天数</a></h3>
 <h3 id="思路1">思路1</h3>
 <p>bfs 记忆化 因为是层序遍历 所以一定可以保证答案是路径最短的 也就是步骤最少的结果</p>
 <pre><code class="language-c++">class Solution {
@@ -223,118 +225,223 @@ public:
 };
 </code></pre>
 
-              </div>
-              <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#04-1553-%E5%90%83%E6%8E%89-n-%E4%B8%AA%E6%A9%98%E5%AD%90%E7%9A%84%E6%9C%80%E5%B0%91%E5%A4%A9%E6%95%B0">04 1553. 吃掉 N 个橘子的最少天数</a></li>
-<li><a href="#%E6%80%9D%E8%B7%AF1">思路1</a></li>
-<li><a href="#%E6%80%9D%E8%B7%AF2">思路2</a></li>
-<li><a href="#03-1552-%E4%B8%A4%E7%90%83%E4%B9%8B%E9%97%B4%E7%9A%84%E7%A3%81%E5%8A%9B">03 1552. 两球之间的磁力</a></li>
-<li><a href="#02-1551-%E4%BD%BF%E6%95%B0%E7%BB%84%E4%B8%AD%E6%89%80%E6%9C%89%E5%85%83%E7%B4%A0%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%8F%E6%93%8D%E4%BD%9C%E6%95%B0">02 1551. 使数组中所有元素相等的最小操作数</a></li>
-<li><a href="#01-1550-%E5%AD%98%E5%9C%A8%E8%BF%9E%E7%BB%AD%E4%B8%89%E4%B8%AA%E5%A5%87%E6%95%B0%E7%9A%84%E6%95%B0%E7%BB%84">01 1550. 存在连续三个奇数的数组</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-              </div>
             </div>
           </article>
         </div>
-
-        
-          <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://voidspiral.github.io/post/leecode/">
-              <h3 class="post-title">
-                leetcode 130. 被围绕的区域
-              </h3>
-            </a>
-          </div>
-        
-
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://voidspiral.github.io/post/leecode/">
+                <h3 class="post-title">
+                  leetcode 130. 被围绕的区域
+                </h3>
+              </a>
+            </div>
+          
+        </div>
         
           
-            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+            <div class="paper" data-aos="fade-in">
+              <div id="gitalk-container"></div>
+            </div>
+          
 
-<div id="gitalk-container"></div>
+          
+        
+      </div>
 
-<script>
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://voidspiral.github.io/images/avatar.png?v=1610357140989" class="no-responsive avatar">
+    <div class="text-muted">专注于 golang、分布式、3D机器视觉等</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a href="https://www.zhihu.com/question/346352804" target="_blank">
+            <i class="fab fa-zhihu"></i>
+          </a>
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://voidspiral.github.io/post/grpc/">gRPC</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://voidspiral.github.io/post/protobu-de-shi-yong-md/">Protobuf的使用</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://voidspiral.github.io/post/er-cha-shu-zhuan-ti-er/">二叉树专题 (二）</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://voidspiral.github.io/post/mei-ri-yi-ti-er-cha-shu/">二叉树专题（一）</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://voidspiral.github.io/post/qian-xu-zhong-xu-hou-xu-fei-di-gui/">前序中序后序非递归</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://voidspiral.github.io/post/errgroupsingal-shi-zhan/">go的errGroup+singal实战</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://voidspiral.github.io/post/go-de-rpc-bao-xiang-jie/">go的RPC包总结</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://voidspiral.github.io/post/03ormutex4-chong-yi-cuo-chang-jing-da-pan-dian/">03｜Mutex：4种易错场景大盘点</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://voidspiral.github.io/post/signal-bao-yong-fa-zong-jie/">signal包用法总结</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://voidspiral.github.io/post/errgroup/">errGroup用法总结</a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://voidspiral.github.io/tag/gd30KobrK/" class="badge success">
+          一起用go做项目
+        </a>
+      
+        <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge warning">
+          leetcode
+        </a>
+      
+        <a href="https://voidspiral.github.io/tag/SUyxLM_cY/" class="badge success">
+          go
+        </a>
+      
+        <a href="https://voidspiral.github.io/tag/mxi0AxR8_/" class="badge warning">
+          go的并发原语
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://voidspiral.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
 
-  var gitalk = new Gitalk({
-    clientID: 'faf7795e6fb19538ffa1',
-    clientSecret: '520faaf0c56ea87a228bcf5a2aba3311ca60a819',
-    repo: '',
-    owner: 'voidspiral',
-    admin: ['voidspiral'],
-    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
-    distractionFreeMode: false  // Facebook-like distraction free mode
-  })
 
-  gitalk.render('gitalk-container')
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
 
 </script>
 
-          
 
-          
-        
 
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-  <a class="rss" href="https://voidspiral.github.io/atom.xml" target="_blank">
-    <i class="ri-rss-line"></i> RSS
-  </a>
-</div>
-
-      </div>
-    </div>
-
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
     <script>
-      hljs.initHighlightingOnLoad()
 
-      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+      var gitalk = new Gitalk({
+        clientID: 'faf7795e6fb19538ffa1',
+        clientSecret: '520faaf0c56ea87a228bcf5a2aba3311ca60a819',
+        repo: '',
+        owner: 'voidspiral',
+        admin: ['voidspiral'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
 
-      // This should probably be throttled.
-      // Especially because it triggers during smooth scrolling.
-      // https://lodash.com/docs/4.17.10#throttle
-      // You could do like...
-      // window.addEventListener("scroll", () => {
-      //    _.throttle(doThatStuff, 100);
-      // });
-      // Only not doing it here to keep this Pen dependency-free.
-
-      window.addEventListener("scroll", event => {
-        let fromTop = window.scrollY;
-
-        mainNavLinks.forEach((link, index) => {
-          let section = document.getElementById(decodeURI(link.hash).substring(1));
-          let nextSection = null
-          if (mainNavLinks[index + 1]) {
-            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-          }
-          if (section.offsetTop <= fromTop) {
-            if (nextSection) {
-              if (nextSection.offsetTop > fromTop) {
-                link.classList.add("current");
-              } else {
-                link.classList.remove("current");    
-              }
-            } else {
-              link.classList.add("current");
-            }
-          } else {
-            link.classList.remove("current");
-          }
-        });
-      });
+      gitalk.render('gitalk-container')
 
     </script>
+  
+
+  
+
+
+
+
   </body>
 </html>

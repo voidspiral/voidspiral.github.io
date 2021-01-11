@@ -1,310 +1,489 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" >
+
 <title>螺旋飞鸟的博客 </title>
-<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1610245673544">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<meta name="description" content="专注于 golang、分布式、3D机器视觉等">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1610357140989">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://voidspiral.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="螺旋飞鸟的博客  - Atom Feed" href="https://voidspiral.github.io/atom.xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
-    <meta name="description" content="专注于 golang、分布式、3D机器视觉等" />
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://voidspiral.github.io">
-  <img class="avatar" src="https://voidspiral.github.io/images/avatar.png?v=1610245673544" alt="">
-  </a>
-  <h1 class="site-title">
-    螺旋飞鸟的博客 
-  </h1>
-  <p class="site-description">
-    专注于 golang、分布式、3D机器视觉等
-  </p>
-  <div class="menu-container">
-    
-      
-        <a href="/" class="menu">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://voidspiral.github.io">螺旋飞鸟的博客 </a></h3>
   </div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
   </div>
-</div>
+</nav>
 
-    
-        <div class="post-container">
-  
-    <article class="post">
-      <a href="https://voidspiral.github.io/post/grpc/">
-        <h2 class="post-title">gRPC</h2>
-      </a>
-      <div class="post-info">
-        <span>
-          2021-01-08
-        </span>
-        <span>
-          1 min read
-        </span>
-        
-      </div>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://voidspiral.github.io/post/grpc/">gRPC</a>
+    </h2>
+    <p class="article-meta">
+      2021-01-08
       
-      <div class="post-abstract">
-        
-      </div>
-    </article>
-  
-    <article class="post">
-      <a href="https://voidspiral.github.io/post/protobu-de-shi-yong-md/">
-        <h2 class="post-title">Protobuf的使用</h2>
-      </a>
-      <div class="post-info">
-        <span>
-          2021-01-06
-        </span>
-        <span>
-          5 min read
-        </span>
-        
-          <a href="https://voidspiral.github.io/tag/gd30KobrK/" class="post-tag">
-            # 一起用go做项目
-          </a>
-        
-      </div>
+    </p>
+    <p class="text-lead">
       
-      <div class="post-abstract">
-        
-      </div>
-    </article>
-  
-    <article class="post">
-      <a href="https://voidspiral.github.io/post/er-cha-shu-zhuan-ti-er/">
-        <h2 class="post-title">二叉树专题 (二）</h2>
+    </p>
+    <div class="row">
+      <a href="https://voidspiral.github.io/post/grpc/" class="readmore-link">
+        <button>
+          Read More
+        </button>
       </a>
-      <div class="post-info">
-        <span>
-          2021-01-05
-        </span>
-        <span>
-          4 min read
-        </span>
-        
-          <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="post-tag">
-            # leetcode
-          </a>
-        
-      </div>
+    </div>
+  </article>
+
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://voidspiral.github.io/post/protobu-de-shi-yong-md/">Protobuf的使用</a>
+    </h2>
+    <p class="article-meta">
+      2021-01-06
       
-      <div class="post-abstract">
-        
-      </div>
-    </article>
-  
-    <article class="post">
-      <a href="https://voidspiral.github.io/post/mei-ri-yi-ti-er-cha-shu/">
-        <h2 class="post-title">二叉树专题（一）</h2>
+        <a href="https://voidspiral.github.io/tag/gd30KobrK/" class="badge secondary">
+          一起用go做项目
+        </a>
+      
+    </p>
+    <p class="text-lead">
+      
+    </p>
+    <div class="row">
+      <a href="https://voidspiral.github.io/post/protobu-de-shi-yong-md/" class="readmore-link">
+        <button>
+          Read More
+        </button>
       </a>
-      <div class="post-info">
-        <span>
-          2020-12-23
-        </span>
-        <span>
-          3 min read
-        </span>
-        
-          <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="post-tag">
-            # leetcode
-          </a>
-        
-      </div>
+    </div>
+  </article>
+
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://voidspiral.github.io/post/er-cha-shu-zhuan-ti-er/">二叉树专题 (二）</a>
+    </h2>
+    <p class="article-meta">
+      2021-01-05
       
-      <div class="post-abstract">
-        
-      </div>
-    </article>
-  
-    <article class="post">
-      <a href="https://voidspiral.github.io/post/qian-xu-zhong-xu-hou-xu-fei-di-gui/">
-        <h2 class="post-title">前序中序后序非递归</h2>
+        <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge ">
+          leetcode
+        </a>
+      
+    </p>
+    <p class="text-lead">
+      
+    </p>
+    <div class="row">
+      <a href="https://voidspiral.github.io/post/er-cha-shu-zhuan-ti-er/" class="readmore-link">
+        <button>
+          Read More
+        </button>
       </a>
-      <div class="post-info">
-        <span>
-          2020-12-21
-        </span>
-        <span>
-          3 min read
-        </span>
-        
-      </div>
+    </div>
+  </article>
+
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://voidspiral.github.io/post/mei-ri-yi-ti-er-cha-shu/">二叉树专题（一）</a>
+    </h2>
+    <p class="article-meta">
+      2020-12-23
       
-      <div class="post-abstract">
-        
-      </div>
-    </article>
-  
-    <article class="post">
-      <a href="https://voidspiral.github.io/post/errgroupsingal-shi-zhan/">
-        <h2 class="post-title">go的errGroup+singal实战</h2>
+        <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge success">
+          leetcode
+        </a>
+      
+    </p>
+    <p class="text-lead">
+      
+    </p>
+    <div class="row">
+      <a href="https://voidspiral.github.io/post/mei-ri-yi-ti-er-cha-shu/" class="readmore-link">
+        <button>
+          Read More
+        </button>
       </a>
-      <div class="post-info">
-        <span>
-          2020-12-19
-        </span>
-        <span>
-          2 min read
-        </span>
-        
-      </div>
+    </div>
+  </article>
+
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://voidspiral.github.io/post/qian-xu-zhong-xu-hou-xu-fei-di-gui/">前序中序后序非递归</a>
+    </h2>
+    <p class="article-meta">
+      2020-12-21
       
-      <div class="post-abstract">
-        
-      </div>
-    </article>
-  
-    <article class="post">
-      <a href="https://voidspiral.github.io/post/go-de-rpc-bao-xiang-jie/">
-        <h2 class="post-title">go的RPC包总结</h2>
+    </p>
+    <p class="text-lead">
+      
+    </p>
+    <div class="row">
+      <a href="https://voidspiral.github.io/post/qian-xu-zhong-xu-hou-xu-fei-di-gui/" class="readmore-link">
+        <button>
+          Read More
+        </button>
       </a>
-      <div class="post-info">
-        <span>
-          2020-12-16
-        </span>
-        <span>
-          1 min read
-        </span>
-        
-      </div>
+    </div>
+  </article>
+
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://voidspiral.github.io/post/errgroupsingal-shi-zhan/">go的errGroup+singal实战</a>
+    </h2>
+    <p class="article-meta">
+      2020-12-19
       
-      <div class="post-abstract">
-        
-      </div>
-    </article>
-  
-    <article class="post">
-      <a href="https://voidspiral.github.io/post/03ormutex4-chong-yi-cuo-chang-jing-da-pan-dian/">
-        <h2 class="post-title">03｜Mutex：4种易错场景大盘点</h2>
+    </p>
+    <p class="text-lead">
+      
+    </p>
+    <div class="row">
+      <a href="https://voidspiral.github.io/post/errgroupsingal-shi-zhan/" class="readmore-link">
+        <button>
+          Read More
+        </button>
       </a>
-      <div class="post-info">
-        <span>
-          2020-12-15
-        </span>
-        <span>
-          5 min read
-        </span>
-        
-      </div>
+    </div>
+  </article>
+
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://voidspiral.github.io/post/go-de-rpc-bao-xiang-jie/">go的RPC包总结</a>
+    </h2>
+    <p class="article-meta">
+      2020-12-16
       
-      <div class="post-abstract">
-        
-      </div>
-    </article>
-  
-    <article class="post">
-      <a href="https://voidspiral.github.io/post/signal-bao-yong-fa-zong-jie/">
-        <h2 class="post-title">signal包用法总结</h2>
+    </p>
+    <p class="text-lead">
+      
+    </p>
+    <div class="row">
+      <a href="https://voidspiral.github.io/post/go-de-rpc-bao-xiang-jie/" class="readmore-link">
+        <button>
+          Read More
+        </button>
       </a>
-      <div class="post-info">
-        <span>
-          2020-12-14
-        </span>
-        <span>
-          5 min read
-        </span>
-        
-      </div>
+    </div>
+  </article>
+
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://voidspiral.github.io/post/03ormutex4-chong-yi-cuo-chang-jing-da-pan-dian/">03｜Mutex：4种易错场景大盘点</a>
+    </h2>
+    <p class="article-meta">
+      2020-12-15
       
-      <div class="post-abstract">
-        <h3 id="overview">Overview <a href="https://pkg.go.dev/os/signal#pkg-overview">¶</a></h3>
+    </p>
+    <p class="text-lead">
+      
+    </p>
+    <div class="row">
+      <a href="https://voidspiral.github.io/post/03ormutex4-chong-yi-cuo-chang-jing-da-pan-dian/" class="readmore-link">
+        <button>
+          Read More
+        </button>
+      </a>
+    </div>
+  </article>
+
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://voidspiral.github.io/post/signal-bao-yong-fa-zong-jie/">signal包用法总结</a>
+    </h2>
+    <p class="article-meta">
+      2020-12-14
+      
+    </p>
+    <p class="text-lead">
+      <h3 id="overview">Overview <a href="https://pkg.go.dev/os/signal#pkg-overview">¶</a></h3>
 <blockquote>
 <p>Package signal implements access to incoming signals.</p>
 <p>Signals are primarily used on Unix-like systems. For the use of this package on Windows and Plan 9, see below.</p>
 </blockquote>
 <p>实现对传入信号的访问。信号主要用于类unix系统。</p>
 
-      </div>
-    </article>
-  
-    <article class="post">
-      <a href="https://voidspiral.github.io/post/errgroup/">
-        <h2 class="post-title">errGroup用法总结</h2>
+    </p>
+    <div class="row">
+      <a href="https://voidspiral.github.io/post/signal-bao-yong-fa-zong-jie/" class="readmore-link">
+        <button>
+          Read More
+        </button>
       </a>
-      <div class="post-info">
-        <span>
-          2020-12-13
-        </span>
-        <span>
-          4 min read
-        </span>
-        
-          <a href="https://voidspiral.github.io/tag/SUyxLM_cY/" class="post-tag">
-            # go
-          </a>
-        
-      </div>
+    </div>
+  </article>
+
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://voidspiral.github.io/post/errgroup/">errGroup用法总结</a>
+    </h2>
+    <p class="article-meta">
+      2020-12-13
       
-      <div class="post-abstract">
-        <h3 id="overview">Overview <a href="https://pkg.go.dev/golang.org/x/sync/errgroup#pkg-overview">¶</a></h3>
+        <a href="https://voidspiral.github.io/tag/SUyxLM_cY/" class="badge secondary">
+          go
+        </a>
+      
+    </p>
+    <p class="text-lead">
+      <h3 id="overview">Overview <a href="https://pkg.go.dev/golang.org/x/sync/errgroup#pkg-overview">¶</a></h3>
 <p>Package errgroup provides synchronization, error propagation, and Context cancelation for groups of goroutines working on subtasks of a common task.</p>
 <p>Package errgroup 为处理公共任务的子任务的goroutine组提供同步、错误传播和上下文取消。</p>
 
-      </div>
-    </article>
-  
-</div>
-
-    
-        <div class="pagination-container">
-  
-  
-    <a href="https://voidspiral.github.io/page/2" class="next-page">下一页</a>
-  
-</div>
-
-    
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-  <a class="rss" href="https://voidspiral.github.io/atom.xml" target="_blank">
-    <i class="ri-rss-line"></i> RSS
-  </a>
-</div>
-
-      </div>
+    </p>
+    <div class="row">
+      <a href="https://voidspiral.github.io/post/errgroup/" class="readmore-link">
+        <button>
+          Read More
+        </button>
+      </a>
     </div>
+  </article>
+
+
+        </div>
+        
+        <div class="row flex-edges">
+  
+  
+    <a href="https://voidspiral.github.io/page/2" class="paper-btn">
+      下一页
+    </a>
+  
+</div>
+
+      </div>
+      
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://voidspiral.github.io/images/avatar.png?v=1610357140989" class="no-responsive avatar">
+    <div class="text-muted">专注于 golang、分布式、3D机器视觉等</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a href="https://www.zhihu.com/question/346352804" target="_blank">
+            <i class="fab fa-zhihu"></i>
+          </a>
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://voidspiral.github.io/post/grpc/">gRPC</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://voidspiral.github.io/post/protobu-de-shi-yong-md/">Protobuf的使用</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://voidspiral.github.io/post/er-cha-shu-zhuan-ti-er/">二叉树专题 (二）</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://voidspiral.github.io/post/mei-ri-yi-ti-er-cha-shu/">二叉树专题（一）</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://voidspiral.github.io/post/qian-xu-zhong-xu-hou-xu-fei-di-gui/">前序中序后序非递归</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://voidspiral.github.io/post/errgroupsingal-shi-zhan/">go的errGroup+singal实战</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://voidspiral.github.io/post/go-de-rpc-bao-xiang-jie/">go的RPC包总结</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://voidspiral.github.io/post/03ormutex4-chong-yi-cuo-chang-jing-da-pan-dian/">03｜Mutex：4种易错场景大盘点</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://voidspiral.github.io/post/signal-bao-yong-fa-zong-jie/">signal包用法总结</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://voidspiral.github.io/post/errgroup/">errGroup用法总结</a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://voidspiral.github.io/tag/gd30KobrK/" class="badge secondary">
+          一起用go做项目
+        </a>
+      
+        <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge success">
+          leetcode
+        </a>
+      
+        <a href="https://voidspiral.github.io/tag/SUyxLM_cY/" class="badge secondary">
+          go
+        </a>
+      
+        <a href="https://voidspiral.github.io/tag/mxi0AxR8_/" class="badge ">
+          go的并发原语
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://voidspiral.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+    </div>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+
   </body>
 </html>

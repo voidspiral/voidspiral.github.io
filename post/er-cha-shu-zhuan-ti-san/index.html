@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>leetcode 143. 重排链表  | 螺旋飞鸟的博客 </title>
+<title>二叉树专题 (三) | 螺旋飞鸟的博客 </title>
 <meta name="description" content="专注于 golang、分布式、3D机器视觉等">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -91,80 +91,87 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>leetcode 143. 重排链表 </h1>
+            <h1>二叉树专题 (三)</h1>
             <p class="article-meta">
-              2020-10-20
-              
-                <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge secondary">
-                  leetcode
-                </a>
+              2021-01-12
               
             </p>
             
             <div class="post-content">
-              <p>寻找链表中点 + 链表逆序 + 合并链表<br>
-注意到目标链表即为将原链表的左半端和反转后的右半端合并后的结果。</p>
-<p>这样我们的任务即可划分为三步：</p>
-<p>找到原链表的中点（参考「876. 链表的中间结点」）。</p>
-<p>我们可以使用快慢指针来 O(N) 地找到链表的中间节点。<br>
-将原链表的右半端反转（参考「206. 反转链表」）。</p>
-<p>我们可以使用迭代法实现链表的反转。<br>
-将原链表的两端合并。</p>
-<p>因为两链表长度相差不超过 1，因此直接合并即可。</p>
+              <h4 id="297-二叉树的序列化与反序列化"><a href="https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree/">297. 二叉树的序列化与反序列化</a></h4>
+<p>思路最开始就是觉得用后序遍历肯定是可以做的，没想到遇到了好多坑得地方。首先这个题目序列化把空的结点补全使其成为了</p>
 <pre><code class="language-go">/**
- * Definition for singly-linked list.
- * type ListNode struct {
+ * Definition for a binary tree node.
+ * type TreeNode struct {
  *     Val int
- *     Next *ListNode
+ *     Left *TreeNode
+ *     Right *TreeNode
  * }
  */
-func middleList(head *ListNode) *ListNode{
-    slow, fast := head, head
-    for fast.Next != nil &amp;&amp; fast.Next.Next != nil {
-        slow = slow.Next
-        fast = fast.Next.Next
-    }
-    return slow
-}
-func reveseList(head *ListNode) *ListNode{
-    var prev, curr *ListNode
-    prev = nil
-    curr = head
-    for curr != nil {
-        tmpNext := curr.Next
-        curr.Next = prev
-        prev = curr
-        curr = tmpNext
-    }
-    return prev
-}
-func mergeList(l1, l2 *ListNode) {
-    var l1_tmp, l2_tmp *ListNode
-    for l1 != nil &amp;&amp; l2 != nil {
-        l1_tmp = l1.Next;
-        l2_tmp = l2.Next;
 
-        l1.Next = l2
-        l1 = l1_tmp
+type Codec struct {
 
-        l2.Next = l1
-        l2 = l2_tmp
-    }
-}
-func reorderList(head *ListNode)  {
-    if head == nil {
-        return
-    }
-    mid := middleList(head);
-    l1 := head
-    l2 := mid.Next
-    mid.Next = nil
-    fmt.Println(l1)
-    l2 = reveseList(l2)
-    fmt.Println(l2)
-    mergeList(l1, l2)
 }
 
+func Constructor() Codec {
+    return Codec{}
+}
+
+// Serializes a tree to a single string.
+func (this *Codec) serialize(root *TreeNode) string {
+    fmt.Println(_ser(root))
+    return _ser(root)
+}
+func _ser(root *TreeNode) string {
+    if root == nil {
+        return &quot;null&quot;
+    } 
+    left := _ser(root.Left)
+    right := _ser(root.Right)
+    str := strconv.Itoa(root.Val)
+
+    return left + &quot;,&quot; + right + &quot;,&quot; + str
+}
+
+// Deserializes your encoded data to tree.
+func (this *Codec) deserialize(data string) *TreeNode {    
+    str := strings.Split(data, &quot;,&quot;)
+    return _deser(&amp;str)
+}
+func _deser(str *[]string) *TreeNode{
+    if len(*str) == 0 {
+        return nil
+    }
+    // fmt.Println(len(*str))
+    //后序遍历之前，要先将str这个逆序栈的栈顶弹出
+    //又因为go的函数传递都是值传递，切片的大小不能随着调用栈的退出而改变，所以这里传指针
+    //解引用得到切片stack
+    ss := *str
+    last := ss[len(ss)-1]
+    ss = ss[:len(ss)-1]
+    //更新这个切片大小
+    *str = ss
+    if last == &quot;null&quot; {
+        return nil
+    }
+    v, _ := strconv.Atoi(last)
+    root := &amp;TreeNode{
+        Val:v, 
+        Left:nil, 
+        Right:nil,
+    }
+    root.Right = _deser(str)
+    root.Left = _deser(str)
+    return root
+}
+
+/**
+ * Your Codec object will be instantiated and called as such:
+ * ser := Constructor();
+ * deser := Constructor();
+ * data := ser.serialize(root);
+ * ans := deser.deserialize(data);
+ */
 </code></pre>
 
             </div>
@@ -176,9 +183,9 @@ func reorderList(head *ListNode)  {
               <div class="next">
                 下一篇
               </div>
-              <a href="https://voidspiral.github.io/post/leetcode-17-dian-hua-hao-ma-de-zi-mu-zu-he/">
+              <a href="https://voidspiral.github.io/post/grpc/">
                 <h3 class="post-title">
-                  leetcode 17. 电话号码的字母组合
+                  gRPC
                 </h3>
               </a>
             </div>
@@ -325,15 +332,15 @@ func reorderList(head *ListNode)  {
     </div>
     <div class="row">
       
-        <a href="https://voidspiral.github.io/tag/gd30KobrK/" class="badge warning">
+        <a href="https://voidspiral.github.io/tag/gd30KobrK/" class="badge secondary">
           一起用go做项目
         </a>
       
-        <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge warning">
+        <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge success">
           leetcode
         </a>
       
-        <a href="https://voidspiral.github.io/tag/SUyxLM_cY/" class="badge success">
+        <a href="https://voidspiral.github.io/tag/SUyxLM_cY/" class="badge secondary">
           go
         </a>
       

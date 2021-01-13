@@ -7,7 +7,7 @@
 <meta name="description" content="专注于 golang、分布式、3D机器视觉等">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1610455164404">
+<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1610547322139">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -99,7 +99,10 @@
             
             <div class="post-content">
               <h4 id="297-二叉树的序列化与反序列化"><a href="https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree/">297. 二叉树的序列化与反序列化</a></h4>
-<p>思路最开始就是觉得用后序遍历肯定是可以做的，没想到遇到了好多坑得地方。首先这个题目序列化把空的结点补全使其成为了</p>
+<p>思路最开始就是觉得用后序遍历肯定是可以做的，没想到遇到了好多坑得地方。首先这个题目序列化把空的结点补全使其成为了可以重建的序列。但值得注意的是，可重建的遍历方式只有前序遍历，后序遍历。中序遍历的结果不唯一，且容易举出反例。</p>
+<ul>
+<li>后序遍历版本</li>
+</ul>
 <pre><code class="language-go">/**
  * Definition for a binary tree node.
  * type TreeNode struct {
@@ -173,6 +176,79 @@ func _deser(str *[]string) *TreeNode{
  * ans := deser.deserialize(data);
  */
 </code></pre>
+<ul>
+<li>前序遍历 + strings.Buffer优化</li>
+</ul>
+<pre><code class="language-go">/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+
+type Codec struct {
+    sb strings.Builder
+    serstr string
+    stack []string
+}
+
+func Constructor() Codec {
+    return Codec{}
+}
+
+// Serializes a tree to a single string.
+func (this *Codec) serialize(root *TreeNode) string {
+    var dfs func(r *TreeNode)
+    dfs = func(r *TreeNode) {
+        if r == nil {
+            this.sb.WriteString(&quot;null,&quot;)
+            return
+        }
+        // this.serstr += strconv.Itoa(r.Val) 
+        this.sb.WriteString(strconv.Itoa(r.Val)+&quot;,&quot;)
+        dfs(r.Left)
+        dfs(r.Right)
+    }
+    dfs(root)
+    // fmt.Printf(&quot;%s&quot;,this.sb.String())
+    return this.sb.String()
+}
+
+// Deserializes your encoded data to tree.
+func (this *Codec) deserialize(data string) *TreeNode {   
+    this.stack = strings.Split(data, &quot;,&quot;)
+    var _deser func(d []string) *TreeNode
+    _deser = func(d []string) *TreeNode {
+        if len(d) == 0 {
+            return nil
+        }
+        // fmt.Println(len(d))
+        top := d[0]
+        this.stack = d[1:]
+        if top == &quot;null&quot; {
+            return nil
+        }
+        v, _ := strconv.Atoi(top)
+        root := &amp;TreeNode{v, nil, nil}
+        root.Left = _deser(this.stack)
+        root.Right = _deser(this.stack)
+        return root
+    }
+    return _deser(this.stack)
+}
+
+
+/**
+ * Your Codec object will be instantiated and called as such:
+ * ser := Constructor();
+ * deser := Constructor();
+ * data := ser.serialize(root);
+ * ans := deser.deserialize(data);
+ */
+
+</code></pre>
 
             </div>
           </article>
@@ -204,7 +280,7 @@ func _deser(str *[]string) *TreeNode{
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://voidspiral.github.io/images/avatar.png?v=1610455164404" class="no-responsive avatar">
+    <img src="https://voidspiral.github.io/images/avatar.png?v=1610547322139" class="no-responsive avatar">
     <div class="text-muted">专注于 golang、分布式、3D机器视觉等</div>
     <div class="social-container">
       
@@ -332,11 +408,11 @@ func _deser(str *[]string) *TreeNode{
     </div>
     <div class="row">
       
-        <a href="https://voidspiral.github.io/tag/gd30KobrK/" class="badge secondary">
+        <a href="https://voidspiral.github.io/tag/gd30KobrK/" class="badge ">
           一起用go做项目
         </a>
       
-        <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge success">
+        <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge secondary">
           leetcode
         </a>
       
@@ -344,7 +420,7 @@ func _deser(str *[]string) *TreeNode{
           go
         </a>
       
-        <a href="https://voidspiral.github.io/tag/mxi0AxR8_/" class="badge secondary">
+        <a href="https://voidspiral.github.io/tag/mxi0AxR8_/" class="badge ">
           go的并发原语
         </a>
       

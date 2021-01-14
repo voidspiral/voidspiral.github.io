@@ -7,7 +7,7 @@
 <meta name="description" content="专注于 golang、分布式、3D机器视觉等">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1610547322139">
+<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1610636094950">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -249,6 +249,43 @@ func (this *Codec) deserialize(data string) *TreeNode {
  */
 
 </code></pre>
+<h4 id="652-寻找重复的子树"><a href="https://leetcode-cn.com/problems/find-duplicate-subtrees/">652. 寻找重复的子树</a></h4>
+<h2 id="思路">思路</h2>
+<p>有了上面一道题的铺垫，我们很容易的就知道了二叉树的序列化方法了。</p>
+<pre><code class="language-go">* type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func findDuplicateSubtrees(root *TreeNode) []*TreeNode {
+    ans := []*TreeNode{}
+    m := make(map[string]int)
+    var dfs func(root *TreeNode) string 
+    dfs = func(root *TreeNode) string {
+        if root == nil {
+            return &quot;&quot;
+        }
+        left := dfs(root.Left)
+        right := dfs(root.Right)
+
+        str := strconv.Itoa(root.Val)
+        uid := left + &quot;,&quot; + right + &quot;,&quot; + str
+        if _, ok := m[uid];!ok {
+            m[uid]++
+        } else {
+            m[uid]++
+            if m[uid] == 2 {
+                ans = append(ans, root)
+            }
+        }
+        return uid
+    }
+    dfs(root)
+    return ans
+}
+
+</code></pre>
 
             </div>
           </article>
@@ -280,7 +317,7 @@ func (this *Codec) deserialize(data string) *TreeNode {
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://voidspiral.github.io/images/avatar.png?v=1610547322139" class="no-responsive avatar">
+    <img src="https://voidspiral.github.io/images/avatar.png?v=1610636094950" class="no-responsive avatar">
     <div class="text-muted">专注于 golang、分布式、3D机器视觉等</div>
     <div class="social-container">
       
@@ -412,15 +449,15 @@ func (this *Codec) deserialize(data string) *TreeNode {
           一起用go做项目
         </a>
       
-        <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge secondary">
+        <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge warning">
           leetcode
         </a>
       
-        <a href="https://voidspiral.github.io/tag/SUyxLM_cY/" class="badge secondary">
+        <a href="https://voidspiral.github.io/tag/SUyxLM_cY/" class="badge ">
           go
         </a>
       
-        <a href="https://voidspiral.github.io/tag/mxi0AxR8_/" class="badge ">
+        <a href="https://voidspiral.github.io/tag/mxi0AxR8_/" class="badge success">
           go的并发原语
         </a>
       

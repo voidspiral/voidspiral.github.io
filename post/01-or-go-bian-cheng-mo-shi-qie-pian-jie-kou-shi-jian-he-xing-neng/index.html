@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>螺旋飞鸟的博客 </title>
+<title>01 | Go编程模式：切片、接口、时间和性能 | 螺旋飞鸟的博客 </title>
 <meta name="description" content="专注于 golang、分布式、3D机器视觉等">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -15,14 +15,25 @@
 <link rel="stylesheet" href="https://voidspiral.github.io/styles/main.css">
 
 
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
 
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 
+    <link rel="stylesheet" href="/styles/default.css">
+    <script src="/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
   <body>
+  
     <nav class="navbar border fixed split-nav">
   <div class="nav-brand">
     <h3><a href="https://voidspiral.github.io">螺旋飞鸟的博客 </a></h3>
@@ -76,25 +87,22 @@
   </div>
 </nav>
 
-
     <div id="top" class="row site">
       <div class="sm-12 md-8 col">
         <div class="paper">
-          
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://voidspiral.github.io/post/01-or-go-bian-cheng-mo-shi-qie-pian-jie-kou-shi-jian-he-xing-neng/">01 | Go编程模式：切片、接口、时间和性能</a>
-    </h2>
-    <p class="article-meta">
-      2021-01-15
-      
-        <a href="https://voidspiral.github.io/tag/NiwUTusJ3/" class="badge ">
-          Go编程模式
-        </a>
-      
-    </p>
-    <p class="text-lead">
-      <h1 id="slice">Slice</h1>
+          <article class="article">
+            <h1>01 | Go编程模式：切片、接口、时间和性能</h1>
+            <p class="article-meta">
+              2021-01-15
+              
+                <a href="https://voidspiral.github.io/tag/NiwUTusJ3/" class="badge secondary">
+                  Go编程模式
+                </a>
+              
+            </p>
+            
+            <div class="post-content">
+              <h1 id="slice">Slice</h1>
 <p>结构如下：</p>
 <pre><code class="language-go">type slice struct {
     array unsafe.Pointer //指向存放数据的数组指针
@@ -265,223 +273,36 @@ PrintStr(d1)
 PrintStr(d2)
 </code></pre>
 <p>在这段代码中，我们可以看到，我们使用了一个叫Stringable 的接口，我们用这个接口把“业务类型” Country 和 City 和“控制逻辑” Print() 给解耦了。于是，只要实现了Stringable 接口，都可以传给 PrintStr() 来使用。这种编程模式在 Go 的标准库有很多的示例，最著名的就是 io.Read 和 ioutil.ReadAll 的玩法，其中 io.Read 是一个接口，你需要实现它的一个 Read(p []byte) (n int, err error) 接口方法，只要满足这个规则，就可以被 ioutil.ReadAll这个方法所使用。<strong>这就是面向对象编程方法的黄金法则——“Program to an interface not an implementation”。</strong></p>
+<!-- more -->
 
-    </p>
-    <div class="row">
-      <a href="https://voidspiral.github.io/post/01-or-go-bian-cheng-mo-shi-qie-pian-jie-kou-shi-jian-he-xing-neng/" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://voidspiral.github.io/post/er-cha-shu-zhuan-ti-san/">二叉树专题 (三)</a>
-    </h2>
-    <p class="article-meta">
-      2021-01-12
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://voidspiral.github.io/post/er-cha-shu-zhuan-ti-san/" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://voidspiral.github.io/post/grpc/">gRPC</a>
-    </h2>
-    <p class="article-meta">
-      2021-01-08
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://voidspiral.github.io/post/grpc/" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://voidspiral.github.io/post/protobu-de-shi-yong-md/">Protobuf的使用</a>
-    </h2>
-    <p class="article-meta">
-      2021-01-06
-      
-        <a href="https://voidspiral.github.io/tag/gd30KobrK/" class="badge secondary">
-          一起用go做项目
-        </a>
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://voidspiral.github.io/post/protobu-de-shi-yong-md/" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://voidspiral.github.io/post/er-cha-shu-zhuan-ti-er/">二叉树专题 (二）</a>
-    </h2>
-    <p class="article-meta">
-      2021-01-05
-      
-        <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge success">
-          leetcode
-        </a>
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://voidspiral.github.io/post/er-cha-shu-zhuan-ti-er/" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://voidspiral.github.io/post/mei-ri-yi-ti-er-cha-shu/">二叉树专题（一）</a>
-    </h2>
-    <p class="article-meta">
-      2020-12-23
-      
-        <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge secondary">
-          leetcode
-        </a>
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://voidspiral.github.io/post/mei-ri-yi-ti-er-cha-shu/" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://voidspiral.github.io/post/qian-xu-zhong-xu-hou-xu-fei-di-gui/">前序中序后序非递归</a>
-    </h2>
-    <p class="article-meta">
-      2020-12-21
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://voidspiral.github.io/post/qian-xu-zhong-xu-hou-xu-fei-di-gui/" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://voidspiral.github.io/post/errgroupsingal-shi-zhan/">go的errGroup+singal实战</a>
-    </h2>
-    <p class="article-meta">
-      2020-12-19
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://voidspiral.github.io/post/errgroupsingal-shi-zhan/" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://voidspiral.github.io/post/go-de-rpc-bao-xiang-jie/">go的RPC包总结</a>
-    </h2>
-    <p class="article-meta">
-      2020-12-16
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://voidspiral.github.io/post/go-de-rpc-bao-xiang-jie/" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://voidspiral.github.io/post/03ormutex4-chong-yi-cuo-chang-jing-da-pan-dian/">03｜Mutex：4种易错场景大盘点</a>
-    </h2>
-    <p class="article-meta">
-      2020-12-15
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://voidspiral.github.io/post/03ormutex4-chong-yi-cuo-chang-jing-da-pan-dian/" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://voidspiral.github.io/post/er-cha-shu-zhuan-ti-san/">
+                <h3 class="post-title">
+                  二叉树专题 (三)
+                </h3>
+              </a>
+            </div>
+          
         </div>
         
-        <div class="row flex-edges">
-  
-  
-    <a href="https://voidspiral.github.io/page/2" class="paper-btn">
-      下一页
-    </a>
-  
-</div>
+          
+            <div class="paper" data-aos="fade-in">
+              <div id="gitalk-container"></div>
+            </div>
+          
 
+          
+        
       </div>
-      
+
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
     <img src="https://voidspiral.github.io/images/avatar.png?v=1610712601840" class="no-responsive avatar">
@@ -610,23 +431,23 @@ PrintStr(d2)
     </div>
     <div class="row">
       
-        <a href="https://voidspiral.github.io/tag/NiwUTusJ3/" class="badge secondary">
+        <a href="https://voidspiral.github.io/tag/NiwUTusJ3/" class="badge warning">
           Go编程模式
         </a>
       
-        <a href="https://voidspiral.github.io/tag/gd30KobrK/" class="badge secondary">
+        <a href="https://voidspiral.github.io/tag/gd30KobrK/" class="badge ">
           一起用go做项目
         </a>
       
-        <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge success">
+        <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge secondary">
           leetcode
         </a>
       
-        <a href="https://voidspiral.github.io/tag/SUyxLM_cY/" class="badge ">
+        <a href="https://voidspiral.github.io/tag/SUyxLM_cY/" class="badge warning">
           go
         </a>
       
-        <a href="https://voidspiral.github.io/tag/mxi0AxR8_/" class="badge secondary">
+        <a href="https://voidspiral.github.io/tag/mxi0AxR8_/" class="badge ">
           go的并发原语
         </a>
       
@@ -637,7 +458,9 @@ PrintStr(d2)
   </div>
 </div>
 
+
     </div>
+
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
 <script type="application/javascript">
@@ -647,6 +470,29 @@ AOS.init();
 hljs.initHighlightingOnLoad()
 
 </script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'faf7795e6fb19538ffa1',
+        clientSecret: '520faaf0c56ea87a228bcf5a2aba3311ca60a819',
+        repo: '',
+        owner: 'voidspiral',
+        admin: ['voidspiral'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
 
 
 

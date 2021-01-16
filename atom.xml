@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://voidspiral.github.io</id>
     <title>螺旋飞鸟的博客 </title>
-    <updated>2021-01-15T12:10:05.205Z</updated>
+    <updated>2021-01-16T13:29:21.006Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://voidspiral.github.io"/>
     <link rel="self" href="https://voidspiral.github.io/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://voidspiral.github.io/images/avatar.png</logo>
     <icon>https://voidspiral.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, 螺旋飞鸟的博客 </rights>
+    <entry>
+        <title type="html"><![CDATA[二叉搜索树（一）]]></title>
+        <id>https://voidspiral.github.io/post/er-cha-sou-suo-shu-yi1/</id>
+        <link href="https://voidspiral.github.io/post/er-cha-sou-suo-shu-yi1/">
+        </link>
+        <updated>2021-01-16T13:13:57.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[01 | Go编程模式：切片、接口、时间和性能]]></title>
         <id>https://voidspiral.github.io/post/01-or-go-bian-cheng-mo-shi-qie-pian-jie-kou-shi-jian-he-xing-neng/</id>
@@ -416,12 +423,5 @@ PrintStr(d2)
         <link href="https://voidspiral.github.io/post/go-de-rpc-bao-xiang-jie/">
         </link>
         <updated>2020-12-16T14:30:17.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[03｜Mutex：4种易错场景大盘点]]></title>
-        <id>https://voidspiral.github.io/post/03ormutex4-chong-yi-cuo-chang-jing-da-pan-dian/</id>
-        <link href="https://voidspiral.github.io/post/03ormutex4-chong-yi-cuo-chang-jing-da-pan-dian/">
-        </link>
-        <updated>2020-12-15T14:10:29.000Z</updated>
     </entry>
 </feed>

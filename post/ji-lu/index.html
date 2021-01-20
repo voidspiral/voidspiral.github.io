@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>二叉树专题 (二） | 螺旋飞鸟的博客 </title>
+<title>记录 | 螺旋飞鸟的博客 </title>
 <meta name="description" content="专注于 golang、分布式、3D机器视觉等">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -91,153 +91,67 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>二叉树专题 (二）</h1>
+            <h1>记录</h1>
             <p class="article-meta">
-              2021-01-05
-              
-                <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge success">
-                  leetcode
-                </a>
+              2021-01-20
               
             </p>
             
             <div class="post-content">
-              <h4 id="654-最大二叉树"><a href="https://leetcode-cn.com/problems/maximum-binary-tree/">654. 最大二叉树</a></h4>
-<p>###思路</p>
-<p>思路很直接，直接遍历区间中的最大值，然后递归当前最大值的左右两个区间就好了。</p>
-<pre><code class="language-go">/**
- * Definition for a binary tree node.
- * type TreeNode struct {
- *     Val int
- *     Left *TreeNode
- *     Right *TreeNode
- * }
- */
-import &quot;math&quot;
-func constructMaximumBinaryTree(nums []int) *TreeNode {
-    return helper(nums, 0, len(nums)-1)
-}
+              <h2 id="wcgo的代码分析">wc.go的代码分析</h2>
+<p>wc.go中包含Map和Reduce函数</p>
+<ul>
+<li><span id="mapfunc">Map函数</span></li>
+</ul>
+<pre><code class="language-go">func Map(filename string, contents string) []mr.KeyValue {
+	// function to detect word separators.
+	ff := func(r rune) bool { return !unicode.IsLetter(r) }
 
-func helper(nums []int, lo, hi int) *TreeNode {
-    if lo &gt; hi {
-        return nil
-    }
-    cur := math.MinInt64
-    pos := -1
-    for i := lo; i &lt;= hi; i ++ {
-        if cur &lt; nums[i] {
-            cur = nums[i]
-            pos = i
-        }
-    }
+	// split contents into an array of words.
+  // 以非字母的字符作为分割符得到词组的切片words
+	words := strings.FieldsFunc(contents, ff)
 
-    root := &amp;TreeNode{
-        Val:cur,
-        Left:nil,
-        Right:nil,
-    }
-    root.Val = cur
-    root.Left = helper(nums, lo, pos - 1)
-    root.Right = helper(nums, pos + 1, hi)
-    
-    return root
+	kva := []mr.KeyValue{}
+	for _, w := range words {
+		kv := mr.KeyValue{w, &quot;1&quot;}
+		kva = append(kva, kv)
+	}
+	return kva
 }
 </code></pre>
-<p>优化版</p>
-<pre><code class="language-go">/**
- * Definition for a binary tree node.
- * type TreeNode struct {
- *     Val int
- *     Left *TreeNode
- *     Right *TreeNode
- * }
- */
-import &quot;math&quot;
-func constructMaximumBinaryTree(nums []int) *TreeNode {
-    if len(nums) == 0 {
-        // fmt.Println(len(nums))
-        return nil
-    }
-    cur := math.MinInt64
-    pos := -1
-    for i := 0; i &lt; len(nums); i++ {
-        if cur &lt; nums[i] {
-            cur = nums[i]
-            pos = i
-        }
-    }
-
-    root := &amp;TreeNode{
-        Val:cur,
-    }
-    root.Left = constructMaximumBinaryTree(nums[:pos])
-    root.Right = constructMaximumBinaryTree(nums[pos+1:])
-    return root
+<p><span id="mappic">如下图所示：</span></p>
+<figure data-type="image" tabindex="1"><img src="https://gitee.com/voidspiral/blogimage/raw/master/image-20210120222739300-20210120222750601.png" alt="image-20210120222739300" loading="lazy"></figure>
+<ul>
+<li>Reduce函数</li>
+</ul>
+<pre><code class="language-go">func Reduce(key string, values []string) string {
+	// return the number of occurrences of this word.
+  // 返回单词的频次
+	return strconv.Itoa(len(values))
 }
 </code></pre>
-<h4 id="105-从前序与中序遍历序列构造二叉树"><a href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/">105. 从前序与中序遍历序列构造二叉树</a></h4>
-<h2 id="思路">思路</h2>
-<p>​		最开始很容易想到，先序遍历一定是根节点，然后紧接着就可根据中序划分左右子树。但开始的时候，只维护了中序遍历中的左右子树的区间范围，没有考虑到先序遍历的左右子树区间也要维护。那么我们知道无论两种遍历方式左子树的长度一定和右子树的长度是一致的</p>
-<figure data-type="image" tabindex="1"><img src="https://voidspiral.github.io/post-images/1609857181314.png" alt="" loading="lazy"></figure>
-<pre><code class="language-go">func buildTree(preorder []int, inorder []int) *TreeNode {
-    if len(preorder) == 0 || len(inorder) == 0 {
-        return nil
-    }
-    root := &amp;TreeNode{preorder[0], nil, nil}
-    var pos int
-    for i, v := range inorder {
-        if preorder[0] == v {
-            pos = i
-            break
-        }
-    }
-    // 最开始写成了这样，试想因为没有维护这个先序遍历的左右子树区间。
-    // 从第一次调用buildTree(preorder[1:], inorder[pos+1:])开始
-    // -----------  len(preorder)的长度变化 &lt;---
-    //  ----------
-    //   ---------
-    //       ...
-    //         ---
-    //          --
-    //           - 左子树递归完 len(preorder) = 0 此时出栈一直回退到第一次调用的时候(&lt;---箭头处)
-  	// root.Right = buildTree(preorder[1:], inorder[pos+1:])
-    // -----l-----  len(preorder)又从此长度来遍历了，而实际中前l次已经访问过了。所以这个遍历就不正确了。
-    // root.Left = buildTree(preorder[1:], inorder[:pos])
-  	// 当左子树遍历完之后 因为没有维护这个区间 此时的preorder长度已经变为1
-    // root.Right = buildTree(preorder[1:], inorder[pos+1:])
-    root.Left = buildTree(preorder[1:len(inorder[:pos])+1], inorder[:pos])
-    root.Right = buildTree(preorder[len(inorder[:pos])+1:], inorder[pos+1:])
-    return root
-}
+<h2 id="mrsequentialgo的代码分析">mrsequential.go的代码分析</h2>
+<p>实验中我们运行了这么一条命令。</p>
+<pre><code class="language-bash">go run mrsequential.go wc.so pg*.txt
 </code></pre>
-<h2 id="总结">总结</h2>
-<p>​	总结一下就是分治的时候，没有搞清楚分治的区间，只考虑了一半这是十分蠢了。。QAQ</p>
-<h4 id="106-从中序与后序遍历序列构造二叉树"><a href="https://leetcode-cn.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/">106. 从中序与后序遍历序列构造二叉树</a></h4>
-<h2 id="思路-2">思路</h2>
-<p>其实和105是一样的，包含左右子树的区间的长度是不会因为遍历而改变的。直接划分即可。</p>
-<pre><code class="language-go">/**
- * Definition for a binary tree node.
- * type TreeNode struct {
- *     Val int
- *     Left *TreeNode
- *     Right *TreeNode
- * }
- */
-func buildTree(inorder []int, postorder []int) *TreeNode {
-    if len(inorder) == 0 || len(postorder) == 0{
-        return nil
-    }
-    root := &amp;TreeNode{postorder[len(postorder)-1], nil, nil}
-    i := 0
-    for ; i &lt; len(inorder); i++ {
-        if postorder[len(postorder)-1] == inorder[i] {
-            break;
-        }
-    }
-    root.Left = buildTree(inorder[:i], postorder[:i])
-    root.Right = buildTree(inorder[i+1:], postorder[i:len(postorder)-1])
-    return root 
-}
+<p>输入的参数包含三个部分：os.Args[0]是执行的文件，os.Args[1]使我们编译好的插件wc.so，os.Args[2:]是输入的八个文件。如下图所示：</p>
+<pre><code class="language-bash">[/var/folders/1v/n1yv70cx6bd80f4v2jghm86c0000gn/T/go-build063732717/b001/exe/mrsequential wc.so pg-being_ernest.txt pg-dorian_gray.txt pg-frankenstein.txt pg-grimm.txt pg-huckleberry_finn.txt pg-metamorphosis.txt pg-sherlock_holmes.txt pg-tom_sawyer.txt]
+</code></pre>
+<p>如下代码将每一个输入的文件传递给<a href="#mapfunc">Map函数</a>并得到Map输出的<a href="#mappic">中间文件</a></p>
+<pre><code class="language-go">  intermediate := []mr.KeyValue{}
+	for _, filename := range os.Args[2:] {
+		file, err := os.Open(filename)
+		if err != nil {
+			log.Fatalf(&quot;cannot open %v&quot;, filename)
+		}
+		content, err := ioutil.ReadAll(file)
+		if err != nil {
+			log.Fatalf(&quot;cannot read %v&quot;, filename)
+		}
+		file.Close()
+		kva := mapf(filename, string(content))
+		intermediate = append(intermediate, kva...)
+	}
 </code></pre>
 
             </div>
@@ -249,9 +163,9 @@ func buildTree(inorder []int, postorder []int) *TreeNode {
               <div class="next">
                 下一篇
               </div>
-              <a href="https://voidspiral.github.io/post/mei-ri-yi-ti-er-cha-shu/">
+              <a href="https://voidspiral.github.io/post/er-cha-sou-suo-shu-yi1/">
                 <h3 class="post-title">
-                  二叉树专题（一）
+                  二叉搜索树（一）
                 </h3>
               </a>
             </div>
@@ -404,7 +318,7 @@ func buildTree(inorder []int, postorder []int) *TreeNode {
           转载
         </a>
       
-        <a href="https://voidspiral.github.io/tag/NiwUTusJ3/" class="badge success">
+        <a href="https://voidspiral.github.io/tag/NiwUTusJ3/" class="badge ">
           Go编程模式
         </a>
       
@@ -416,11 +330,11 @@ func buildTree(inorder []int, postorder []int) *TreeNode {
           leetcode
         </a>
       
-        <a href="https://voidspiral.github.io/tag/SUyxLM_cY/" class="badge warning">
+        <a href="https://voidspiral.github.io/tag/SUyxLM_cY/" class="badge ">
           go
         </a>
       
-        <a href="https://voidspiral.github.io/tag/mxi0AxR8_/" class="badge success">
+        <a href="https://voidspiral.github.io/tag/mxi0AxR8_/" class="badge secondary">
           go的并发原语
         </a>
       

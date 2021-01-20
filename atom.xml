@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://voidspiral.github.io</id>
     <title>螺旋飞鸟的博客 </title>
-    <updated>2021-01-18T15:36:58.799Z</updated>
+    <updated>2021-01-20T15:53:24.379Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://voidspiral.github.io"/>
     <link rel="self" href="https://voidspiral.github.io/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://voidspiral.github.io/images/avatar.png</logo>
     <icon>https://voidspiral.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, 螺旋飞鸟的博客 </rights>
+    <entry>
+        <title type="html"><![CDATA[记录]]></title>
+        <id>https://voidspiral.github.io/post/ji-lu/</id>
+        <link href="https://voidspiral.github.io/post/ji-lu/">
+        </link>
+        <updated>2021-01-20T15:52:34.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[二叉搜索树（一）]]></title>
         <id>https://voidspiral.github.io/post/er-cha-sou-suo-shu-yi1/</id>
@@ -72,12 +79,5 @@
         <link href="https://voidspiral.github.io/post/errgroupsingal-shi-zhan/">
         </link>
         <updated>2020-12-19T11:23:46.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[go的RPC包总结]]></title>
-        <id>https://voidspiral.github.io/post/go-de-rpc-bao-xiang-jie/</id>
-        <link href="https://voidspiral.github.io/post/go-de-rpc-bao-xiang-jie/">
-        </link>
-        <updated>2020-12-16T14:30:17.000Z</updated>
     </entry>
 </feed>

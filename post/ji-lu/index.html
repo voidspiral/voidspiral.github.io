@@ -7,7 +7,7 @@
 <meta name="description" content="专注于 golang、分布式、3D机器视觉等">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1611157997724">
+<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1611330903853">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -137,7 +137,7 @@
 <p>输入的参数包含三个部分：os.Args[0]是执行的文件，os.Args[1]使我们编译好的插件wc.so，os.Args[2:]是输入的八个文件。如下图所示：</p>
 <pre><code class="language-bash">[/var/folders/1v/n1yv70cx6bd80f4v2jghm86c0000gn/T/go-build063732717/b001/exe/mrsequential wc.so pg-being_ernest.txt pg-dorian_gray.txt pg-frankenstein.txt pg-grimm.txt pg-huckleberry_finn.txt pg-metamorphosis.txt pg-sherlock_holmes.txt pg-tom_sawyer.txt]
 </code></pre>
-<p>如下代码将每一个输入的文件传递给<a href="#mapfunc">Map函数</a>并得到Map输出的<a href="#mappic">中间文件</a></p>
+<p>如下代码将每一个输入的文件传递给<a href="#mapfunc">Map函数</a>并得到从Map输出的<a href="#mappic">中间文件</a></p>
 <pre><code class="language-go">  intermediate := []mr.KeyValue{}
 	for _, filename := range os.Args[2:] {
 		file, err := os.Open(filename)
@@ -152,6 +152,129 @@
 		kva := mapf(filename, string(content))
 		intermediate = append(intermediate, kva...)
 	}
+</code></pre>
+<blockquote>
+<p>a big difference from real MapReduce is that all the<br>
+intermediate data is in one place, intermediate[],<br>
+rather than being partitioned into NxM buckets.</p>
+</blockquote>
+<p>将map函数处理后的中间文件按键值排序。</p>
+<pre><code class="language-go">// for sorting by key.
+type ByKey []mr.KeyValue
+
+// for sorting by key.
+func (a ByKey) Len() int           { return len(a) }
+func (a ByKey) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
+func (a ByKey) Less(i, j int) bool { return a[i].Key &lt; a[j].Key }
+	
+sort.Sort(ByKey(intermediate))
+oname := &quot;mr-out-0&quot;
+ofile, _ := os.Create(oname)
+</code></pre>
+<p>将相同key的中间文件一同交由Reduce函数处理。我个人认为这里做了类似论文中的combiner操作。</p>
+<blockquote>
+<p>Combiner 函数在每台执行 Map 任务的机器上都会被执行一次。一般情况下，Combiner 和 Reduce 函数是 一样的。Combiner 函数和 Reduce 函数之间唯一的区别是 MapReduce 库怎样控制函数的输出。Reduce 函数的 输出被保存在最终的输出文件里，而 Combiner 函数的输出被写到中间文件里，然后被发送给 Reduce 任务。 部分的合并中间结果可以显著的提高一些 MapReduce 操作的速度。</p>
+</blockquote>
+<pre><code class="language-go">   //
+   // call Reduce on each distinct key in intermediate[],
+   // and print the result to mr-out-0.
+   //
+   i := 0
+   for i &lt; len(intermediate) {
+      j := i + 1
+      for j &lt; len(intermediate) &amp;&amp; intermediate[j].Key == intermediate[i].Key {
+         j++
+      }
+      values := []string{}
+      for k := i; k &lt; j; k++ {
+         values = append(values, intermediate[k].Value)
+      }
+     
+      output := reducef(intermediate[i].Key, values)
+      // this is the correct format for each line of Reduce output.
+      fmt.Fprintf(ofile, &quot;%v %v\n&quot;, intermediate[i].Key, output)
+
+      i = j
+   }
+
+   ofile.Close()
+}
+</code></pre>
+<p>至此我们的任务是实现分布式版本的mrsequetial.go</p>
+<p>根据实验指导，我们现在来看mrmaster.go。MakeMaster传入了两个参数，包含文件名的切片和表明reduce任务的数量的nReduce参数。下面的for循环一直检查Task是否完成。</p>
+<pre><code class="language-go">package main
+
+//
+// start the master process, which is implemented
+// in ../mr/master.go
+//
+// go run mrmaster.go pg*.txt
+//
+// Please do not change this file.
+//
+
+import &quot;../mr&quot;
+import &quot;time&quot;
+import &quot;os&quot;
+import &quot;fmt&quot;
+
+func main() {
+	if len(os.Args) &lt; 2 {
+		fmt.Fprintf(os.Stderr, &quot;Usage: mrmaster inputfiles...\n&quot;)
+		os.Exit(1)
+	}
+
+	m := mr.MakeMaster(os.Args[1:], 10)
+	for m.Done() == false {
+		time.Sleep(time.Second)
+	}
+
+	time.Sleep(time.Second)
+}
+
+</code></pre>
+<h2 id="mapreduce概述">MapReduce概述</h2>
+<p>顺着MakeMaster方法。我们来到了本次lab的第一个挑战。要如何设计Master结点的数据结构呢，我们先回到论文中，如下图所示。</p>
+<figure data-type="image" tabindex="2"><img src="https://gitee.com/voidspiral/blogimage/raw/master/image-20210121181744587.png" alt="image-20210121181744587" loading="lazy"></figure>
+<p>图 1 展示了我们的 MapReduce 实现中操作的全部流程。当用户调用 MapReduce 函数时，将发生下面的一 系列动作（下面的序号和图 1 中的序号一一对应）：</p>
+<ol>
+<li>用户程序首先调用的 MapReduce 库将输入文件分成 M 个数据片度，每个数据片段的大小一般从 16MB 到 64MB(可以通过可选的参数来控制每个数据片段的大小)。然后用户程序在机群中创建大量 的程序副本。</li>
+<li>这些程序副本中的有一个特殊的程序–master。副本中其它的程序都是 worker 程序，由 master 分配 任务。有 M 个 Map 任务和 R 个 Reduce 任务将被分配，master 将一个 Map 任务或 Reduce 任务分配 给一个空闲的 worker。</li>
+<li>被分配了 map 任务的 worker 程序读取相关的输入数据片段，从输入的数据片段中解析出 key/value pair，然后把 key/value pair 传递给用户自定义的 Map 函数，由 Map 函数生成并输出的中间 key/value pair，并缓存在内存中。</li>
+<li>缓存中的 key/value pair 通过分区函数（<code>ihash(key) % NReduce</code>）分成 R 个区域，之后周期性的写入到本地磁盘上。缓存的 key/value pair 在本地磁盘上的存储位置将被回传给 master，由 master 负责把这些存储位置再传送给 Reduce worker。</li>
+<li>当 Reduce worker 程序接收到 master 程序发来的数据存储位置信息后，使用 RPC 从 Map worker 所在 主机的磁盘上读取这些缓存数据。当 Reduce worker 读取了所有的中间数据后，通过对 key 进行排序 后使得具有相同 key 值的数据聚合在一起。由于许多不同的 key 值会映射到相同的 Reduce 任务上， 因此必须进行排序。如果中间数据太大无法在内存中完成排序，那么就要在外部进行排序。</li>
+<li>Reduce worker 程序遍历排序后的中间数据，对于每一个唯一的中间 key 值，Reduce worker 程序将这 个 key 值和它相关的中间 value 值的集合传递给用户自定义的 Reduce 函数。Reduce 函数的输出被追 加到所属分区的输出文件。</li>
+<li>当所有的 Map 和 Reduce 任务都完成之后，master 唤醒用户程序。在这个时候，在用户程序里的对 MapReduce 调用才返回。</li>
+</ol>
+<h2 id="master结构体字段的定义">Master结构体字段的定义</h2>
+<p>此处建议结合实验指导书和MapReduce概述一起<strong>反复阅读</strong>并思考该如何设计。</p>
+<ul>
+<li>由1.、2.有M个Map任务和R个Reduce任务需要Master分配。可知map函数的数量与输入的文件数量相等。由此定义nMap， nReduce。nReduce由用户指定。</li>
+<li>输入文件的文件名</li>
+<li>由2.、3.、5.等以及实验指导手册可知Worker通过RPC向Master结点请求<strong>任务</strong>，那么我们可以定义一个Task结构体定义WorkerId字段记录是哪一个worker拿到了这个任务，那么同时需要Master中定义给Worker指定的编号。以及任务的起始时间（用于容错处理）</li>
+<li>由2.可知worker可以执行Map或者Reduce任务，也可以空闲下来。所以我们要定义一个任务状态常量用于描述任务状态。</li>
+<li>通过rpc请求到任务后实在Master端计时，还是在worker端计时。</li>
+</ul>
+<pre><code class="language-go">//Master结构体
+type Master struct {
+  nReduce   int
+  filesName []string
+  taskch    chan Task
+}
+//任务状态常量
+type TaskPhase int
+const (
+		MapPhase TaskPhase = iota
+    ReducePhase TaskPhase
+    IdlePhase TaskPhase
+)
+//任务信息的定义
+type Task struct {
+  FileName  string
+  WorkerId  int 
+  StartTime time.Duration
+  TaskPhase int
+}
 </code></pre>
 
             </div>
@@ -184,7 +307,7 @@
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://voidspiral.github.io/images/avatar.png?v=1611157997724" class="no-responsive avatar">
+    <img src="https://voidspiral.github.io/images/avatar.png?v=1611330903853" class="no-responsive avatar">
     <div class="text-muted">专注于 golang、分布式、3D机器视觉等</div>
     <div class="social-container">
       
@@ -314,7 +437,7 @@
     </div>
     <div class="row">
       
-        <a href="https://voidspiral.github.io/tag/yZt3OuCEE/" class="badge warning">
+        <a href="https://voidspiral.github.io/tag/yZt3OuCEE/" class="badge secondary">
           转载
         </a>
       
@@ -322,11 +445,11 @@
           Go编程模式
         </a>
       
-        <a href="https://voidspiral.github.io/tag/gd30KobrK/" class="badge secondary">
+        <a href="https://voidspiral.github.io/tag/gd30KobrK/" class="badge warning">
           一起用go做项目
         </a>
       
-        <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge success">
+        <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge ">
           leetcode
         </a>
       
@@ -334,7 +457,7 @@
           go
         </a>
       
-        <a href="https://voidspiral.github.io/tag/mxi0AxR8_/" class="badge ">
+        <a href="https://voidspiral.github.io/tag/mxi0AxR8_/" class="badge secondary">
           go的并发原语
         </a>
       

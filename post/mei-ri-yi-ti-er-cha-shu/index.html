@@ -7,7 +7,7 @@
 <meta name="description" content="专注于 golang、分布式、3D机器视觉等">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1611330903853">
+<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1612180352232">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -95,7 +95,7 @@
             <p class="article-meta">
               2020-12-23
               
-                <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge secondary">
+                <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge success">
                   leetcode
                 </a>
               
@@ -133,9 +133,9 @@ func invertTree(root *TreeNode) *TreeNode {
 <ul>
 <li>首先很直观的想法是左儿子和右儿子进行连接 ，但是横跨左右子树的结点要怎么链接呢。</li>
 <li>我们可以发现这些结点的连接顺序是按层次连接的。我们当然可以按照层次遍历来连接每一层的结点（法一）</li>
-<li>以5号结点为例我们仅需要判断父节点（2）的next指针是否存在，将2号节点的右子节点和3号节点的左子节点连接即可（法二）</li>
+<li>以5号结点为例我们仅需要判断父节点（2）的next指针是否存在，将2号节点的右子节点和3号节点的左子节点连接诶即可（法二）</li>
 </ul>
-<figure data-type="image" tabindex="1"><img src="https://voidspiral.github.io/post-images/1608730988070.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://gitee.com/voidspiral/blogimage/raw/master/image-20201223194426482-20210201173016554-20210201173019674-20210201173049938.png" alt="image-20201223194426482" loading="lazy"></figure>
 <pre><code class="language-go">/**
  * Definition for a Node.
  * type Node struct {
@@ -166,6 +166,7 @@ func connectTowNode (node1, node2 *Node) {
 }
 </code></pre>
 <p>迭代版(法二)</p>
+<figure data-type="image" tabindex="2"><img src="https://gitee.com/voidspiral/blogimage/raw/master/image-20210201172912600.png" alt="image-20210201172912600" loading="lazy"></figure>
 <pre><code class="language-go">/**
  * Definition for a Node.
  * type Node struct {
@@ -186,8 +187,45 @@ func connect(root *Node) *Node {
         for node := leftmost; node != nil; node = node.Next {
             //左节点指向右节点
             node.Left.Next = node.Right
-            if node.Next != nil {
+            if node.Next != nil { //看图，当为最后一个节点的时候，右边没有节点可供链接
                 node.Right.Next = node.Next.Left
+            }
+        }
+    }
+    return root
+}
+</code></pre>
+<pre><code class="language-go">/**
+ * Definition for a Node.
+ * type Node struct {
+ *     Val int
+ *     Left *Node
+ *     Right *Node
+ *     Next *Node
+ * }
+ */
+
+func connect(root *Node) *Node {
+	if root == nil {
+        return nil
+    }
+    que := []*Node{root}
+    for len(que) &gt; 0 {
+        levesize := len(que)
+        cur := que[0]
+        for i := 1; i &lt; levesize; i++{
+            cur.Next = que[i]
+            cur = cur.Next
+        }
+        cur.Next = nil
+        for i := 0; i &lt; levesize; i++ {
+            front := que[0]
+            que = que[1:]
+            if front.Left != nil {
+                que = append(que, front.Left)
+            }
+            if front.Right != nil {
+                que = append(que, front.Right)
             }
         }
     }
@@ -221,8 +259,6 @@ func flatten(root *TreeNode)  {
   
     //flatten(root.Left)
     flatten(root.Right)
-
-    //前 中 后序遍历其实都可
 
     return 
 }
@@ -258,7 +294,7 @@ func flatten(root *TreeNode)  {
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://voidspiral.github.io/images/avatar.png?v=1611330903853" class="no-responsive avatar">
+    <img src="https://voidspiral.github.io/images/avatar.png?v=1612180352232" class="no-responsive avatar">
     <div class="text-muted">专注于 golang、分布式、3D机器视觉等</div>
     <div class="social-container">
       
@@ -392,15 +428,15 @@ func flatten(root *TreeNode)  {
           转载
         </a>
       
-        <a href="https://voidspiral.github.io/tag/NiwUTusJ3/" class="badge ">
+        <a href="https://voidspiral.github.io/tag/NiwUTusJ3/" class="badge success">
           Go编程模式
         </a>
       
-        <a href="https://voidspiral.github.io/tag/gd30KobrK/" class="badge warning">
+        <a href="https://voidspiral.github.io/tag/gd30KobrK/" class="badge ">
           一起用go做项目
         </a>
       
-        <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge secondary">
+        <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge success">
           leetcode
         </a>
       
@@ -408,7 +444,7 @@ func flatten(root *TreeNode)  {
           go
         </a>
       
-        <a href="https://voidspiral.github.io/tag/mxi0AxR8_/" class="badge success">
+        <a href="https://voidspiral.github.io/tag/mxi0AxR8_/" class="badge ">
           go的并发原语
         </a>
       

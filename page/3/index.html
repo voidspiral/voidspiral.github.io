@@ -7,7 +7,7 @@
 <meta name="description" content="专注于 golang、分布式、3D机器视觉等">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1612940234651">
+<link rel="shortcut icon" href="https://voidspiral.github.io/favicon.ico?v=1613227853605">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -83,6 +83,37 @@
           
   <article class="article">
     <h2 class="article-title">
+      <a href="https://voidspiral.github.io/post/leetcode-88-he-bing-liang-ge-you-xu-shu-zu-md/">leetcode 88. 合并两个有序数组</a>
+    </h2>
+    <p class="article-meta">
+      2020-10-23
+      
+        <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge ">
+          leetcode
+        </a>
+      
+    </p>
+    <p class="text-lead">
+      <h3 id="思路">思路</h3>
+<p>1.首先能想到，类似归并排序中的归并操作。</p>
+<p>2.但是这里有一点难度在于，我们要复用nums1这个数组并达到<code>O(1)</code>的空间复杂度。</p>
+<p>3.一个有序数组，可以是非严格的（比如 1， <u>2， 2</u>，3）升序，也可以是降序。</p>
+<p>我们先来思考降序的，我们可以先将nums1中的非零元素移到尾端 在归并过程中无论如何 都需要额外的空间来保存元素</p>
+<p>所以降序肯定不行</p>
+<p>此时 我发现题目是升序的 囧 那就逆序归并就好了</p>
+
+    </p>
+    <div class="row">
+      <a href="https://voidspiral.github.io/post/leetcode-88-he-bing-liang-ge-you-xu-shu-zu-md/" class="readmore-link">
+        <button>
+          Read More
+        </button>
+      </a>
+    </div>
+  </article>
+
+  <article class="article">
+    <h2 class="article-title">
       <a href="https://voidspiral.github.io/post/leetcode-55-tiao-yue-you-xi-md/">leetcode 55. 跳跃游戏</a>
     </h2>
     <p class="article-meta">
@@ -142,7 +173,7 @@
     <p class="article-meta">
       2020-10-20
       
-        <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge warning">
+        <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge secondary">
           leetcode
         </a>
       
@@ -206,7 +237,7 @@
     <p class="article-meta">
       2020-08-11
       
-        <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge ">
+        <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge success">
           leetcode
         </a>
       
@@ -232,7 +263,7 @@
     <p class="article-meta">
       2020-08-10
       
-        <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge success">
+        <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge secondary">
           leetcode
         </a>
       
@@ -262,7 +293,7 @@
     <p class="article-meta">
       2020-07-05
       
-        <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge ">
+        <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge secondary">
           leetcode
         </a>
       
@@ -286,7 +317,7 @@
     <p class="article-meta">
       2020-06-28
       
-        <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge secondary">
+        <a href="https://voidspiral.github.io/tag/Ybt3_Irc8/" class="badge success">
           leetcode
         </a>
       
@@ -319,7 +350,7 @@
       
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://voidspiral.github.io/images/avatar.png?v=1612940234651" class="no-responsive avatar">
+    <img src="https://voidspiral.github.io/images/avatar.png?v=1613227853605" class="no-responsive avatar">
     <div class="text-muted">专注于 golang、分布式、3D机器视觉等</div>
     <div class="social-container">
       
@@ -341,6 +372,12 @@
     </div>
     <div class="row">
       <ul>
+        
+          
+            <li>
+              <a href="https://voidspiral.github.io/post/za-ti/">杂题</a>
+            </li>
+          
         
           
             <li>
@@ -397,10 +434,6 @@
           
         
           
-            <li>
-              <a href="https://voidspiral.github.io/post/qian-xu-zhong-xu-hou-xu-fei-di-gui/">前序中序后序非递归</a>
-            </li>
-          
         
           
         
@@ -451,15 +484,15 @@
     </div>
     <div class="row">
       
-        <a href="https://voidspiral.github.io/tag/yZt3OuCEE/" class="badge success">
+        <a href="https://voidspiral.github.io/tag/yZt3OuCEE/" class="badge secondary">
           转载
         </a>
       
-        <a href="https://voidspiral.github.io/tag/NiwUTusJ3/" class="badge secondary">
+        <a href="https://voidspiral.github.io/tag/NiwUTusJ3/" class="badge ">
           Go编程模式
         </a>
       
-        <a href="https://voidspiral.github.io/tag/gd30KobrK/" class="badge ">
+        <a href="https://voidspiral.github.io/tag/gd30KobrK/" class="badge warning">
           一起用go做项目
         </a>
       
@@ -467,7 +500,7 @@
           leetcode
         </a>
       
-        <a href="https://voidspiral.github.io/tag/SUyxLM_cY/" class="badge secondary">
+        <a href="https://voidspiral.github.io/tag/SUyxLM_cY/" class="badge success">
           go
         </a>
       

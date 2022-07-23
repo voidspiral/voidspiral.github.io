@@ -1,0 +1,4 @@
+baseURL = 'https://voidspiral.github.io'
+languageCode = 'en-us'
+title = 'Voidspiral's Hugo Site'
+theme = "ananke"
